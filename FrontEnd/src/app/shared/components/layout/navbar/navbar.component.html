@@ -1,4 +1,35 @@
-<nav class="navbar navbar-expand-lg navbar-danger bg-danger p-2">
+<div class="menu">
+    <nav class="toolbar">
+        <img routerLink="" alt="Catalog" src="../assets/images/logo.png">
+
+        <div class="navbar-link">
+            <select class="language-select text-light " #langselect (change)="translate.use(langselect.value)">
+                <option class="text-dark" *ngFor="let lang of translate.getLangs()" [value]="lang">
+                    <mat-icon aria-label="lang">{{ lang }}</mat-icon> 
+                </option>
+            </select>
+            <ul >
+                <li>
+                    <a routerLink="search" class=""> {{'search' | translate}} </a>
+                </li>
+                <li>
+                    <a routerLink="user/register" class=""> {{'register' | translate}} </a>
+                </li>
+                <li class="">
+                    <a routerLink="user/login" class=""> {{'login' | translate}} </a>
+                </li>
+                <li>
+                    <a routerLink="user/account" class=""> 
+                        <mat-icon aria-label="account">account_circle</mat-icon>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+</div>
+
+<!--nav class="navbar navbar-expand-lg navbar-danger bg-danger p-2">
     <a routerLink="" class="navbar-brand text-light font-weight-bold">Catalog</a>
 
     <div class="navbar-link p-2">
@@ -25,7 +56,7 @@
         </ul>
     </div>
 
-</nav>
+</nav-->
 
 <!-- <nav class="navbar navbar-expand-lg navbar-danger bg-danger p-2">
     <a routerLink="" class="navbar-brand text-light font-weight-bold">Catalog</a>

@@ -1,0 +1,39 @@
+
+.article-list-item{
+    background-color: rgba(243, 242, 242, 0.363);
+    border: 1px solid gray;
+    padding: 10px;
+}
+.article-list-item:hover{
+    background-color: rgba(243, 242, 242, 0.897);
+    cursor: pointer;
+}
+
+.article-list-item-head{
+    display: flex;
+    justify-content: space-between;
+    .article-list-price{
+       align-self: flex-start; 
+    }
+}
+
+
+.article-card-item{
+    background-color: rgba(243, 242, 242, 0.363);
+    border: 1px solid gray;
+    padding: 10%;
+    flex-basis:  auto;
+    width: 40vh;
+}
+.article-card-item:hover{
+    background-color: rgba(243, 242, 242, 0.897);
+    cursor: pointer;
+}
+
+.article-card-item-head{
+    display: flex;
+    justify-content: space-between;
+    .article-card-price{
+       align-self: flex-start; 
+    }
+}

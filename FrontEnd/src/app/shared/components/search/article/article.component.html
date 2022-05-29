@@ -1,0 +1,21 @@
+<div *ngIf="list" class="article-list-item card">
+
+    <div class="article-list-item-head">
+        <p class="article-list-title">{{ article.title }}</p>
+        <p class="article-list-price">{{ article.price }} €</p>
+    </div>
+    <p class="article-list-description">{{ article.description }}</p>
+
+
+</div>
+
+<div *ngIf="!list" class="article-card-item card">
+
+    <div class="article-card-item-head">
+        <p class="article-card-title">{{ article.title }}</p>
+        <p class="article-card-price">{{ article.price }} €</p>
+    </div>
+    <p class="article-card-description">{{ article.description }}</p>
+
+
+</div>

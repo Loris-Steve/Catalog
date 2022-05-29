@@ -14,18 +14,21 @@ export class SearchComponent implements OnInit {
       title: "art1",
       price: 12,
       description: "au top",
+      images : []
     },
     {
       idArticle: 0,
       title: "art1",
       price: 12,
       description: "au top",
+      images : []
     },
     {
       idArticle: 0,
       title: "art1",
       price: 12,
       description: "au top",
+      images : []
     },
   ];
 
@@ -38,7 +41,7 @@ export class SearchComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("call ! ")
+    
     this.codeArticleStyle = this.codeCardStyle;
   }
 

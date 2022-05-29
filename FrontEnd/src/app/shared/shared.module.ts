@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CustomSearchFilterComponent } from './components/search/custom-search-filter/custom-search-filter.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
+import { ArticleService } from './services/article/article.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { RouterModule } from '@angular/router';
     TranslateModule
   ],
   providers: [
-
+    ArticleService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

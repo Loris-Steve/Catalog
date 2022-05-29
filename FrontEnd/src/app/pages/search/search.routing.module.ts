@@ -7,6 +7,10 @@ const routes: Routes = [
 
   {
     path: '',
+    redirectTo: 'search'
+  },
+  {
+    path: 'search',
     component: SearchComponent,
   },
   {

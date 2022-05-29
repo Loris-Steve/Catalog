@@ -5,10 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'login'
-  },
+
   {
     path: 'account',
     component: AccountComponent,
@@ -20,10 +17,6 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-  },
-  {
-    path: '**',
-    redirectTo: 'login'
   }
 ];
 

@@ -4,6 +4,7 @@ import { ArticleDetailsComponent } from './article-details/article-details.compo
 import { SearchComponent } from './search.component';
 import { SearchRoutingModule } from './search.routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -15,7 +16,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     SearchRoutingModule,
     CommonModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA]
 })

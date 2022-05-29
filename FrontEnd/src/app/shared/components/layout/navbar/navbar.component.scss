@@ -49,6 +49,7 @@
         }
 
         ul li a {
+            margin-left: 8px;
             display: inline-block;
             color: white;
             text-align: center;
@@ -64,8 +65,40 @@
             text-decoration: none;
             cursor: pointer;
         }
+
+        ul li a#bouton {
+            margin-top:5px;
+            color: black;
+            font-size: 15px;
+            padding: 10px 17px;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: white;
+            border-radius: 30px;
+            box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+
+        ul li a#bouton:hover {
+            background-color: rgb(248,248,255);
+            transform: scale(1);
+        }
     
     }
+}
+
+.language-select{
+    background-color: none;
+    background: none;
+    border: rgba(255, 255, 255, 0.692) 1px solid;
+    border-radius: 1%;
+}
+
+.language-select:hover{
+    //color: black;
+    //font-weight: bold;
+    background-color: #f3f3f33d;
+    transition: 0.3s;
+    cursor: pointer;
 }
     
 

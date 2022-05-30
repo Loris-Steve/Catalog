@@ -11,9 +11,11 @@ input[type=text], select{
     padding: 10px 18px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 1px solid rgba(60, 55, 55,0.5);
     box-sizing: border-box;
     font-size: 16px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+    height: 47px;
 }
 
 #categorie {
@@ -22,5 +24,28 @@ input[type=text], select{
 }
 
 #ProdService {
-    width:40%;
+    width:43%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+#localisation {
+    width:25%;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.searchBar {
+    margin-left: 70px;
+}
+
+#rechercher {
+    font-size: 16px;
+    margin-left: 50px;
+    background-color: rgba(253, 152, 79, 0.7);
+    border : none;
+    border-radius: 10px;
+    padding: 12px 30px;
+    color :#3C3737; 
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
 }

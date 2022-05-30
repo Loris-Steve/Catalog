@@ -87,9 +87,11 @@
 }
 
 .language-select{
+    margin-top:8px;
+    height: 35px;
     background-color: none;
     background: none;
-    border: rgba(255, 255, 255, 0.692) 1px solid;
+    border: rgba(255, 255, 255, 0.7) 2px solid;
     border-radius: 1%;
 }
 
@@ -100,7 +102,7 @@
     transition: 0.3s;
     cursor: pointer;
 }
-    
+ 
 
 
 

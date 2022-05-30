@@ -6,3 +6,21 @@
     gap: 2%;
     flex-wrap: wrap;
 }
+
+input[type=text], select{
+    padding: 10px 18px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+#categorie {
+    background-color: white;
+    padding-top: 10.3px;
+}
+
+#ProdService {
+    width:40%;
+}

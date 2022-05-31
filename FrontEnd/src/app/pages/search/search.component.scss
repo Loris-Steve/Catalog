@@ -49,23 +49,6 @@ input[type=text], select{
     margin-right:3%;
 }
 
-
-/*Resultats*/
-
-.article-card-style{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    gap: 2%;
-    flex-wrap: wrap;
-}
-
-.resultats {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 @media screen and (max-width: 1300px) {
     #rechercher {
         display:block;
@@ -83,4 +66,27 @@ input[type=text], select{
         width:25%;
         margin-right: 10%;
     }
-  }
+}
+
+
+/*Resultats*/
+
+.article-card-style{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 7%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.resultats {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card {
+    margin-top:5%;
+}
+

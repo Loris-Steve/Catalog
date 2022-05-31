@@ -9,13 +9,14 @@
 
 </div>
 
-<div *ngIf="!list" class="article-card-item card">
 
-    <div class="article-card-item-head">
-        <p class="article-card-title">{{ article.title }}</p>
-        <p class="article-card-price">{{ article.price }} €</p>
+<div class="card" style="width: 18rem;" *ngIf="!list">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+        <h2 class="card-title">{{ article.title }}</h2>
+        <p class="card-text">{{ article.price }} €</p>
     </div>
-    <p class="article-card-description">{{ article.description }}</p>
-
-
+    <img class="rounded-circle" alt="100x100" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg"/>
+    <p id="description" class="article-card-description w-25">{{ article.description }}</p>
 </div>
+

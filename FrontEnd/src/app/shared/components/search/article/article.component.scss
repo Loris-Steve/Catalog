@@ -43,7 +43,10 @@
 }
 
 .rounded-circle {
-    width: 15%;
+    width: 38px;
+    height:38px;
+    margin-left:4%;
+    border: 1px solid grey;
 }
 
 .card-body {
@@ -52,5 +55,5 @@
 
 #description {
     margin-top: -10%;
-    margin-left: 20%;
+    margin-left: 23%;
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Article } from 'src/app/shared/models/article.model';
 
 @Component({
@@ -11,9 +12,12 @@ export class ArticleComponent implements OnInit {
   @Input() article: Article = <Article>{};
   @Input() list: boolean = false;
   
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  navigate(idArticle:number){
+    this.router.navigate(['/search/article-details/'+idArticle]);
+  }
 }

@@ -7,14 +7,14 @@ const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'search'
-  },
-  {
-    path: 'search',
     component: SearchComponent,
   },
   {
-    path: 'article-details',
+    path: 'search',
+    redirectTo: 'search'
+  },
+  {
+    path: 'article-details/:idArticle',
     component: ArticleDetailsComponent,
   },
   // {

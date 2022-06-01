@@ -5,7 +5,20 @@
 
     </div>
 
+    <div class="searchBar">
+        <input type="text" id="ProdService" name="ProdService" placeholder="Produit, Service, ..." required>
+        <select id="categorie" name="categorie">
+            <option selected>Catégories</option>
+            <option>Mode</option>
+            <option>Alimentation</option>
+            <option>Multimédia</option>
+            <option>Sport</option>
+        </select>
+        <input type="text" id="localisation" name="localisation" placeholder="Localisation" required>
+        <button id="rechercher">Rechercher</button>
+    </div>
+
     <div class="p-2 col-12" [ngClass]="codeArticleStyle" >
-        <app-article *ngFor="let article of articles" [article]="article"></app-article>
+        <app-article class="card" *ngFor="let article of articles" [article]="article"></app-article>
     </div>
 </div>

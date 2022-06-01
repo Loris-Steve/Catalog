@@ -9,13 +9,14 @@
 
 </div>
 
-<div *ngIf="!list" class="article-card-item card">
 
-    <div class="article-card-item-head">
-        <p class="article-card-title">{{ article.title }}</p>
-        <p class="article-card-price">{{ article.price }} €</p>
+<div class="card" style="width: 18rem;" *ngIf="!list">
+    <img class="card-img-top" src="https://www.ecommercemag.fr/Assets/Img/BREVE/2016/4/303588/est-chef-produit-VPC--F.jpg" alt="Card image cap">
+    <div class="card-body">
+        <h2 class="card-title">{{ article.title }}</h2>
+        <p class="card-text" style="font-size: 15px;">{{ article.price }} €</p>
     </div>
-    <p class="article-card-description">{{ article.description }}</p>
-
-
+    <img class="rounded-circle" alt="100x100" src="https://us.123rf.com/450wm/imagevectors/imagevectors1606/imagevectors160600227/58872995-profil-blanc-ic%C3%B4ne-sur-le-bouton-bleu-isol%C3%A9-sur-blanc.jpg?ver=6"/>
+    <p id="description" class="article-card-description w-25">{{ article.description }}</p>
 </div>
+

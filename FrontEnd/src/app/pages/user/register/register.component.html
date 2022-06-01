@@ -1,2 +1,33 @@
-<p>register works!</p>
 <P>page d'Inscription</P>
+
+<div class="formulaire">
+    <h1>Bonjour </h1><br/>
+    <p id="sstitre">Bénéficiez d'une expérience personnalisée avec du contenu en lien avec votre activité et vos centres d'intérêt sur notre service</p>
+    <div class="champs">
+    <!-- radio button -->
+        <p>
+            Je suis :
+            <input
+            type="radio"
+            name="radiobutton"
+            value="Particulier"
+            required
+            />
+            Particulier
+            <input
+            type="radio"
+            name="radiobutton"
+            value="Professionnel"
+            required
+            />
+            Professionnel
+        </p>
+      <input type="text" id="nom" name="nom" placeholder="nom" required>
+      <input type="text" id="prenom" name="prenom" placeholder="prénom" required>
+      <input type="text" id="email" name="email" placeholder="email" required>
+      <input type="text" id="password" name="password" placeholder="mot de passe" required>
+      <input type="text" id="confPassword" name="confPassword" placeholder="confirmer le mot de passe" required>
+      <button id="connecter">S'inscrire</button><br/>
+      <p id="inscr">Vous avez un compte ?  <a routerLink="user/register">Je me connecte</a></p>
+    </div>
+</div>

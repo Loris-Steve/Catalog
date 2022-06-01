@@ -37,3 +37,23 @@
        align-self: flex-start; 
     }
 }
+
+.card-title {
+    text-align: center;
+}
+
+.rounded-circle {
+    width: 38px;
+    height:38px;
+    margin-left:4%;
+    border: 1px solid grey;
+}
+
+.card-body {
+    margin-bottom: 2%;
+}
+
+#description {
+    margin-top: -10%;
+    margin-left: 23%;
+}

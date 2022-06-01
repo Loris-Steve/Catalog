@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -16,6 +16,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     UserRoutingModule,
     RouterModule
-  ]
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA]
 })
 export class UserModule { }

@@ -2,10 +2,10 @@ const express = require("express");
 const dotenv = require('dotenv'); 
 const cors = require("cors");
 //const HttpException = require('./utils/HttpException.utils');
-//const errorMiddleware = require('./middleware/error.middleware');
+const errorMiddleware = require('./middleware/error.middleware');
 const bodyParser  = require('body-parser');
 //const fileUpload = require('express-fileupload');
-//const config = require('./config/config');
+const config = require('./config/config');
 
 const server = express();
 

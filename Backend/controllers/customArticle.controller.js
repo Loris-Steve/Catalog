@@ -1,36 +1,31 @@
-/* const ArticleModel = require('../models/Article.model');
+/* const CustomArticleModel = require('../models/CustomArticle.model');
 const HttpException = require('../utils/HttpException.utils');
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const dotenv = require('dotenv');
 dotenv.config();
 const jwtUtils = require('../utils/jwt.utils');
-const Role = require('../utils/ArticleRoles.utils'); */
+const Role = require('../utils/CustomArticleRoles.utils'); */
 
 /******************************************************************************
- *                              Article Controller
+ *                              CustomArticle Controller
  ******************************************************************************/
- class ArticleController {
+ class CustomArticleController {
 
-    createArticle = async (req, res, next) => {
+    createCustomArticle = async (req, res, next) => {
         
     };
         
-    getArticlesByName = async (req, res, next) => {
-        console.log("Enter controller ARTICLE GET !!")
 
-        res.send({ articles : ['a1','a2', 'a3']});
-    };
-
-    ArticleDetails = async (req, res, next) => {
+    CustomArticleDetails = async (req, res, next) => {
 
     };
     
-    updateArticle = async (req, res, next) => {
+    updateCustomArticle = async (req, res, next) => {
       
     };
 
-    deleteArticle = async (req, res, next) => {
+    deleteCustomArticle = async (req, res, next) => {
      
     };
 
@@ -48,4 +43,4 @@ const Role = require('../utils/ArticleRoles.utils'); */
 /******************************************************************************
  *                               Export
  ******************************************************************************/
-module.exports = new ArticleController;
+module.exports = new CustomArticleController;

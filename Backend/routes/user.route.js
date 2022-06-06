@@ -6,13 +6,13 @@ const userController = require('../controllers/user.controller');
 
 const awaitHandlerFactory = require('../middleware/awaitHandlerFactory.middleware');
 
-const { createUserSchema, updateUserSchema, validateLogin } = require('../middleware/validators/userValidator.middleware');
+const { createUserSchema, validateLogin } = require('../middleware/validators/userValidator.middleware');
 
-router.post('/',  createUserSchema, awaitHandlerFactory(userController.createUser)); // localhost:3000/api/users
+router.post('/register',  createUserSchema, awaitHandlerFactory(userController.createUser)); // localhost:3000/api/users
 
 router.post('/signin', validateLogin, awaitHandlerFactory(userController.userLogin)); // localhost:3000/api/users/login
 
-router.get('/:id', awaitHandlerFactory(userController.userDetails)); // localhost:3000/api/users/login
+//router.get('/:id', awaitHandlerFactory(userController.userDetails)); // localhost:3000/api/users/login
 
 router.patch('/:id', awaitHandlerFactory(userController.updateUser)); // localhost:3000/api/users/1 , using patch for partial update
 

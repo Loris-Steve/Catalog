@@ -1,12 +1,10 @@
 const UserModel = require('../models/user.model');
-/* 
 const HttpException = require('../utils/HttpException.utils');
-const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const dotenv = require('dotenv');
 dotenv.config();
 const jwtUtils = require('../utils/jwt.utils');
-const Role = require('../utils/userRoles.utils'); */
+const {checkValidation} = require('../middleware/checkValidation')
 
 /******************************************************************************
  *                              User Controller
@@ -22,12 +20,12 @@ class UserController {
         //      res.send(result);
         //  }
 
-         this.checkValidation(req);
+         checkValidation(req);
         
          const user = await UserModel.findOne({ email : req.body.email });
          
          if (user) {
-             throw new HttpException(400, 'Email déjà existant');
+             throw new HttpException(400, 'email already exist');
          }
  
          await this.hashPassword(req);
@@ -45,9 +43,8 @@ class UserController {
              
              const token = jwtUtils.getToken(user);
              
-             const { confirm_password ,  password, ...userWithoutPassword } = user;
+             const { password, ...userWithoutPassword } = user;
              
-             //res.status(201).send('you must confirm your email');
              res.send({ ...userWithoutPassword, token });
              
          }
@@ -59,13 +56,34 @@ class UserController {
     };
 
     userLogin = async (req, res, next) => {
-        const result = await UserModel.find(req.body);
-        if (result.error) {
-             res.status(500).send({ message: 'Une erreur est survenue' });
-         }
-         else{
-             res.send(result);
-         }
+        // const result = await UserModel.find(req.body);
+        // if (result.error) {
+        //      res.status(500).send({ message: 'Une erreur est survenue' });
+        //  }
+        //  else{
+        //      res.send(result);
+        //  }
+        checkValidation(req);
+        const { email, password: pass } = req.body;
+        
+        const user = await UserModel.findOne({ email });
+        
+        if (!user) {
+            throw new HttpException(401, 'unknow');
+        }
+
+        const isMatch = await bcrypt.compare(pass, user.password);
+        
+        if (!isMatch) {
+            throw new HttpException(401, 'Incorrect password!');
+        }
+        
+        console.log(" first ! " + email+ " password : "+ pass+ " idUser : "+user.idUser)
+        const token = jwtUtils.getToken(user);
+        
+        const { password, ...userWithoutPassword } = user;
+
+        res.send({ ...userWithoutPassword, token });
     };
     
     updateUser = async (req, res, next) => {
@@ -75,15 +93,6 @@ class UserController {
     deleteUser = async (req, res, next) => {
      
     };
-
-    // ---------  FUNCTIONS ---------
-
-    checkValidation = (req) => {
-        const errors = validationResult(req)
-        if (!errors.isEmpty()) {
-            throw new HttpException(400, 'Validation faild', errors);
-        }
-    }
 
     // hash password if it exists
     hashPassword = async (req) => {

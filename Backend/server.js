@@ -1,7 +1,7 @@
 const express = require("express");
 const dotenv = require('dotenv'); 
 const cors = require("cors");
-//const HttpException = require('./utils/HttpException.utils');
+const HttpException = require('./utils/HttpException.utils');
 const errorMiddleware = require('./middleware/error.middleware');
 const bodyParser  = require('body-parser');
 //const fileUpload = require('express-fileupload');
@@ -11,6 +11,7 @@ const server = express();
 
 const userRouter = require('./routes/user.route');
 const articleRouter = require('./routes/article.route');
+const catalogRouter = require('./routes/catalog.route');
 
 // parse requests of content-type: application/json
 // parses incoming requests with JSON payloads
@@ -44,6 +45,7 @@ server.use(cors());
 const port = Number(config.PORT);
 
 server.use(`/api/users`, userRouter);
+server.use(`/api/catalogs`, catalogRouter);
 server.use(`/api/articles`, articleRouter);
 
 server.get('/', (req,res) => {
@@ -61,7 +63,7 @@ server.use(errorMiddleware);
 
 // starting the server
 server.listen(port, () =>
-    console.log(`> Server running on port ${port}!`));
+    console.log(`${process.env.PORT} Server running on port ${port}!`));
 
 
 module.exports = server;

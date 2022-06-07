@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CustomSearchFilterComponent } from './components/search/custom-search-filter/custom-search-filter.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,14 +22,18 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     MatIconModule,
     TranslateModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     //ContentLayoutComponent,
     ArticleComponent,
     NavbarComponent,
     FooterComponent,
-    TranslateModule
+    TranslateModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
 

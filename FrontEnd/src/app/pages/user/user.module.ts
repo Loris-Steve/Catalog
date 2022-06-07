@@ -6,6 +6,7 @@ import { AccountComponent } from './account/account.component';
 import { UserRoutingModule } from './user.routing.module';
 import { RouterModule } from '@angular/router';
 import { ProfilComponent } from './profil/profil.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -15,9 +16,10 @@ import { ProfilComponent } from './profil/profil.component';
     ProfilComponent
   ],
   imports: [
+    SharedModule,
     CommonModule,
     UserRoutingModule,
-    RouterModule
+    RouterModule,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -1,21 +1,86 @@
-<div class="formulaire">
+<form class="formulaire" [formGroup]="registerForm">
     <img class="rounded-circle" alt="100x100" src="https://media.istockphoto.com/vectors/default-avatar-profile-icon-vector-vector-id1337144146?b=1&k=20&m=1337144146&s=170667a&w=0&h=ys-RUZbXzQ-FQdLstHeWshI4ViJuEhyEa4AzQNQ0rFI="/>
-    <p id="sstitre">Bénéficiez d'une expérience personnalisée avec du contenu en lien avec votre activité et vos centres d'intérêt sur notre service</p>
+    <p id="sstitre">{{ "Bénéficiez d'une expérience personnalisée avec du contenu en lien avec votre activité et vos centres d'intérêt sur notre service" | translate }}</p>
     <div class="champs">
     <!-- radio button -->
         <p>
             Je suis :
-            <input type="radio" name="radiobutton" value="Particulier" required/>
-            Particulier
+            <input type="radio" name="radiobutton" value="User" required/>
+            {{ 'particulier' | translate }}
             <input type="radio" name="radiobutton" value="Professionnel" required/>
-            Professionnel
+            {{ 'professionnel' | translate }}
+            <!-- <div
+                *ngIf="registerForm.controls['role'].touched && registerForm.controls['role'].hasError('required')"
+                class="text text-danger mt-1">
+                {{ "role" | translate }} {{ "is required" | translate }}
+            </div> -->
         </p>
-      <input type="text" id="nom" name="nom" placeholder="nom" required>
-      <input type="text" id="prenom" name="prenom" placeholder="prénom" required>
-      <input type="text" id="email" name="email" placeholder="email" required>
-      <input type="text" id="password" name="password" placeholder="mot de passe" required>
-      <input type="text" id="confPassword" name="confPassword" placeholder="confirmer le mot de passe" required>
-      <button id="connecter">S'inscrire</button><br/>
+
+    <div>
+        <input type="text" id="nom" name="nom"  placeholder="nom" required
+        placeholder="{{ 'firstName' | translate }}..."
+        formControlName="firstName"
+        ng-model="registerForm.controls[firstName]"
+        >
+         <div
+            *ngIf="registerForm.controls['firstName'].hasError('required') && registerForm.controls['firstName'].touched"
+            class="text text-danger mt-1">
+            {{ "firstName" | translate }} {{ "is required" | translate }}
+        </div>
+
+    </div>
+
+    <div>
+        <input type="text" id="prenom" name="prenom" placeholder="prénom" required
+        placeholder="{{ 'lastName' | translate }}..."
+        formControlName="lastName"
+        ng-model="registerForm.controls[lastName]"
+        >
+         <div
+            *ngIf="registerForm.controls['lastName'].touched && registerForm.controls['lastName'].hasError('required')"
+            class="text text-danger mt-1">
+            {{ "lastName" | translate }} {{ "is required" | translate }}
+        </div>
+    </div>
+    <div>
+        <input type="text" id="email" name="email" placeholder="email" required
+        placeholder="{{ 'email' | translate }}..."
+        formControlName="email"
+        ng-model="registerForm.controls[email]" >
+         <div
+            *ngIf="registerForm.controls['email'].touched && registerForm.controls['email'].hasError('required')"
+            class="text text-danger mt-1">
+            {{ "email" | translate }} {{ "is required" | translate }}
+        </div>
+    </div>
+
+    <div>
+        <input type="text" id="password" name="password" placeholder="mot de passe" required
+        placeholder="{{ 'password' | translate }}..."
+        formControlName="password"
+        ng-model="registerForm.controls[password]"
+        >
+         <div
+            *ngIf="registerForm.controls['password'].touched && registerForm.controls['password'].hasError('required')"
+            class="text text-danger mt-1">
+            {{ "password" | translate }} {{ "is required" | translate }}
+        </div>
+    </div>
+    
+    <div>
+        <input type="text" id="confPassword" name="confPassword" placeholder="confirmer le mot de passe" required
+        placeholder="{{ 'consfirm_password' | translate }}..."
+        formControlName="consfirm_password"
+        ng-model="registerForm.controls[consfirm_password]"
+        >
+         <div
+            *ngIf="registerForm.controls['consfirm_password'].touched && registerForm.controls['consfirm_password'].hasError('required')"
+            class="text text-danger mt-1">
+            {{ "consfirm_password" | translate }} {{ "is required" | translate }}
+        </div>
+    </div>
+
+      <button id="connecter" [disabled]="!registerForm.valid" (submit)="onSubmit()">S'inscrire</button><br/>
       <p id="inscr">Vous avez un compte ?  <a routerLink="user/register">Je me connecte</a></p>
     </div>
-</div>
+</form>

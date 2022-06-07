@@ -2,5 +2,6 @@
     "search" : "Search",
     "register" : "Register",
     "login" : "Login",
-    "account" : "Account"
+    "account" : "Account",
+    "Youdonthaveanyaccount": "You don't have an account ?"
 }

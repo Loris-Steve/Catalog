@@ -18,15 +18,15 @@ export class UserService {
   
   constructor(private router: Router, private httpClient: HttpClient ) { }
 
-  register(photo: string,firstName: string,lastName: string,
+ /*  register(photo: string,firstName: string,lastName: string,
     email: string,password: string,role: UserRole): void {
 
-      this.httpClient.get<User>(link + 'users/register').subscribe((response) => { 
+      this.httpClient.get<User>(link + 'users/register').subscribe((response:User) => { 
          //Next callback
           console.log('response received')
           console.log(response);
             //Ajout d'un objet dans la mémoire de l'ordinateur
-            //localStorage.setItem('userItem', resultat);
+            //localStorage.setItem('userItem', response);
             
             //Récupération de l'objet
             //user:string = localStorage.getItem('user');*
@@ -43,5 +43,5 @@ export class UserService {
 
     });
 
-  }
+  } */
 }

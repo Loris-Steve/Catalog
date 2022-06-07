@@ -2,6 +2,7 @@
     "search" : "Recherche",
     "register" : "Inscription",
     "login" : "Connexion",
-    "account" : "Compte"
+    "account" : "Compte",
+    "Youdonthaveanyaccount": "Vous n’avez pas de compte ?"
 
 }

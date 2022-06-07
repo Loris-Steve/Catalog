@@ -1,10 +1,29 @@
-<div class="formulaire ">
-    <h1>Bonjour !</h1><br/>
-    <p id="sstitre">Connectez-vous pour accéder à toutes nos fonctionnalités.</p>
-    <div class="champs">
-      <input type="text" id="email" name="email" placeholder="email" required>
-      <input type="text" id="password" name="password" placeholder="mot de passe" required>
-      <button id="connecter">Se connecter</button><br/>
-      <p id="inscr">Vous n’avez pas de compte ?  <a routerLink="/user/register">Créer un compte</a></p>
+<form [formGroup]="loginForm" class="formulaire " (ngSubmit)="onSubmit()">
+  <h1>Bonjour !</h1><br />
+  <p id="sstitre">Connectez-vous pour accéder à toutes nos fonctionnalités.</p>
+  <div class="champs">
+
+    <input type="text" id="email" name="email" placeholder="email" formControlName="email"
+      [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" 
+      />
+    <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+      <div *ngIf="f['email'].errors['required']">Email is required</div>
     </div>
-</div>
+
+    <input type="text" id="password" name="password" placeholder="mot de passe" 
+    formControlName="password"
+      class="form-control" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+    <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+      <div *ngIf="f['password'].errors['required']">Password is required</div>
+    </div>
+
+    <button id="connecter" [disabled]="loading" (submit)="onSubmit()">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+      Se connecter
+    </button><br />
+
+    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+    
+    <p id="inscr">Vous n’avez pas de compte ? <a routerLink="/user/register">Créer un compte</a></p>
+  </div>
+</form>

@@ -8,8 +8,7 @@ export class AuthGuard implements OnInit {
   constructor(private permissions: Permissions, private authService: AuthService) {}
 
   canActivate() {
-    const currentUser = this.authService.getCurrentUser();
-    if(Object.keys(currentUser).length > 0) {
+    if(this.authService.userValue){
       return true;
     }
     return false

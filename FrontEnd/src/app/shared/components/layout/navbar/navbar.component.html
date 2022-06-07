@@ -12,18 +12,39 @@
                 <li>
                     <a routerLink="search" class=""> {{'search' | translate}} </a>
                 </li>
-                <li>
-                    <a routerLink="user/register" id="bouton" class=""> {{'register' | translate}} </a>
-                </li>
-                <li class="">
-                    <a routerLink="user/login" id="bouton" class=""> {{'login' | translate}} </a>
-                </li>
-                <li>
-                    <a routerLink="user/account" class=""> 
-                        <mat-icon aria-label="account">account_circle</mat-icon>
-                    </a>
-                </li>
+                
+                <div *ngIf="authService.isAuth; then connectedBlock else notConnectBlock"></div>
+
+                <ng-template #notConnectBlock>
+                    
+                    <li>
+                        <a routerLink="user/register" id="bouton" class=""> {{'register' | translate}} </a>
+                    </li>
+                    <li class="">
+                        <a routerLink="user/login" id="bouton" class=""> {{'login' | translate}} </a>
+                    </li>
+
+                </ng-template>
+
+                <ng-template #connectedBlock>
+                    
+                    <li>
+                        <a routerLink="user/account" class=""> 
+                            <mat-icon aria-label="account">account_circle</mat-icon>
+                            {{ user.firstName }}
+                        </a>
+                    </li>
+                    <li>
+                        <span  (click)="logout()" class=""> 
+                            ( Log out )
+                        </span>
+                    </li>
+
+                </ng-template>
+
             </ul>
+
+
         </div>
 
     </nav>

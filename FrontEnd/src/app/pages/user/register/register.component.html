@@ -1,20 +1,28 @@
-<form class="formulaire" [formGroup]="registerForm">
+<form class="formulaire" [formGroup]="registerForm" (submit)="onSubmit()">
     <img class="rounded-circle" alt="100x100" src="https://media.istockphoto.com/vectors/default-avatar-profile-icon-vector-vector-id1337144146?b=1&k=20&m=1337144146&s=170667a&w=0&h=ys-RUZbXzQ-FQdLstHeWshI4ViJuEhyEa4AzQNQ0rFI="/>
     <p id="sstitre">{{ "Bénéficiez d'une expérience personnalisée avec du contenu en lien avec votre activité et vos centres d'intérêt sur notre service" | translate }}</p>
     <div class="champs">
     <!-- radio button -->
+    <div>
         <p>
             Je suis :
-            <input type="radio" name="radiobutton" value="User" required/>
+            <input type="radio" name="role" [value]="role1"
+            formControlName="role"
+            ng-model="registerForm.controls[role]" 
+            />
             {{ 'particulier' | translate }}
-            <input type="radio" name="radiobutton" value="Professionnel" required/>
-            {{ 'professionnel' | translate }}
-            <!-- <div
-                *ngIf="registerForm.controls['role'].touched && registerForm.controls['role'].hasError('required')"
-                class="text text-danger mt-1">
-                {{ "role" | translate }} {{ "is required" | translate }}
-            </div> -->
+            <input type="radio" name="role" [value]="role2" 
+            formControlName="role"
+            ng-model="registerForm.controls[role]"
+            />
+            {{ 'professionnal' | translate }}
+            
         </p>
+        <div *ngIf="submitted && f['role'].errors" class="invalid-feedback">
+            <div *ngIf="f['role'].errors['required']">{{ "role" | translate }} {{ "is required" | translate }}</div>
+          </div>
+
+    </div>
 
     <div>
         <input type="text" id="nom" name="nom"  placeholder="nom" required
@@ -78,9 +86,20 @@
             class="text text-danger mt-1">
             {{ "consfirm_password" | translate }} {{ "is required" | translate }}
         </div>
+        <div
+        *ngIf="registerForm.errors?.['notSame']"
+        class="text text-danger mt-1">
+        {{ "consfirm_password" | translate }} {{ "notSame" | translate }}
+    </div>
     </div>
 
-      <button id="connecter" [disabled]="!registerForm.valid" (submit)="onSubmit()">S'inscrire</button><br/>
+    <button id="connecter" [disabled]="loading" (submit)="onSubmit()">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+        S'inscrire
+      </button><br />
+  
+      <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+
       <p id="inscr">Vous avez un compte ?  <a routerLink="user/register">Je me connecte</a></p>
     </div>
 </form>

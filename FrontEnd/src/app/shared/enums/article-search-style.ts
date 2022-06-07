@@ -1,4 +1,6 @@
 export enum ArticleSearchStyle {
-    List = 'list',
-    CARD = 'card'
+    LIST = 'list',
+    CARD = 'card',
+    CATALOG = 'catalog',
+    USER = 'user',
 }

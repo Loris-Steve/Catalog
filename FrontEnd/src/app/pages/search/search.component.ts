@@ -29,7 +29,7 @@ export class SearchComponent implements OnInit {
     },
   ];
 
-  articleListStyle: ArticleSearchStyle = ArticleSearchStyle.List;
+  articleListStyle: ArticleSearchStyle = ArticleSearchStyle.LIST;
 
   codeListStyle = "article-list-style";
   codeCardStyle = "article-card-style"

@@ -28,8 +28,6 @@ exports.createUserSchema = [
         .notEmpty()
         .isLength({ min: 6 })
         .withMessage('Password must contain at least 6 characters')
-        .isLength({ max: 10 })
-        .withMessage('Password can contain max 10 characters'),
 ];
 
 exports.validateLogin = [

@@ -10,7 +10,7 @@ const { createUserSchema, validateLogin } = require('../middleware/validators/us
 
 router.post('/register',  createUserSchema, awaitHandlerFactory(userController.createUser)); // localhost:3000/api/users
 
-router.post('/signin', validateLogin, awaitHandlerFactory(userController.userLogin)); // localhost:3000/api/users/login
+router.post('/login', validateLogin, awaitHandlerFactory(userController.userLogin)); // localhost:3000/api/users/login
 
 //router.get('/:id', awaitHandlerFactory(userController.userDetails)); // localhost:3000/api/users/login
 

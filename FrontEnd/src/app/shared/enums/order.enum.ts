@@ -1,6 +1,6 @@
-export enum ArticleSearchStyle {
+export enum OrderList {
     LIST = 'list',
     CARD = 'card',
     CATALOG = 'catalog',
-    USER = 'user',
+    Profil = 'Profil',
 }

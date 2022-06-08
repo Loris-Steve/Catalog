@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ArticleSearchStyle } from 'src/app/shared/enums/article-search-style.enum';
 import { Article } from 'src/app/shared/models/article.model';
 
 @Component({
@@ -10,11 +11,13 @@ import { Article } from 'src/app/shared/models/article.model';
 export class ArticleComponent implements OnInit {
 
   @Input() article: Article = <Article>{};
-  @Input() list: boolean = false;
-  
+  @Input() typeList: ArticleSearchStyle = ArticleSearchStyle.CARD;
+  types = Object(ArticleSearchStyle);
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    console.log('this.types :>> ', this.types);
   }
 
   navigate(idArticle:number){

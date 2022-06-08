@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleSearchStyle } from 'src/app/shared/enums/article-search-style';
+import { ArticleSearchStyle } from 'src/app/shared/enums/article-search-style.enum';
 import { Article } from 'src/app/shared/models/article.model';
 
 @Component({
@@ -29,17 +29,17 @@ export class SearchComponent implements OnInit {
     },
   ];
 
-  articleListStyle: ArticleSearchStyle = ArticleSearchStyle.LIST;
+  articleListStyle: ArticleSearchStyle = ArticleSearchStyle.CARD;
 
-  codeListStyle = "article-list-style";
-  codeCardStyle = "article-card-style"
-  codeArticleStyle = ""; 
+  types = Object(ArticleSearchStyle);
   
   constructor() { }
 
   ngOnInit(): void {
-    console.log("call ! ")
-    this.codeArticleStyle = this.codeCardStyle;
   }
 
+  // chnage le style de la liste (card , list)
+  changeStyle(style: ArticleSearchStyle): void {
+    this.articleListStyle = style;
+  }
 }

@@ -7,13 +7,17 @@ import { UserRoutingModule } from './user.routing.module';
 import { RouterModule } from '@angular/router';
 import { ProfilComponent } from './profil/profil.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { AddCatlogFormComponent } from './add-catlog-form/add-catlog-form.component';
+import { AddArticleFormComponent } from './add-article-form/add-article-form.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
     AccountComponent,
-    ProfilComponent
+    ProfilComponent,
+    AddCatlogFormComponent,
+    AddArticleFormComponent
   ],
   imports: [
     SharedModule,

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
-import { UserRole } from 'src/app/shared/enums/userRoles';
+import { UserRole } from 'src/app/shared/enums/userRoles.enum';
 import { AuthService } from 'src/app/shared/services/auth.service';
 /* 
 type FormErrors = { 
@@ -42,6 +42,7 @@ export class RegisterComponent implements OnInit {
     private router: Router
   ) { 
 
+    
     this.registerForm = this.fb.group({
       photo: ['', []],
       firstName: ['', [Validators.required]],

@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user.model';
 
 import { environment } from 'src/environments/environment.prod';
-import { UserRole } from '../enums/userRoles';
+import { UserRole } from '../enums/userRoles.enum';
 
 @Injectable({
   providedIn: 'root'

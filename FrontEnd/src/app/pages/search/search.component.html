@@ -13,7 +13,19 @@
         <button id="rechercher">Rechercher</button>
     </div>
 
-    <div class="p-2 col-12" [ngClass]="codeArticleStyle" >
-        <app-article class="card" *ngFor="let article of articles" [article]="article"></app-article>
+    <div class="">
+
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-light" (click)="changeStyle(types.CARD)">
+                card
+            </button>
+            <button class="btn btn-light" (click)="changeStyle(types.LIST)">
+                list
+            </button>
+        </div>
+        <div   class="" 
+            [ngClass]="{'article-list-style' : articleListStyle === types.LIST , 'article-card-style' : articleListStyle === types.CARD}" >
+            <app-article class="card" *ngFor="let article of articles" [article]="article" [typeList]="articleListStyle"></app-article>
+        </div>
     </div>
 </div>

@@ -9,6 +9,7 @@ import { CustomSearchFilterComponent } from './components/search/custom-search-f
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CatalogDetailsComponent } from './components/user/catalog/catalog-details/catalog-details.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ContentLayoutComponent,
     ArticleComponent,
     CustomSearchFilterComponent,
+    CatalogDetailsComponent,
   ],
   imports: [
     CommonModule,

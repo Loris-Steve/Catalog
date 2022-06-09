@@ -1,4 +1,9 @@
 
+export interface ArticleCreator {
+    title: string,
+    price: number,
+    description: string,
+}
 
 export interface Article {
     idArticle: number,

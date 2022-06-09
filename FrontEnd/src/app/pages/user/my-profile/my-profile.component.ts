@@ -3,33 +3,40 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { first } from 'rxjs';
-import { OrderList } from 'src/app/shared/enums/order.enum';
+import { AddArticleFormComponent } from 'src/app/shared/components/articles/add-article-form/add-article-form.component';
 import { Catalog } from 'src/app/shared/models/catalog.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { CatalogService } from 'src/app/shared/services/catalog/catalog.service';
-import { AddArticleFormComponent } from '../../../shared/components/articles/add-article-form/add-article-form.component';
 
 @Component({
-  selector: 'app-profil',
-  templateUrl: './profil.component.html',
-  styleUrls: ['./profil.component.scss']
+  selector: 'app-my-profile',
+  templateUrl: './my-profile.component.html',
+  styleUrls: ['./my-profile.component.scss']
 })
-export class ProfilComponent implements OnInit {
+export class MyProfileComponent implements OnInit {
 
   loading = false;
   submitted = false;
   returnUrl: string = '/search';
   error = '';
 
+  showDetailCatalog : boolean = false;
+  currentCatalogId: number | undefined = undefined;
+
   catalogs : Catalog[] = [];
+  currentCatalog : Catalog = <Catalog>{};
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,
+    public authService: AuthService,
     private router: Router,
     private modalService: NgbModal,
     private catalogService: CatalogService,
   ) {
+
+    if(!this.authService.isAuth){
+      this.router.navigate(['/'])
+    }
 
     this.catalogService.catalogs$.subscribe((catalogList) => this.catalogs = catalogList)
   
@@ -39,7 +46,11 @@ export class ProfilComponent implements OnInit {
     this.loadCatalog();
   }
 
-  
+
+  openCreateArticleModal() {
+    this.modalService.open(AddArticleFormComponent, { size: 'xl' });
+  }
+
   loadCatalog() {
 
     const userId = this.authService.userValue?.idUser || '';

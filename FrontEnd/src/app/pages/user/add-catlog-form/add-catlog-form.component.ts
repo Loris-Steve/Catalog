@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
-import { Catalog } from 'src/app/shared/models/catalog.model';
+import { Catalog, CatalogCreator } from 'src/app/shared/models/catalog.model';
 import { CatalogService } from 'src/app/shared/services/catalog/catalog.service';
 
 @Component({
@@ -61,7 +61,7 @@ export class AddCatlogFormComponent implements OnInit {
 
     this.loading = true;
 
-    const catalog : Catalog = { idCatalog  : undefined, id_User  : undefined, titleCatalog,addressCatalog,latitude,longitude , activateCatalog :  true } ;
+    const catalog : CatalogCreator = {  titleCatalog,addressCatalog,latitude,longitude } ;
     this.catalogService.create(
     catalog
     )

@@ -23,8 +23,10 @@
                 list
             </button>
         </div>
-        <div   class="" 
-            [ngClass]="{'article-list-style' : articleListStyle === types.LIST , 'article-card-style' : articleListStyle === types.CARD}" >
+
+        <!-- boucle sur la liste des articles ou catalogs -->
+
+        <div   [ngClass]="{'article-list-style' : articleListStyle === types.LIST , 'article-card-style' : articleListStyle === types.CARD}" >
             <app-article class="card" *ngFor="let article of articles" [article]="article" [typeList]="articleListStyle"></app-article>
         </div>
     </div>

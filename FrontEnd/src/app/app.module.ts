@@ -9,6 +9,7 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new MultiTranslateHttpLoader(http,

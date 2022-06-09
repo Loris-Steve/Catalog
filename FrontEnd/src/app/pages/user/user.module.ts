@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { ProfilComponent } from './profil/profil.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AddCatlogFormComponent } from './add-catlog-form/add-catlog-form.component';
-import { AddArticleFormComponent } from './add-article-form/add-article-form.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { AddArticleFormComponent } from './add-article-form/add-article-form.com
     AccountComponent,
     ProfilComponent,
     AddCatlogFormComponent,
-    AddArticleFormComponent
+    MyProfileComponent
   ],
   imports: [
     SharedModule,

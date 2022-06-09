@@ -9,16 +9,24 @@ import { CustomSearchFilterComponent } from './components/search/custom-search-f
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CatalogDetailsComponent } from './components/user/catalog/catalog-details/catalog-details.component';
+import { CatalogDetailsComponent } from './components/catalog/catalog-details/catalog-details.component';
+import { AddArticleFormComponent } from './components/articles/add-article-form/add-article-form.component';
+import { AddArticleComponent } from './components/articles/add-article/add-article.component';
+import { ArticleListComponent } from './components/articles/article-list/article-list.component';
+import { CatalogListComponent } from './components/catalog/catalog-list/catalog-list.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     FooterComponent,
-    ContentLayoutComponent,
     ArticleComponent,
     CustomSearchFilterComponent,
     CatalogDetailsComponent,
+    AddArticleFormComponent,
+    AddArticleComponent,
+    ArticleListComponent,
+    CatalogListComponent
+
   ],
   imports: [
     CommonModule,
@@ -34,6 +42,11 @@ import { CatalogDetailsComponent } from './components/user/catalog/catalog-detai
     NavbarComponent,
     FooterComponent,
     TranslateModule,
+    CatalogDetailsComponent,
+    AddArticleFormComponent,
+    AddArticleComponent,
+    ArticleListComponent,
+    CatalogListComponent,
     FormsModule,
     ReactiveFormsModule
   ],

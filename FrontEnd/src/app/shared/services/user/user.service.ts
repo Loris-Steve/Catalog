@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { UserRole } from '../../enums/userRoles';
 import { User } from '../../models/user.model';
 
 const link = "http://localhost:4000/api/"

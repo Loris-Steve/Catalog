@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleSearchStyle } from 'src/app/shared/enums/article-search-style.enum';
 import { Article } from 'src/app/shared/models/article.model';
+import { Catalog } from 'src/app/shared/models/catalog.model';
+import { ArticleService } from 'src/app/shared/services/article/article.service';
+import { CatalogService } from 'src/app/shared/services/catalog/catalog.service';
 
 @Component({
   selector: 'app-search',
@@ -8,32 +11,24 @@ import { Article } from 'src/app/shared/models/article.model';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  articles: Article[] = [
-    {
-      idArticle: 0,
-      title: "art1",
-      price: 12,
-      description: "au top",
-    },
-    {
-      idArticle: 0,
-      title: "art1",
-      price: 12,
-      description: "au top",
-    },
-    {
-      idArticle: 0,
-      title: "art1",
-      price: 12,
-      description: "au top",
-    },
-  ];
 
   articleListStyle: ArticleSearchStyle = ArticleSearchStyle.CARD;
 
   types = Object(ArticleSearchStyle);
   
-  constructor() { }
+  catalogs : Catalog[] = [];
+  articles : Article[] = [];
+
+  constructor(
+    private catalogService: CatalogService,
+    private articleService: ArticleService,
+    ) {
+  
+      this.articleService.articles$.subscribe((articleList) => this.articles = articleList)
+     
+      this.catalogService.catalogs$.subscribe((catalogList) => this.catalogs = catalogList)
+  
+    }
 
   ngOnInit(): void {
   }

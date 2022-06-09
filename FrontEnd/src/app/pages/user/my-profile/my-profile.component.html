@@ -1,17 +1,21 @@
 <div >
+    <h1>My Profile</h1>
     <div class="contain">
         <div class="row">
             <div class="col">
                 <img class="rounded-circle" alt="100x100" src="https://media.istockphoto.com/vectors/default-avatar-profile-icon-vector-vector-id1337144146?b=1&k=20&m=1337144146&s=170667a&w=0&h=ys-RUZbXzQ-FQdLstHeWshI4ViJuEhyEa4AzQNQ0rFI="/>
             </div>
             <div class="col-8">
-                <H1>Nom Prénom</H1>
-                <p>Adresses</p>
-                <p>Tel</p>
+                <H1>{{ authService.userValue?.firstName }}</H1>
+                <p>
+                    {{ authService.userValue?.email }}
+                </p>
             </div>   
+            <a class="btn btn-secondary" routerLink="/user/account"> {{ 'update' |translate}} {{ 'account' | translate }} </a>
         </div> 
+
     </div>
 
-    <app-catalog-list [catalogs]="catalogs" ></app-catalog-list>
+    <app-catalog-list [catalogs]="catalogs" [updateOption]="true"></app-catalog-list>
 
 </div>

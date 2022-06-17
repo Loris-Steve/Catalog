@@ -1,0 +1,35 @@
+ 
+    <div class="container p-2 mt-2 d-flex justify-content-end">
+
+        <button *ngIf="showDetailCatalog" class="ml-auto btn btn-light mr-2" (click)="setShowDetailCatalog(false)">
+            {{ "List Catalog" }}
+        </button>
+        <a *ngIf="updateOption" class="btn btn-secondary" routerLink="/user/add-catalog">{{ 'add' |translate}} {{ 'catalog' |translate}}</a>
+        
+    </div>
+
+    <diV *ngIf="!showDetailCatalog ; then catalogList ; else catalogDetails"></diV>
+    
+    <ng-template #catalogList> 
+     
+     <!-- boucle sur la liste des catalogs -->
+        <div class="row catalogues">    
+
+        <div class="p-2 col-4" *ngFor="let catalog of catalogs" (click)="showDetails(catalog.idCatalog)">
+            <div class = "catalogue">
+                <img class="card-img-top" src="https://www.ecommercemag.fr/Assets/Img/BREVE/2016/4/303588/est-chef-produit-VPC--F.jpg" alt="Card image cap">
+                <h2>{{ catalog.titleCatalog }}</h2>
+                <p>{{ catalog.addressCatalog }}</p>
+                <p>Adresses</p>
+                <p>Tel</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    </ng-template>
+
+    <ng-template #catalogDetails>
+        <app-catalog-details [catalog]="currentCatalog"></app-catalog-details>
+    </ng-template>

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ArticleSearchStyle } from 'src/app/shared/enums/article-search-style.enum';
 import { Article } from 'src/app/shared/models/article.model';
 import { Catalog } from 'src/app/shared/models/catalog.model';
-import { ArticleService } from 'src/app/shared/services/article/article.service';
-import { CatalogService } from 'src/app/shared/services/catalog/catalog.service';
+import { ArticleService } from 'src/app/shared/services/articles/article.service';
+import { CatalogService } from 'src/app/shared/services/catalogs/catalog.service';
 
 @Component({
   selector: 'app-search',

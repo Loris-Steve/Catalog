@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Catalog, CatalogCreator } from 'src/app/shared/models/catalog.model';
-import { CatalogService } from 'src/app/shared/services/catalog/catalog.service';
+import { CatalogService } from 'src/app/shared/services/catalogs/catalog.service';
 
 @Component({
   selector: 'app-add-catlog-form',

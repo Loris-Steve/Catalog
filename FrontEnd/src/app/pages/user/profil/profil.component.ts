@@ -6,7 +6,7 @@ import { first } from 'rxjs';
 import { OrderList } from 'src/app/shared/enums/order.enum';
 import { Catalog } from 'src/app/shared/models/catalog.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { CatalogService } from 'src/app/shared/services/catalog/catalog.service';
+import { CatalogService } from 'src/app/shared/services/catalogs/catalog.service';
 import { AddArticleFormComponent } from '../../../shared/components/articles/add-article-form/add-article-form.component';
 
 @Component({

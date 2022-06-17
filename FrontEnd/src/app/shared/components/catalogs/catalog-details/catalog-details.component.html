@@ -1,0 +1,15 @@
+<div class="container bg-light">
+
+    <h3>nombre d'articles : {{ articles.length }}    ( details du catalog )</h3>
+    
+    <div class="d-flex ">
+
+        <div class=" card p-4" *ngFor="let article of articles">
+        
+            <p >
+                {{ article.title }}
+            </p>
+        </div>
+
+    </div>
+</div>

@@ -1,35 +1,39 @@
  
-    <div class="container p-2 mt-2 d-flex justify-content-end">
+<div class="container p-2 mt-2 d-flex justify-content-end">
+    <button *ngIf="showDetailCatalog" class="ml-auto btn btn-light mr-2" (click)="setShowDetailCatalog(false)">
+        {{ "List Catalog" }}
+    </button>
+    <a *ngIf="updateOption" class="btn btn-secondary" routerLink="/user/add-catalog">{{ 'add' |translate}} {{ 'catalog' |translate}}</a>  
+ </div>
 
-        <button *ngIf="showDetailCatalog" class="ml-auto btn btn-light mr-2" (click)="setShowDetailCatalog(false)">
-            {{ "List Catalog" }}
-        </button>
-        <a *ngIf="updateOption" class="btn btn-secondary" routerLink="/user/add-catalog">{{ 'add' |translate}} {{ 'catalog' |translate}}</a>
-        
-    </div>
-
-    <diV *ngIf="!showDetailCatalog ; then catalogList ; else catalogDetails"></diV>
+<div *ngIf="!showDetailCatalog ; then catalogList ; else catalogDetails"></div>
     
-    <ng-template #catalogList> 
-     
-     <!-- boucle sur la liste des catalogs -->
-        <div class="row catalogues">    
-
-        <div class="p-2 col-4" *ngFor="let catalog of catalogs" (click)="showDetails(catalog.idCatalog)">
-            <div class = "catalogue">
-                <img class="card-img-top" src="https://www.ecommercemag.fr/Assets/Img/BREVE/2016/4/303588/est-chef-produit-VPC--F.jpg" alt="Card image cap">
-                <h2>{{ catalog.titleCatalog }}</h2>
-                <p>{{ catalog.addressCatalog }}</p>
-                <p>Adresses</p>
-                <p>Tel</p>
+<ng-template #catalogList> 
+    <div class="row catalogues"> 
+        <div class="col-7"> 
+            <!-- boucle sur la liste des catalogs -->  
+            <div class="boutique" *ngFor="let catalog of catalogs" (click)="showDetails(catalog.idCatalog)">
+                <div class = "catalogue">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <img class="card-img-top" src="https://images.pexels.com/photos/929245/pexels-photo-929245.jpeg?cs=srgb&dl=pexels-artem-beliaikin-929245.jpg&fm=jpg" alt="Card image cap">
+                        </div>
+                        <div class="col-sm-6">
+                            <h2>{{ catalog.titleCatalog }}</h2>
+                            <p>{{ catalog.addressCatalog }}</p>
+                            <p>Adresses</p>
+                            <p>Tel</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
-
+        <div class="col-4">
+            <img class="card-img-top" src="https://images.pexels.com/photos/929245/pexels-photo-929245.jpeg?cs=srgb&dl=pexels-artem-beliaikin-929245.jpg&fm=jpg" alt="Card image cap">                   
+        </div>
     </div>
+</ng-template>
 
-    </ng-template>
-
-    <ng-template #catalogDetails>
-        <app-catalog-details [catalog]="currentCatalog"></app-catalog-details>
-    </ng-template>
+<ng-template #catalogDetails>
+    <app-catalog-details [catalog]="currentCatalog"></app-catalog-details>
+</ng-template>

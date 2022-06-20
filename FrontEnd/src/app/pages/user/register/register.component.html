@@ -63,7 +63,7 @@
     </div>
 
     <div>
-        <input type="text" id="password" name="password" placeholder="mot de passe" required
+        <input type="password" id="password" name="password" placeholder="mot de passe" required
         placeholder="{{ 'password' | translate }}..."
         formControlName="password"
         ng-model="registerForm.controls[password]"
@@ -76,20 +76,20 @@
     </div>
     
     <div>
-        <input type="text" id="confPassword" name="confPassword" placeholder="confirmer le mot de passe" required
-        placeholder="{{ 'consfirm_password' | translate }}..."
-        formControlName="consfirm_password"
-        ng-model="registerForm.controls[consfirm_password]"
+        <input type="password" id="confPassword" name="confPassword" placeholder="confirmer le mot de passe" required
+        placeholder="{{ 'confirm_password' | translate }}..."
+        formControlName="confirm_password"
+        ng-model="registerForm.controls[confirm_password]"
         >
          <div
-            *ngIf="registerForm.controls['consfirm_password'].touched && registerForm.controls['consfirm_password'].hasError('required')"
+            *ngIf="registerForm.controls['confirm_password'].touched && registerForm.controls['confirm_password'].hasError('required')"
             class="text text-danger mt-1">
-            {{ "consfirm_password" | translate }} {{ "is required" | translate }}
+            {{ "confirm_password" | translate }} {{ "is required" | translate }}
         </div>
         <div
         *ngIf="registerForm.errors?.['notSame']"
         class="text text-danger mt-1">
-        {{ "consfirm_password" | translate }} {{ "notSame" | translate }}
+        {{ "confirm_password" | translate }} {{ "notSame" | translate }}
     </div>
     </div>
 

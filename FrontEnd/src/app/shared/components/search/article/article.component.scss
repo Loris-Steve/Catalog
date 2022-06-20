@@ -1,22 +1,4 @@
-
-.article-list-item{
-    background-color: rgba(243, 242, 242, 0.363);
-    border: 1px solid gray;
-    padding: 10px;
-}
-.article-list-item:hover{
-    background-color: rgba(243, 242, 242, 0.897);
-    cursor: pointer;
-}
-
-.article-list-item-head{
-    display: flex;
-    justify-content: space-around;
-    .article-list-price{
-       align-self: flex-start; 
-    }
-}
-
+/* Affichage card */
 
 .article-card-item{
     background-color: rgba(243, 242, 242, 0.363);
@@ -53,7 +35,32 @@
     margin-bottom: 2%;
 }
 
-#description {
+.card #description {
     margin-top: -10%;
     margin-left: 23%;
+}
+
+/* Affichage list */
+
+
+.article-list-item{
+    background-color: rgba(243, 242, 242, 0.363);
+    border: 1px solid gray;
+    padding: 10px;
+}
+.article-list-item:hover{
+    background-color: rgba(243, 242, 242, 0.897);
+    cursor: pointer;
+}
+
+.article-list-item-head{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.article-list-item-head .article-list-title, .article-list-price, .article-list-description {
+    margin:0;
 }

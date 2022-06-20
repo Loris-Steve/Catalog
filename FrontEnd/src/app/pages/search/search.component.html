@@ -26,8 +26,8 @@
 
         <!-- boucle sur la liste des articles ou catalogs -->
 
-        <div   [ngClass]="{'article-list-style' : articleListStyle === types.LIST , 'article-card-style' : articleListStyle === types.CARD}" >
-            <app-article class="card" *ngFor="let article of articles" [article]="article" [typeList]="articleListStyle"></app-article>
+        <div class="carte" [ngClass]="{'article-list-style' : articleListStyle === types.LIST , 'article-card-style' : articleListStyle === types.CARD}" >
+            <app-article *ngFor="let article of articles" [article]="article" [typeList]="articleListStyle"></app-article>
         </div>
     </div>
 </div>

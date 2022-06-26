@@ -35,15 +35,20 @@ export class AuthService {
         return false;
     }
 
-    login(email: string, password: string) {
-        return this.http.post<any>(`${environment.hostURL}users/login`, { email, password })
-            .pipe(map(currentUser => {
-                // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
-                //user.authdata = window.btoa(email + ':' + password);
-                localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                this.userSubject.next(currentUser);
-                return currentUser;
-            }));
+    login(email: string, password: string): Observable<any> {
+
+      if(email == 'professional@professional.com'){
+        this.generateDefaultUser();
+      }
+        
+      return this.http.post<any>(`${environment.hostURL}users/login`, { email, password })
+          .pipe(map(currentUser => {
+              // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
+              //user.authdata = window.btoa(email + ':' + password);
+              localStorage.setItem('currentUser', JSON.stringify(currentUser));
+              this.userSubject.next(currentUser);
+              return currentUser;
+          }));
     }
 
     register(photo: string, firstName: string, lastName: string, email: string,
@@ -65,4 +70,28 @@ export class AuthService {
         this.userSubject.next(null);
         this.router.navigate([returnTo || '/']);
     }
+
+
+    //---- fonctions pour que Imane puisse avoir accès au mode connecté---
+      generateDefaultUser(){
+        const currentUser: User =  {
+          "idUser": 2,
+          "firstName": "professional",
+          "lastName": "professional",
+          "email": "professional@professional.com",
+          "photo": "",
+          "role": UserRole.Professional,
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOjIsImZpcnN0TmFtZSI6InByb2Zlc3Npb25hbCIsImxhc3ROYW1lIjoicHJvZmVzc2lvbmFsIiwiZW1haWwiOiJwcm9mZXNzaW9uYWxAcHJvZmVzc2lvbmFsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDA4JENuT3J1MGpycWtDeVBCR1BRS1dCdk9YeUE4L0hDWFdrNU1RSG5tRVJjTXBCL2ZaalJlVzRLIiwicm9sZSI6IlByb2Zlc3Npb25hbCIsImlhdCI6MTY1NjI2MDEzNSwiZXhwIjoxNjU2MzQ2NTM1fQ.lItMorHPwiW1KE8U1_ixYKCtCeQbTjpBD0qgttxLsnA"
+      }
+      localStorage.setItem('currentUser', JSON.stringify(currentUser));
+      this.userSubject.next(currentUser);
+      this.router.navigate(['/']);
+      
+      }
+      // generateObservable(obj: any): Observable<any>{
+      //   console.log("get currrent user");
+      //   return new Observable(obj);
+      // }
+
+    //-----------------------------------------------------------
 }

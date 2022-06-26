@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { ContentLayoutComponent } from './content-layout/content-layout.component';
-import { ArticleComponent } from './components/search/article/article.component';
+import { ArticleComponent } from './components/articles/article/article.component';
 import { MatIconModule } from '@angular/material/icon';
 import { CustomSearchFilterComponent } from './components/search/custom-search-filter/custom-search-filter.component';
 import { TranslateModule } from '@ngx-translate/core';

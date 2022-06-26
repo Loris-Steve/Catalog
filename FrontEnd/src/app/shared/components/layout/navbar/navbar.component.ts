@@ -21,12 +21,7 @@ export class NavbarComponent implements OnInit {
     const browserLang = translate.getBrowserLang();
     translate.use(browserLang?.match(/en|fr/) ? browserLang : 'fr');
 
-    const user = this.authService.userValue;
-    if(user){
-
-      this.user = user;
-      console.log('user :>> ', user);
-    }
+    this.authService.user.subscribe(user => this.user  = user || this.user)
 
   }
 

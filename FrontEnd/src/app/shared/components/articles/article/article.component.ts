@@ -17,8 +17,9 @@ export class ArticleComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    console.log('this.types :>> ', this.types);
+    //console.log('this.article :>> ', this.article);
   }
+  
 
   navigate(idArticle:number){
     this.router.navigate(['/search/article-details/'+idArticle]);

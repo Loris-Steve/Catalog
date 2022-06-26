@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          console.log('object');
           this.router.navigate([this.returnUrl]);
         },
         error => {
@@ -70,7 +71,7 @@ export class LoginComponent implements OnInit {
           }
 
           this.loading = false;
-        });
+        },()=> console.log('end function'));
   }
 
 }

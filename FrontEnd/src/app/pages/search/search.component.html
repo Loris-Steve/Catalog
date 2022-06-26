@@ -27,7 +27,7 @@
         <p *ngIf="loading">{{ "loading..." | translate }}</p>
         <p *ngIf="error">{{ error | translate }}</p>
         
-        <!-- boucle sur la liste des articles ou catalogs et on affiche des éléments-->
+        <!-- boucle sur la liste des articles ou catalogs et on affiche des éléments -->
 
         <div   [ngClass]="{'article-list-style' : articleListStyle === types.LIST , 'article-card-style' : articleListStyle === types.CARD}" >
             <app-article class="card" *ngFor="let article of articles" [article]="article" [typeList]="articleListStyle"></app-article>

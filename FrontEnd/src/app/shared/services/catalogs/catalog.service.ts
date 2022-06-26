@@ -9,7 +9,7 @@ const CATALOGS: Catalog[]  = [
 {
   idCatalog: 1,
   id_User: 1, 
-  titleCatalog: "magasin de prêt à porté",
+  titleCatalog: "magasin de prêt à porter",
   addressCatalog: '',
   latitude: 1,
   longitude : 2 ,

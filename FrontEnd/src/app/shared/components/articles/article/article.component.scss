@@ -1,22 +1,4 @@
-
-.article-list-item{
-    background-color: rgba(243, 242, 242, 0.363);
-    border: 1px solid gray;
-    padding: 10px;
-}
-.article-list-item:hover{
-    background-color: rgba(243, 242, 242, 0.897);
-    cursor: pointer;
-}
-
-.article-list-item-head{
-    display: flex;
-    justify-content: space-around;
-    .article-list-price{
-       align-self: flex-start; 
-    }
-}
-
+/* Affichage card */
 
 .article-card-item{
     background-color: rgba(243, 242, 242, 0.363);
@@ -49,11 +31,52 @@
     border: 1px solid grey;
 }
 
-.card-body {
+.corps {
     margin-bottom: 2%;
 }
 
-#description {
+.card #description {
     margin-top: -10%;
-    margin-left: 23%;
+    margin-left: 20%;
+}
+
+.card-text {
+    margin-left: 10px;
+}
+
+
+
+/* Affichage liste */
+
+.card-img-left {
+    width:12%;
+}
+
+.article-list-item {
+    margin-bottom: 3%;
+}
+
+.corps2  {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.article-list-item-head .article-list-title, .article-list-price, .article-list-description {
+    margin:0;
+}
+
+.profil-vendeur {
+    display:flex;
+}
+
+.article-list-description {
+    margin-top: 8px;
+    margin-left: 7px;
+}
+
+.card-ligne {
+    width:92%;
+    margin-left: auto;
+    margin-right: auto;
 }

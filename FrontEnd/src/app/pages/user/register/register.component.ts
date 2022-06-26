@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 /* 
 type FormErrors = { 
   photo: string, firstName: string, lastName: string, email: string,
-   password: string, consfirm_password: string, role: UserRole };
+   password: string, confirm_password: string, role: UserRole };
  */
 @Component({
   selector: 'app-register',
@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
     'lastName': '',
     'email': '',
     'password': '',
-    'consfirm_password': '',
+    'confirm_password': '',
     'role': UserRole.User
   };
  */
@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
       lastName: ['', [Validators.required]],
       email: ['',[Validators.required,Validators.email]],
       password: ['',[Validators.required]],
-      consfirm_password: ['',[Validators.required]],
+      confirm_password: ['',[Validators.required]],
       role: [this.role1,[Validators.required]],
     }, { validators: this.checkPasswords });
 
@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
 
   checkPasswords: ValidatorFn = (group: AbstractControl):  ValidationErrors | null => { 
     let pass = group.get('password')?.value;
-    let confirmPass = group.get('consfirm_password')?.value
+    let confirmPass = group.get('confirm_password')?.value
     return pass === confirmPass ? null : { notSame: true }
   }
   
@@ -81,7 +81,7 @@ export class RegisterComponent implements OnInit {
     console.log('lastName : ', lastName);
     console.log('email : ', email);
     console.log('password : ', password);
-    console.log('consfirm_password : ', this.registerForm.value['consfirm_password']);
+    console.log('confirm_password : ', this.registerForm.value['confirm_password']);
     console.log('role : ', role);
 
     this.submitted = true;

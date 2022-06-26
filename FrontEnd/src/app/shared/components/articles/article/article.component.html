@@ -1,23 +1,32 @@
 <container-element [ngSwitch]="typeList">
     <!-- the same view can be shown in more than one case -->
     <some-element *ngSwitchCase="types.CARD">
-        <div class="card" style="width: 18rem;cursor:pointer"  (click)="navigate(article.idArticle)">
+        <div class="card" style="width: 18rem; cursor:pointer"  (click)="navigate(article.idArticle)">
             <img class="card-img-top" src="https://www.ecommercemag.fr/Assets/Img/BREVE/2016/4/303588/est-chef-produit-VPC--F.jpg" alt="Card image cap">
             <div class="card-body">
                 <h2 class="card-title">{{ article.titleArticle }}</h2>
                 <p class="card-text" style="font-size: 15px;">{{ article.priceArticle }} €</p>
+
             </div>
             <img class="rounded-circle" alt="100x100" src="https://us.123rf.com/450wm/imagevectors/imagevectors1606/imagevectors160600227/58872995-profil-blanc-ic%C3%B4ne-sur-le-bouton-bleu-isol%C3%A9-sur-blanc.jpg?ver=6"/>
             <p id="description" class="article-card-description w-25">{{ article.descriptionArticle }}</p>
         </div>
     </some-element>
     <some-element *ngSwitchCase="types.LIST">
-        <div class="article-list-item card">
+        <div class="article-list-item" style="height: 8rem; cursor:pointer">
             <div class="article-list-item-head">
-                <p class="article-list-title">{{ article.titleArticle }}</p>
-                <p class="article-list-price">{{ article.priceArticle }} €</p>
+
+                <div class="card flex-row card-ligne"><img class="card-img-left example-card-img-responsive " src="https://www.ecommercemag.fr/Assets/Img/BREVE/2016/4/303588/est-chef-produit-VPC--F.jpg"/>
+                    <div class="card-body corps2">
+                        <h2 class="article-list-title">{{ article.titleArticle }}</h2>
+                        <p class="article-list-price">{{ article.priceArticle }} €</p>
+                        <div class="profil-vendeur">
+                            <img class="rounded-circle" alt="100x100" src="https://us.123rf.com/450wm/imagevectors/imagevectors1606/imagevectors160600227/58872995-profil-blanc-ic%C3%B4ne-sur-le-bouton-bleu-isol%C3%A9-sur-blanc.jpg?ver=6"/>
+                            <p class="article-list-description">{{ article.descriptionArticle }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p class="article-list-description">{{ article.descriptionArticle }}</p>
         </div>
 
     </some-element>

@@ -3,6 +3,10 @@
     "register" : "Inscription",
     "login" : "Connexion",
     "account" : "Compte",
-    "Youdonthaveanyaccount": "Vous n’avez pas de compte ?"
-
+    "Youdonthaveanyaccount": "Vous n’avez pas de compte ?",
+    "firstName" : "Prénom",
+    "lastName" : "Nom",
+    "email" : "email",
+    "password" : "Mot de Passe",
+    "confirm_password" : "Confirmet Mot de Passe"
 }

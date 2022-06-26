@@ -3,5 +3,10 @@
     "register" : "Register",
     "login" : "Login",
     "account" : "Account",
-    "Youdonthaveanyaccount": "You don't have an account ?"
+    "Youdonthaveanyaccount": "You don't have an account ?",
+    "firstName" : "First Name",
+    "lastName" : "Last Name",
+    "email" : "email",
+    "password" : "Password",
+    "confirm_password" : "Confirm Password"
 }

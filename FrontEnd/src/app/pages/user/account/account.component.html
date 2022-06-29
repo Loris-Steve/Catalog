@@ -1,7 +1,66 @@
 <div >
-    <H1>Account Page</H1>
+    <form class="formulaire">
+        <h1>Mon Profil</h1>
+        <div class="champs">
+        
+        <input type="file" class="file" name="file" id="file" class="inputfile" value="rien" onchange="alert(file.value.substring(12)); document.getElementById('myImg').src='../assets/images/'+file.value.substring(12);"/>
+        <label id="label" for="file"></label>
+        <img style="width:110px; height: 110px; z-index: -1; position: absolute; margin-top: -118px; margin-left:18.7%; border-radius: 100px;" id="myImg" src="#">
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Nom"
+            formControlName="name"
+            class="form-control"
+          />
+          <div class="invalid-feedback">
+            <div>Name is required</div>
+          </div>
+        
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            placeholder="Prénom"
+            formControlName="firstName"
+            class="form-control"
+          />
+          <div class="invalid-feedback">
+            <div>firstName is required</div>
+          </div>
+    
+          <input
+            type="text"
+            id="email"
+            name="email"
+            placeholder="Email"
+            formControlName="email"
+            class="form-control"
+          />
+          <div class="invalid-feedback">
+            <div>Email is required</div>
+          </div>
+    
+          <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Mot de passe"
+          formControlName="password"
+          class="form-control"
+        />
+        <div class="invalid-feedback">
+          <div>Password is required</div>
+        </div>
 
-    <p>
-        FORMULAIRE DE MODIFICATION DE COMPTE
-    </p>
+        <div class="infoProfil">
+            <h3>Profil :</h3><p>Type profil</p>
+        </div>
+
+        <button id="ajouter">Modifier</button><br />
+        
+        </div>
+    </form>
+    
 </div>

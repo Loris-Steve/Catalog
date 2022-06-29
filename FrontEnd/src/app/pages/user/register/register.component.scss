@@ -1,8 +1,35 @@
 @import url('../login/login.component.scss');
 
 .rounded-circle {
-    width: 35%;
+    width: 122px;
     display:block;
     margin-left: auto;
     margin-right: auto;
+}
+
+h1 {
+    background-color : rgba(184, 160, 160, 0.217);
+    padding : 22px;
+    font-size: 29px;
+    margin-bottom: 10px;
+}
+
+.champs {
+    margin-top: 5px;
+}
+
+.formulaire {
+    margin-top: 33px;
+    padding: 25px 40px 15px 40px;
+    margin-bottom: 22px;
+}
+
+input[type=text], input[type="password"], select {
+    padding: 8px 15px;
+    font-size: 15px;
+}
+
+#qui {
+    font-size: 15px;
+    margin-left: 9px;
 }

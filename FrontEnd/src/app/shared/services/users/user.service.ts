@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 import { User } from '../../models/user.model';
 
 const link = "http://localhost:4000/api/"
@@ -11,36 +12,38 @@ const link = "http://localhost:4000/api/"
 })
 export class UserService {
 
-  loading: boolean = false;
+  private user = new BehaviorSubject<User | null>(null);
+  user$ = this.user.asObservable();
 
-  error: boolean = false;
+  private loading = new BehaviorSubject<boolean>(false);
+  loading$ = this.loading.asObservable();
+
+  private error = new BehaviorSubject<string>('');
+  error$ = this.error.asObservable();
   
   constructor(private router: Router, private httpClient: HttpClient ) { }
 
- /*  register(photo: string,firstName: string,lastName: string,
-    email: string,password: string,role: UserRole): void {
+  
+  getUserById(userId: number): void {
 
-      this.httpClient.get<User>(link + 'users/register').subscribe((response:User) => { 
-         //Next callback
-          console.log('response received')
-          console.log(response);
-            //Ajout d'un objet dans la mémoire de l'ordinateur
-            //localStorage.setItem('userItem', response);
-            
-            //Récupération de l'objet
-            //user:string = localStorage.getItem('user');*
-        },
-        (error) => {  
-          this.loading = false;
-          this.error = true;
-        //   switch (error.status) {
-        //     case 401:
-        //         break;
-        //     case 403: 
-        //         break;
-        // }
+    this.httpClient.get<User>(`${environment.hostURL}users/${userId}`) 
+      .subscribe(
+      data => {
+        console.log("data", data);
+        this.user.next(data);
+      },
+      error => {
+        switch (error.status) {
+          case 400:
+            this.error.next("badRequest");
+            break;
+          default:
+            this.error.next(error?.error?.message); // erreur serveur
+            break
+        }
 
-    });
-
-  } */
+      },
+      () => this.loading.next(false) // finally
+    );
+    }
 }

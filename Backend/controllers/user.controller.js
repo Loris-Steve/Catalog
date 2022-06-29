@@ -52,7 +52,10 @@ class UserController {
         
 
     userDetails = async (req, res, next) => {
+        const idUser = req.params.userId;
+        const user = await UserModel.findOne({idUser});
 
+        res.send(user);
     };
 
     userLogin = async (req, res, next) => {
@@ -86,13 +89,13 @@ class UserController {
         res.send({ ...userWithoutPassword, token });
     };
     
-    updateUser = async (req, res, next) => {
+    // updateUser = async (req, res, next) => {
       
-    };
+    // };
 
-    deleteUser = async (req, res, next) => {
+    // deleteUser = async (req, res, next) => {
      
-    };
+    // };
 
     // hash password if it exists
     hashPassword = async (req) => {
@@ -111,7 +114,7 @@ class UserController {
             role : newUser.role
         };
     }
-    
+
 }
 
 

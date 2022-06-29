@@ -78,14 +78,14 @@ class CatalogController {
             throw new HttpException(404, 'Catalogs not found');
         }
 
-        const idUser = req.params.idUser;
-        const user = await userModel.findOne({idUser});
-        console.log('idUser :>> ', idUser);
-        let data = {
-            user : user,
-            catalogs : CatalogList
-        }
-        res.send(data);
+        // const idUser = req.params.idUser;
+        // const user = await userModel.findOne({idUser});
+        // console.log('idUser :>> ', idUser);
+        // let data = {
+        //     user : user,
+        //     catalogs : CatalogList
+        // }
+        res.send(CatalogList);
     };
 
     getCatalogsByParams = async (req, res, next) => {

@@ -24,13 +24,17 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'profil/:idUser',
+    path: 'profil/:userId',
     component: ProfilComponent,
   },
   {
-    path: 'myProfil',
-    component: MyProfileComponent,
+    path: 'profil/:userId/:catalogId',
+    component: ProfilComponent,
   },
+  // {
+  //   path: 'myProfil',
+  //   component: MyProfileComponent,
+  // },
   {
     path: 'add-catalog',
     component: AddCatlogFormComponent,

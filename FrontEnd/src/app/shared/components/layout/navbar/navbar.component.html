@@ -29,15 +29,15 @@
                 <ng-template #connectedBlock>
                     
                     <li>
-                        <a routerLink="user/account" class=""> 
+                        <a routerLink="user/profil/{{user.idUser}}" class=""> 
                             <mat-icon aria-label="account">account_circle</mat-icon>
                             
                             {{ user.firstName }}
                         </a>
                     </li>
                     <li>
-                        <a routerLink="user/myProfil" class="">                             
-                            {{ 'myProfile' | translate }}
+                        <a routerLink="user/account" class="">                             
+                            {{ 'account' | translate }}
                         </a>
                     </li>
                     <li>

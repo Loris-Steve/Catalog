@@ -14,7 +14,7 @@ const routes: Routes = [
     redirectTo: 'search'
   },
   {
-    path: 'article-details/:idArticle',
+    path: 'article-details/:catalogId/:articleId',
     component: ArticleDetailsComponent,
   },
   // {

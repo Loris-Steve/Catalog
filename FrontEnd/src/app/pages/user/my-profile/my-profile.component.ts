@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { first } from 'rxjs';
 import { AddArticleFormComponent } from 'src/app/shared/components/articles/add-article-form/add-article-form.component';
-import { Catalog } from 'src/app/shared/models/catalog.model';
+import { Catalog, CatalogQuery } from 'src/app/shared/models/catalog.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { CatalogService } from 'src/app/shared/services/catalogs/catalog.service';
 
@@ -20,11 +20,11 @@ export class MyProfileComponent implements OnInit {
   returnUrl: string = '/search';
   error = '';
 
-  showDetailCatalog : boolean = false;
+  showDetailCatalog: boolean = false;
   currentCatalogId: number | undefined = undefined;
 
-  catalogs : Catalog[] = [];
-  currentCatalog : Catalog = <Catalog>{};
+  catalogs: Catalog[] = [];
+  currentCatalog: Catalog = <Catalog>{};
 
   constructor(
     private fb: FormBuilder,
@@ -34,12 +34,12 @@ export class MyProfileComponent implements OnInit {
     private catalogService: CatalogService,
   ) {
 
-    if(!this.authService.isAuth){
+    if (!this.authService.isAuth) {
       this.router.navigate(['/'])
     }
 
     this.catalogService.catalogs$.subscribe((catalogList) => this.catalogs = catalogList)
-  
+
   }
 
   ngOnInit(): void {
@@ -53,38 +53,33 @@ export class MyProfileComponent implements OnInit {
 
   loadCatalog() {
 
-    const userId = this.authService.userValue?.idUser || '';
+    const userId = this.authService.userValue?.idUser;
 
-    const idCatalog = ''; 
-    const titleCatalog = '';
-    const addressCatalog = ''; 
-    const latitude = ''; 
-    const longitude = '';
-    const sort = ''; 
-    const order = ''; 
-    const activateCatalog = '';
-    
-    this.catalogService.getCatalogByParams(idCatalog, userId, titleCatalog,
-      addressCatalog, latitude, longitude,
-      sort, order, activateCatalog)
+    if (userId) {
 
-      .pipe(first())
-      .subscribe(
-        data => {
-          console.log('data :>> ', data);
-        },
-        error => {
-          switch (error.status) {
-            case 400:
-              this.error = "badRequest"
-              break;
-            default:
-              this.error = error?.error?.message; // erreur serveur
-              break
-          }
+      const idCatalog = '';
+      const titleCatalog = '';
+      const addressCatalog = '';
+      const latitude = '';
+      const longitude = '';
+      const sort = '';
+      const order = '';
+      const activateCatalog = '';
 
-          this.loading = false;
-        });
+      const catalogQuery: CatalogQuery = {
+        id_User: userId,
+        idCatalog,
+        titleCatalog,
+        addressCatalog,
+        latitude,
+        longitude,
+        sort,
+        order,
+        activateCatalog,
+      }
+
+     // this.catalogService.getCatalogUserByParams(userId, catalogQuery);
+    }
   }
 
 }

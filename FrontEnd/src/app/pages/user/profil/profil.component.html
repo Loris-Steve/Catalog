@@ -5,13 +5,28 @@
                 <img class="rounded-circle" alt="100x100" src="https://media.istockphoto.com/vectors/default-avatar-profile-icon-vector-vector-id1337144146?b=1&k=20&m=1337144146&s=170667a&w=0&h=ys-RUZbXzQ-FQdLstHeWshI4ViJuEhyEa4AzQNQ0rFI="/>
             </div>
             <div class="col-8">
-                <H1>Nom Prénom</H1>
+                <H1>Nom : {{ user.firstName }}</H1>
                 <p>Adresses</p>
                 <p>Tel</p>
             </div>   
         </div> 
     </div>
 
+    <div class="container p-2 mt-2 d-flex justify-content-end">
+        <!-- <button *ngIf="showDetailCatalog" class="ml-auto btn btn-light mr-2" (click)="setShowDetailCatalog(false)">
+            {{ "List Catalog" }}
+        </button> -->
+        <a *ngIf="updateOption" class="btn btn-secondary" routerLink="/user/add-catalog">{{ 'add' |translate}} {{ 'catalog' |translate}}</a>  
+     
+    </div>
+    
+    <div *ngIf="!showDetailCatalog ; then catalogList ; else catalogDetails"></div>
+        
+    <ng-template #catalogList> 
     <app-catalog-list [catalogs]="catalogs" ></app-catalog-list>
-
+    </ng-template>
+    <ng-template #catalogDetails>
+        <app-catalog-details [catalog]="currentCatalog" [articles]="articles"></app-catalog-details>
+    </ng-template>
+    
 </div>

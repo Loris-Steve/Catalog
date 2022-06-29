@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
   submitted = false;
   returnUrl: string = '/search';
   error = '';
-
+  test = "test"
   articleListStyle: ArticleSearchStyle = ArticleSearchStyle.CARD;
 
   types = Object(ArticleSearchStyle);
@@ -36,7 +36,11 @@ export class SearchComponent implements OnInit {
     private router: Router,
   ) {
 
-    this.articleService.articles$.subscribe((articleList) => this.articles = articleList);
+    this.articleService.articles$.subscribe((articleList) => {
+      console.log('articleList :>> ', articleList);
+      this.articles = articleList });
+
+    
 
     this.catalogService.catalogs$.subscribe((catalogList) => this.catalogs = catalogList);
 
@@ -45,6 +49,7 @@ export class SearchComponent implements OnInit {
 
     this.searchForm = this.formBuilder.group({
       titleArticle: [''],
+      id_SubCategory: [''],
       addressArticle: [''],
       latitude: [''],
       longitude: [''],
@@ -60,6 +65,7 @@ export class SearchComponent implements OnInit {
     //console.log('this.articles :>> ', this.articles);
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    
   }
 
   // convenience getter for easy access to form fields
@@ -75,17 +81,13 @@ export class SearchComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    // stop here if form is invalid
-    if (this.searchForm.invalid) {
-      return;
-    }
-
     this.loading = true;
     
     const articleQuery : ArticleQuery = {
       idArticle: '',
       id_User: '',
       titleArticle: this.searchForm.value['titleArticle'],
+      id_SubCategory: this.searchForm.value['id_SubCategory'],
       addressArticle: this.searchForm.value['addressArticle'],
       latitude: this.searchForm.value['latitude'],
       longitude: this.searchForm.value['longitude'],

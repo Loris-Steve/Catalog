@@ -108,22 +108,13 @@ class ArticleController {
         console.log('req.params.catalogId,req.params.articleId :>> ', req.params.catalogId,req.params.articleId);
         let ArticleList = 
         await ArticleModel.findArticleByIdCatalog(
-            req.params.catalogId,
-            req.params.articleId);
+            req.params.catalogId);
             
         if (!ArticleList) {
             throw new HttpException(404, 'Articles not found');
         }
 
-        const idCatalog = req.params.catalogId;
-        const catalog = await CatalogModel.findOne(idCatalog);
-
-        const data = {
-            catalog : catalog,
-            articles : ArticleList,
-        }
-
-        res.send(data);
+        res.send(ArticleList);
     };
     getArticlesDetails = async (req, res, next) => {
 

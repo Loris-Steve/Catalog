@@ -1,11 +1,12 @@
 <container-element [ngSwitch]="typeList">
     <!-- the same view can be shown in more than one case -->
     <some-element *ngSwitchCase="types.CARD">
-        <div class="card" style="width: 18rem; cursor:pointer"  (click)="navigate(article.idArticle)">
+        <div class="card" style="width: 18rem; cursor:pointer"  (click)="navigate(article.id_Catalog ,article.idArticle)">
             <img class="card-img-top" src="https://www.ecommercemag.fr/Assets/Img/BREVE/2016/4/303588/est-chef-produit-VPC--F.jpg" alt="Card image cap">
             <div class="card-body">
                 <h2 class="card-title">{{ article.titleArticle }}</h2>
                 <p class="card-text" style="font-size: 15px;">{{ article.priceArticle }} €</p>
+                <p class="card-text" style="font-size: 15px;">{{ article.descriptionArticle }} €</p>
 
             </div>
             <img class="rounded-circle" alt="100x100" src="https://us.123rf.com/450wm/imagevectors/imagevectors1606/imagevectors160600227/58872995-profil-blanc-ic%C3%B4ne-sur-le-bouton-bleu-isol%C3%A9-sur-blanc.jpg?ver=6"/>
@@ -13,7 +14,7 @@
         </div>
     </some-element>
     <some-element *ngSwitchCase="types.LIST">
-        <div class="article-list-item" style="height: 8rem; cursor:pointer">
+        <div class="article-list-item" style="height: 8rem; cursor:pointer" (click)="navigate(article.id_Catalog ,article.idArticle)">
             <div class="article-list-item-head">
 
                 <div class="card flex-row card-ligne"><img class="card-img-left example-card-img-responsive " src="https://www.ecommercemag.fr/Assets/Img/BREVE/2016/4/303588/est-chef-produit-VPC--F.jpg"/>

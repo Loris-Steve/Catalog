@@ -12,15 +12,11 @@ export class CatalogDetailsComponent implements OnInit {
 
   @Input() catalog : Catalog = <Catalog>{};
 
-  articles : Article[] = [];
+  @Input() articles : Article[] = [];
 
   @Input() catalogId:number | undefined;
 
-  constructor( private articleService: ArticleService,
-    ) {
-  
-      this.articleService.articles$.subscribe((articleList) => this.articles = articleList)
-     }
+  constructor( ) {}
 
   ngOnInit(): void {
   }

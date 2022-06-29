@@ -17,11 +17,12 @@ export class ArticleComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    //console.log('this.article :>> ', this.article);
+    console.log('this.article :>> ', this.article);
   }
   
 
-  navigate(idArticle:number){
-    this.router.navigate(['/search/article-details/'+idArticle]);
+  navigate(id_Catalog : number,idArticle:number){
+    console.log('"object" :>> ', "object");
+    this.router.navigate([`/search/article-details/${id_Catalog}/${idArticle}`]);
   }
 }

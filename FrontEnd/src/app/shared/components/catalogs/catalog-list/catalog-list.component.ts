@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Catalog } from 'src/app/shared/models/catalog.model';
 
 @Component({
@@ -11,24 +12,20 @@ export class CatalogListComponent implements OnInit {
   @Input() catalogs : Catalog[] = [];
   @Input() updateOption : boolean = false;
   
-  showDetailCatalog : boolean = false;
-  currentCatalogId: number | undefined ;
-  currentCatalog: Catalog = <Catalog>{};
+  // showDetailCatalog : boolean = false;
+  // currentCatalogId: number | undefined ;
+  // currentCatalog: Catalog = <Catalog>{};
 
-  constructor() { }
+  constructor(private route : Router) { }
 
   ngOnInit(): void {
     console.log('this.catalogs :>> ', this.catalogs);
   }
 
-  setShowDetailCatalog(show:boolean){
-    this.showDetailCatalog = show;
-  }
 
   showDetails= (catalogId : number) => {
-    console.log("detail",catalogId);
-    this.currentCatalogId = catalogId;
-    this.setShowDetailCatalog(true);
+    
+    this.route.navigate(['/user/profil/2/'+catalogId]);
   }
 
 }

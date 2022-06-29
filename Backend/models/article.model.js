@@ -168,16 +168,15 @@ class ArticleModel {
         return result;
     }
 
-    findArticleByIdCatalog = async (id_Catalog,id_Article) => {
+    findArticleByIdCatalog = async (id_Catalog) => {
 
 //      console.log('id_Catalog , id_Article :>> ', id_Catalog , id_Article);
-      const sql = `SELECT * FROM ${this.catalogTable} cl inner join 
+      const sql = `SELECT * FROM 
       ${this.catalogHasArticleTable} cha inner join ${this.articleTable} a inner join ${this.subCategoryTable} cy 
-      WHERE  cl.idCatalog = cha.id_Catalog AND 
-      cha.id_Catalog = ? AND cha.id_Article = ? AND a.idArticle = cha.id_Article AND
+      WHERE  cha.id_Catalog = ? AND cha.id_Article = a.idArticle AND
        a.id_SubCategory = cy.idSubCategory`;
 
-      return await query(sql, [id_Catalog,id_Article]);
+      return await query(sql, [id_Catalog]);
   }
 
     findArticleCatalogUserByIdCatalog = async (id_Catalog,id_Article) => {

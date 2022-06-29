@@ -3,7 +3,7 @@
     <button *ngIf="showDetailCatalog" class="ml-auto btn btn-light mr-2" (click)="setShowDetailCatalog(false)">
         {{ "List Catalog" }}
     </button>
-    <a *ngIf="updateOption" class="btn btn-secondary" routerLink="/user/add-catalog">{{ 'add' |translate}} {{ 'catalog' |translate}}</a>  
+    <a *ngIf="updateOption" class="btn btn-secondary" routerLink="/user/add-catalog"><img style="width:20px; margin-right: 3px; vertical-align: text-bottom;" src="../assets/images/ajouter.png"/> {{ 'add' |translate}} {{ 'catalog' |translate}}</a>  
  </div>
 
 <div *ngIf="!showDetailCatalog ; then catalogList ; else catalogDetails"></div>

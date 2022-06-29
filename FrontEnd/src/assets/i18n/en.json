@@ -2,11 +2,16 @@
     "search" : "Search",
     "register" : "Register",
     "login" : "Login",
-    "account" : "Account",
+    "update" : "Update",
+    "account" : "account",
     "Youdonthaveanyaccount": "You don't have an account ?",
     "firstName" : "First Name",
     "lastName" : "Last Name",
     "email" : "email",
     "password" : "Password",
-    "confirm_password" : "Confirm Password"
+    "confirm_password" : "Confirm Password",
+    "card" : "Card",
+    "list" : "List",
+    "searching": "Search",
+    "add" : "Add a"
 }

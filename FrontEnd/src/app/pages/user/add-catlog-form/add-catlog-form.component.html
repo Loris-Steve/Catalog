@@ -2,39 +2,62 @@
     <h1>Création d'un catalogue</h1>
     <div class="champs">
     
-    <input type="file" class="file" name="file" id="file" class="inputfile" value="rien"/>
-    <label for="file"></label>
+    <input type="file" class="file" name="file" id="file" class="inputfile" value="rien" onchange="alert(file.value.substring(12)); document.getElementById('myImg').src='../assets/images/'+file.value.substring(12);"/>
+    <label id="label" for="file"></label>
+    <img style="width:85px; height: 85px; z-index: -1; position: absolute; margin-top: -93px; margin-left:19.5%; border-radius: 100px;" id="myImg" src="#">
       <input
         type="text"
-        id="email"
-        name="email"
-        placeholder="email"
-        formControlName="email"
+        id="name"
+        name="name"
+        placeholder="Nom"
+        formControlName="name"
+        class="form-control"
         [ngClass]="{ 'is-invalid': submitted}"
       />
       <div *ngIf="submitted " class="invalid-feedback">
-        <div>Email is required</div>
+        <div>Name is required</div>
       </div>
     
       <input
         type="text"
-        id="password"
-        name="password"
-        placeholder="mot de passe"
-        formControlName="password"
+        id="address"
+        name="address"
+        placeholder="Adresse"
+        formControlName="address"
         class="form-control"
         [ngClass]="{ 'is-invalid': submitted }"
       />
       <div *ngIf="submitted" class="invalid-feedback">
-        <div>Password is required</div>
+        <div>Address is required</div>
       </div>
-    
+
+      <input
+        type="text"
+        id="city"
+        name="city"
+        placeholder="Ville"
+        formControlName="city"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted }"
+      />
+      <div *ngIf="submitted" class="invalid-feedback">
+        <div>City is required</div>
+      </div>
+
+      <input
+      type="text"
+      id="phone"
+      name="phone"
+      placeholder="Téléphone"
+      formControlName="phone"
+      [ngClass]="{ 'is-invalid': submitted }"
+    />
       <button id="ajouter" [disabled]="loading" (submit)="addCatalog()">
         <span
           *ngIf="loading"
           class="spinner-border spinner-border-sm mr-1"
         ></span>
-        Se connecter</button
+        Ajouter</button
       ><br />
     
       <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{ error }}</div>
@@ -44,7 +67,7 @@
 
 
   
-<input type="file" id="image-input" accept="image/jpeg, image/png, image/jpg">
+<!--input type="file" id="image-input" accept="image/jpeg, image/png, image/jpg">
 
 <div id="display-image"></div>
 <script>
@@ -61,6 +84,7 @@ image_input.addEventListener("change", function() {
 });
     });
 
-</script>
+</script-->
+
 
    

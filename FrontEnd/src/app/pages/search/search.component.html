@@ -10,18 +10,18 @@
             <option>Sport</option>
         </select>
         <input type="text" id="localisation" name="localisation" placeholder="Localisation" required>
-        <button id="rechercher" (click)="onSubmit()">Rechercher</button>
+        <button id="rechercher" (click)="onSubmit()">{{ 'searching' | translate }}</button>
     </div>
 </form>
 
     <div class="">
 
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-end boutons">
             <button class="btn btn-light" (click)="changeStyle(types.CARD)">
-                card
+                {{ 'card' | translate }}
             </button>
             <button class="btn btn-light" (click)="changeStyle(types.LIST)">
-                list
+                {{ 'list' | translate }}
             </button>
         </div>
         <p *ngIf="loading">{{ "loading..." | translate }}</p>
@@ -30,7 +30,7 @@
         <!-- boucle sur la liste des articles ou catalogs et on affiche des éléments -->
 
         <div   [ngClass]="{'article-list-style' : articleListStyle === types.LIST , 'article-card-style' : articleListStyle === types.CARD}" >
-            <app-article class="card" *ngFor="let article of articles" [article]="article" [typeList]="articleListStyle"></app-article>
+            <app-article class="carte" *ngFor="let article of articles" [article]="article" [typeList]="articleListStyle"></app-article>
         </div>
     </div>
 </div>

@@ -30,7 +30,7 @@
                     
                     <li>
                         <a routerLink="user/account" class=""> 
-                            <mat-icon aria-label="account">account_circle</mat-icon>
+                            <mat-icon aria-label="account" class="iconProfil">account_circle</mat-icon>
                             
                             {{ user.firstName }}
                         </a>
@@ -42,10 +42,9 @@
                     </li>
                     <li>
                         <span  (click)="logout()" class=""> 
-                            ( Log out )
-                        </span>
-                    </li>
-
+                            <img style="width:30px; margin-top:8px;" src="../assets/images/deconnexion.png"/>
+                         </span>
+                    </li>                        
                 </ng-template>
 
             </ul>

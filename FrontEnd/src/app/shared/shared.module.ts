@@ -9,7 +9,7 @@ import { CustomSearchFilterComponent } from './components/search/custom-search-f
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AddArticleFormComponent } from './components/articles/add-article-form/add-article-form.component';
+import { AddArticleFormComponent } from '../pages/user/add-article-form/add-article-form.component';
 import { AddArticleComponent } from './components/articles/add-article/add-article.component';
 import { ArticleListComponent } from './components/articles/article-list/article-list.component';
 import { CatalogDetailsComponent } from './components/catalogs/catalog-details/catalog-details.component';

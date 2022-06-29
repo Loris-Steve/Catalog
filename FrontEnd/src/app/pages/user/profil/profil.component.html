@@ -8,7 +8,9 @@
                 <H1>Nom : {{ user.firstName }}</H1>
                 <p>Adresses</p>
                 <p>Tel</p>
-            </div>   
+            </div> 
+            <a *ngIf="updateOption" class="btn btn-secondary" routerLink="/user/account"> {{ 'update' |translate}} {{ 'account' | translate }} </a>
+  
         </div> 
     </div>
 
@@ -16,6 +18,8 @@
         <!-- <button *ngIf="showDetailCatalog" class="ml-auto btn btn-light mr-2" (click)="setShowDetailCatalog(false)">
             {{ "List Catalog" }}
         </button> -->
+        <a *ngIf="currentCatalogId" class="btn btn-secondary" [routerLink]="'/user/catalogs/'+currentCatalogId+'/add-article'">{{ 'add' |translate}} {{ 'article' |translate}} </a>  
+
         <a *ngIf="updateOption" class="btn btn-secondary" routerLink="/user/add-catalog">{{ 'add' |translate}} {{ 'catalog' |translate}}</a>  
      
     </div>

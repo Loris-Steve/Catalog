@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/shared/injectables/AuthGuard';
 import { AccountComponent } from './account/account.component';
+import { AddArticleFormComponent } from './add-article-form/add-article-form.component';
 import { AddCatlogFormComponent } from './add-catlog-form/add-catlog-form.component';
 import { LoginComponent } from './login/login.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
@@ -31,10 +32,10 @@ const routes: Routes = [
     path: 'profil/:userId/:catalogId',
     component: ProfilComponent,
   },
-  // {
-  //   path: 'myProfil',
-  //   component: MyProfileComponent,
-  // },
+  {
+    path: 'catalogs/:catalogId/add-article',
+    component: AddArticleFormComponent,
+  },
   {
     path: 'add-catalog',
     component: AddCatlogFormComponent,

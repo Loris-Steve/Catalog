@@ -3,10 +3,11 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { first } from 'rxjs';
-import { AddArticleFormComponent } from 'src/app/shared/components/articles/add-article-form/add-article-form.component';
+//import { AddArticleFormComponent } from 'src/app/pages/user/add-article-form/add-article-form.component';
 import { Catalog, CatalogQuery } from 'src/app/shared/models/catalog.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { CatalogService } from 'src/app/shared/services/catalogs/catalog.service';
+import { AddArticleFormComponent } from '../add-article-form/add-article-form.component';
 
 @Component({
   selector: 'app-my-profile',

@@ -11,7 +11,6 @@ import { ArticleService } from 'src/app/shared/services/articles/article.service
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { CatalogService } from 'src/app/shared/services/catalogs/catalog.service';
 import { UserService } from 'src/app/shared/services/users/user.service';
-import { AddArticleFormComponent } from '../../../shared/components/articles/add-article-form/add-article-form.component';
 
 @Component({
   selector: 'app-profil',
@@ -71,15 +70,19 @@ export class ProfilComponent implements OnInit {
     this.route.params
       .subscribe(params => {
         console.log(params);
+        if(params['userId'] == this.authService.userValue?.idUser)
+          this.updateOption = true;
+
         this.userService.getUserById(params['userId']);
         this.loadCatalog(params['userId']);
         if (params['catalogId']) {
           this.showDetailCatalog = true;
           this.loadArticles(params['catalogId']);
+          this.currentCatalogId = params['catalogId'];
         }
       });
 
-    this.route.queryParamMap
+    this.route.queryParams
       .subscribe(params => {
         console.log(' query params :>> ', params);
         // const articleQuery: ArticleQuery = {
@@ -119,8 +122,6 @@ export class ProfilComponent implements OnInit {
 
   loadCatalog(userId: number) {
 
-    if (userId) {
-
       const idCatalog = '';
       const titleCatalog = '';
       const addressCatalog = '';
@@ -143,7 +144,7 @@ export class ProfilComponent implements OnInit {
       }
 
       this.catalogService.getCatalogByIdUser(userId, catalogQuery);
-    }
+
   }
 
 }

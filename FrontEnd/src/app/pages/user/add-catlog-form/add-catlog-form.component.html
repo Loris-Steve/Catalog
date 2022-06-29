@@ -1,1 +1,66 @@
-<p>add-catlog-form works!</p>
+<form class="formulaire" (ngSubmit)="addCatalog()">
+    <h1>Création d'un catalogue</h1>
+    <div class="champs">
+    
+    <input type="file" class="file" name="file" id="file" class="inputfile" value="rien"/>
+    <label for="file"></label>
+      <input
+        type="text"
+        id="email"
+        name="email"
+        placeholder="email"
+        formControlName="email"
+        [ngClass]="{ 'is-invalid': submitted}"
+      />
+      <div *ngIf="submitted " class="invalid-feedback">
+        <div>Email is required</div>
+      </div>
+    
+      <input
+        type="text"
+        id="password"
+        name="password"
+        placeholder="mot de passe"
+        formControlName="password"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted }"
+      />
+      <div *ngIf="submitted" class="invalid-feedback">
+        <div>Password is required</div>
+      </div>
+    
+      <button id="ajouter" [disabled]="loading" (submit)="addCatalog()">
+        <span
+          *ngIf="loading"
+          class="spinner-border spinner-border-sm mr-1"
+        ></span>
+        Se connecter</button
+      ><br />
+    
+      <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{ error }}</div>
+    
+    </div>
+</form>
+
+
+  
+<input type="file" id="image-input" accept="image/jpeg, image/png, image/jpg">
+
+<div id="display-image"></div>
+<script>
+    $('document').ready(function(){
+  const image_input = document.querySelector("#image-input");
+
+image_input.addEventListener("change", function() {
+  const reader = new FileReader();
+  reader.addEventListener("load", () => {
+    const uploaded_image = reader.result;
+    document.querySelector("#display-image").style.backgroundImage = `url(${uploaded_image})`;
+  });
+  reader.readAsDataURL(this.files[0]);
+});
+    });
+
+</script>
+
+   

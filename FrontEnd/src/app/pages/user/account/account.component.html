@@ -3,9 +3,9 @@
         <h1>Mon Profil</h1>
         <div class="champs">
         
-        <input type="file" class="file" name="file" id="file" class="inputfile" value="rien" onchange="alert(file.value.substring(12)); document.getElementById('myImg').src='../assets/images/'+file.value.substring(12);"/>
+        <input type="file" class="file" name="file" id="file" class="inputfile" value="rien" onchange="document.getElementById('myImg').src='../assets/images/'+file.value.substring(12);"/>
         <label id="label" for="file"></label>
-        <img style="width:110px; height: 110px; z-index: -1; position: absolute; margin-top: -118px; margin-left:18.7%; border-radius: 100px;" id="myImg" src="#">
+        <img id="myImg" src="#" alt="">
           <input
             type="text"
             id="name"
@@ -58,7 +58,7 @@
             <h3>Profil :</h3><p>Type profil</p>
         </div>
 
-        <button id="ajouter">Modifier</button><br />
+        <button id="modifier">Modifier</button><br />
         
         </div>
     </form>

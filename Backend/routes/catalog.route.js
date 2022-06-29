@@ -14,7 +14,7 @@ router.post('/', authUser(Role.Admin,Role.Professional), createCatalogSchema, us
 router.post('/article', authUser(Role.Admin,Role.Professional), catalogExist, articleExist, addArticleCatalogSchema, awaitHandlerFactory(CatalogController.addArticleInCatalog)); 
 
 router.get('/', findCatalog, awaitHandlerFactory(CatalogController.getCatalogsByParams)); 
-router.get('/user/:idUser', awaitHandlerFactory(CatalogController.getCatalogsByParams)); 
+router.get('/user/:idUser', findCatalog, awaitHandlerFactory(CatalogController.getCatalogsByIdUser)); 
 // router.patch('/:idCatalog', awaitHandlerFactory(CatalogController.updateCatalog)); 
 // router.delete('/:idCatalog', awaitHandlerFactory(CatalogController.deleteCatalog));
 

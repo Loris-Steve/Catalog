@@ -135,6 +135,14 @@ class ArticleModel {
         params : []
       }
   
+      // if (existingParams.id_Catalog) {
+      //   customQuery.reqSql += `inner join 
+      //   ${this.catalogHasArticleTable} cha AND id_Catalog = ? `;
+
+      //   customQuery.reqSql += ' AND id_Catalog = ? ';
+      //   customQuery.params.push(existingParams.id_Catalog);
+      // }
+
       customQuery.reqSql = `select *  from ${this.articleTable} where 1=1 `;
   
       customQuery = this.formatQueryArticle(existingParams,customQuery);
@@ -161,6 +169,18 @@ class ArticleModel {
     }
 
     findArticleByIdCatalog = async (id_Catalog,id_Article) => {
+
+//      console.log('id_Catalog , id_Article :>> ', id_Catalog , id_Article);
+      const sql = `SELECT * FROM ${this.catalogTable} cl inner join 
+      ${this.catalogHasArticleTable} cha inner join ${this.articleTable} a inner join ${this.subCategoryTable} cy 
+      WHERE  cl.idCatalog = cha.id_Catalog AND 
+      cha.id_Catalog = ? AND cha.id_Article = ? AND a.idArticle = cha.id_Article AND
+       a.id_SubCategory = cy.idSubCategory`;
+
+      return await query(sql, [id_Catalog,id_Article]);
+  }
+
+    findArticleCatalogUserByIdCatalog = async (id_Catalog,id_Article) => {
 
       console.log("enter !")
       

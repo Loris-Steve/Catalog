@@ -9,9 +9,9 @@ const { createArticleSchema, findArticle } = require('../middleware/validators/a
 
 router.post('/',authUser(Role.Admin,Role.Professional), createArticleSchema, awaitHandlerFactory(ArticleController.createArticle)); 
 router.get('/', findArticle, awaitHandlerFactory(ArticleController.getArticlesByParams)); 
-router.get('/catalogs', findArticle, awaitHandlerFactory(ArticleController.getArticlesCatalogByParams)); 
+router.get('/catalogs/:catalogId/:articleId', findArticle, awaitHandlerFactory(ArticleController.getArticlesCatalog)); 
 router.get('/title', awaitHandlerFactory(ArticleController.getArticlesTitle)); 
-router.get('/details/:id_Catalog/:id_Article', awaitHandlerFactory(ArticleController.getArticlesDetails)); 
+router.get('/catalogs/user/:id_Catalog/:id_Article', awaitHandlerFactory(ArticleController.getArticlesDetails)); 
 
 // router.patch('/:idArticle', awaitHandlerFactory(ArticleController.updateArticle)); 
 // router.delete('/:idArticle', awaitHandlerFactory(ArticleController.deleteArticle));

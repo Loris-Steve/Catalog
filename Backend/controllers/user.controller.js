@@ -101,6 +101,17 @@ class UserController {
         }
     }
 
+    constructorUser = (newUser) => {
+        return {
+            idUser: newUser.idUser,
+            photo: newUser.photo,
+            firstName: newUser.firstName,
+            lastName: newUser.lastName,
+            email: newUser.email,
+            role : newUser.role
+        };
+    }
+    
 }
 
 

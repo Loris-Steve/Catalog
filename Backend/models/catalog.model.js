@@ -31,38 +31,40 @@ class CatalogModel {
     // return back the first row (user)
     return { affectedRows, idCatalog: result.insertId };
   }
+/* 
+  findByIdUser = async (existingParams = {}) => {
 
-  formatEndQuery(existingParams = {},customQuery){
-
-    customQuery.reqSql += ' ORDER BY '
-
-    if (existingParams.sort) {
-      customQuery.reqSql += ' ? ';
-      customQuery.params.push(existingParams.sort);
-    }
-    else {
-      customQuery.reqSql += ' idCatalog ';
+    let reqDistance = "";
+    if (existingParams.latitude && existingParams.longitude) {
+      reqDistance = ` ,LTRIM(ROUND(get_distance_metres(?, ? , latitude, longitude))) AS distance `;
+      params.push(existingParams.latitude, existingParams.longitude);
     }
 
-    if (existingParams.order) {
-      customQuery.reqSql += existingParams.order + ' ';
-    }
-    else{
-      customQuery.reqSql += ' DESC ';
-    }
+    const distance = reqDistance;
 
-    customQuery.reqSql += existingParams.page;
+    customQuery.reqSql = `select * ${distance} from catalogs c inner join users u where `+
+    `c.id_User = u.idUser `;
 
+    customQuery = this.formatQueryCatalog(existingParams,customQuery);
 
-    return customQuery;
-}
+    // add distance km customQuery.params
+    let havingUsed = 'HAVING';
 
+    customQuery.reqSql += distance ? ` ${havingUsed} get_distance_metres(${existingParams.latitude}, ${existingParams.longitude}, latitude, longitude) < ${RAYON_SEARCH_CATALOG} ` : '';
+
+    customQuery = this.formatEndQuery(existingParams,customQuery);
+
+    console.log("customQuery.reqSql : ", JSON.stringify(customQuery.reqSql));
+    console.log("parameters : ", JSON.stringify(customQuery.params));
+
+    return await query(customQuery.reqSql, [...customQuery.params]);
+  }
+ */
   find = async (existingParams = {}) => {
     let customQuery = {
       reqSql : '',
       params : []
     }
-    //const isOwner = existingParams.id_User ? ', (catalogs.id_User = ? ) AS isOwner ' : '';
 
     let reqDistance = "";
     if (existingParams.latitude && existingParams.longitude) {
@@ -88,19 +90,21 @@ class CatalogModel {
 
     return await query(customQuery.reqSql, [...customQuery.params]);
   }
-  
-  findById = async (idCatalog) => {
+
+
+  findOne = async (idCatalog) => {
     
     const sql = `SELECT * FROM ${this.catalogTable}
     WHERE idCatalog = ?`;
+
+    console.log('sql :>> ', sql);
     const result = await query(sql, [idCatalog]);
         
     console.log(sql + " Catalog result",result)
     //return await query(sql, [idCatalog]);
     
-    return result;
+    return result[0];
   }
-
   /* 
   */
 
@@ -160,6 +164,31 @@ class CatalogModel {
       return customQuery;
     }
     
+    
+  formatEndQuery(existingParams = {},customQuery){
+
+    customQuery.reqSql += ' ORDER BY '
+
+    if (existingParams.sort) {
+      customQuery.reqSql += ' ? ';
+      customQuery.params.push(existingParams.sort);
+    }
+    else {
+      customQuery.reqSql += ' idCatalog ';
+    }
+
+    if (existingParams.order) {
+      customQuery.reqSql += existingParams.order + ' ';
+    }
+    else{
+      customQuery.reqSql += ' DESC ';
+    }
+
+    customQuery.reqSql += existingParams.page;
+
+
+    return customQuery;
+}
 }
 
 module.exports = new CatalogModel;

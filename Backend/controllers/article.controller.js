@@ -5,6 +5,10 @@ const dotenv = require('dotenv');
 dotenv.config();
 const { matchedData } = require('express-validator');
 const CatalogController = require('./catalog.controller');
+const userModel = require('../models/user.model');
+const CatalogModel = require('../models/Catalog.model');
+const userController = require('./user.controller');
+const { cp } = require('fs');
 
 module.exports = NUMBER_ARTICLE_PAGE = 10;
 /******************************************************************************
@@ -58,7 +62,7 @@ class ArticleController {
         let params = {} ;
 
         params = this.formatArticleParams(params,matched);
-        params = this.formatArticleParams(params,matched);
+        //params = this.formatArticleParams(params,matched);
 
         let ArticleList = await ArticleModel.find(params);
 
@@ -94,6 +98,33 @@ class ArticleController {
         res.send(ArticleList);
     };
 
+    
+    getArticlesCatalog = async (req, res, next) => {
+
+        // const matched = matchedData(req, {
+        //     includeOptionals: true,
+        // });
+        // checkValidation(req);
+        console.log('req.params.catalogId,req.params.articleId :>> ', req.params.catalogId,req.params.articleId);
+        let ArticleList = 
+        await ArticleModel.findArticleByIdCatalog(
+            req.params.catalogId,
+            req.params.articleId);
+            
+        if (!ArticleList) {
+            throw new HttpException(404, 'Articles not found');
+        }
+
+        const idCatalog = req.params.catalogId;
+        const catalog = await CatalogModel.findOne(idCatalog);
+
+        const data = {
+            catalog : catalog,
+            articles : ArticleList,
+        }
+
+        res.send(data);
+    };
     getArticlesDetails = async (req, res, next) => {
 
         // const matched = matchedData(req, {
@@ -102,18 +133,39 @@ class ArticleController {
         // checkValidation(req);
         
         let ArticleList = 
-        await ArticleModel.findArticleByIdCatalog(
+        await ArticleModel.findArticleCatalogUserByIdCatalog(
             req.params.id_Catalog,
             req.params.id_Article);
             
             console.log("params ", req.params)
-        if (!ArticleList) {
+        const result = ArticleList[0]; 
+        if (!result) {
             throw new HttpException(404, 'Articles not found');
         }
 
-        res.send(ArticleList);
+        const data = {
+            user : userController.constructorUser(result),
+            catalog : CatalogController.constructorCatalog(result),
+            article : this.constructorArticle(result),
+        }
+        res.send(data);
     };
 
+    constructorArticle = (newArticle) => {
+        //const test = "linkd,autre2,autre3";
+        //newArticle.imagesArticle = test;
+        const imgs = newArticle.imagesArticle ? newArticle.imagesArticle.split(',') : [];
+       // console.log(">>newArticle : " + JSON.stringify(newArticle));
+        
+        return {
+            idArticle: newArticle.idArticle,
+            titleArticle: newArticle.titleArticle,
+            priceArticle: newArticle.priceArticle,
+            descriptionArticle: newArticle.descriptionArticle,
+            imagesArticle : imgs
+        };
+    }
+    
     // get article name by titleArticle to autocomplete
     getArticlesTitle = async (req, res, next) => {
         console.log("Enter controller ARTICLE GET !!",req.query)

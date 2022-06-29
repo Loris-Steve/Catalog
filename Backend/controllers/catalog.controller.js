@@ -4,6 +4,7 @@ const {checkValidation} = require('../middleware/checkValidation')
 const dotenv = require('dotenv');
 dotenv.config();
 const { matchedData } = require('express-validator');
+const userModel = require('../models/user.model');
 
 module.exports = NUMBER_CATALOG_PAGE = 10;
 
@@ -55,23 +56,38 @@ class CatalogController {
 
     };
 
-    formatCatalogParams(params = {},matched){
+    getCatalogsByIdUser = async (req, res, next) => {
+
+        const matched = matchedData(req, {
+            includeOptionals: true,
+        });
+
+        checkValidation(req);
+
+        let params = {} ; // 
+
+        params = this.formatCatalogParams(params,matched);
+        params = this.formatEndFilter(params,matched);
         
-        params.idCatalog = matched.idCatalog && matched.idCatalog ;
+        let CatalogList = await CatalogModel.find(params);
 
-        params.id_User = matched.id_User && matched.id_User ;
+        //console.log("get All Catalogs params : "+JSON.stringify(params));
+        //console.log(page + " Catalog list : "+JSON.stringify(CatalogList));
+        
+        if (!CatalogList) {
+            throw new HttpException(404, 'Catalogs not found');
+        }
 
-        params.titleCatalog = matched.titleCatalog && matched.titleCatalog ;
+        const idUser = req.params.idUser;
+        const user = await userModel.findOne({idUser});
+        console.log('idUser :>> ', idUser);
+        let data = {
+            user : user,
+            catalogs : CatalogList
+        }
+        res.send(data);
+    };
 
-        params.addressCatalog = matched.addressCatalog && matched.addressCatalog ;
-        params.latitude = matched.latitude && parseFloat(matched.latitude) ;
-        params.longitude = matched.longitude && parseFloat(matched.longitude) ;
-      
-        params.activateCatalog = matched.activateCatalog && matched.activateCatalog ;
-
-        return params;
-
-    }
     getCatalogsByParams = async (req, res, next) => {
 
         const matched = matchedData(req, {
@@ -139,6 +155,37 @@ class CatalogController {
     };
  */
 
+    constructorCatalog = (newCatalog) => {
+        console.log(">>newCatalog : " + JSON.stringify(newCatalog));
+        return {
+            idCatalog: newCatalog.idCatalog,
+            id_User: newCatalog.id_User, // siren with companys
+            titleCatalog: newCatalog.titleCatalog,
+            addressCatalog: newCatalog.addressCatalog ,
+            latitude: newCatalog.latitude,
+            longitude : newCatalog.longitude ,
+            activateCatalog : newCatalog.activateCatalog ,
+        };
+    }
+
+    formatCatalogParams(params = {},matched){
+        
+        params.idCatalog = matched.idCatalog && matched.idCatalog ;
+
+        params.id_User = matched.id_User && matched.id_User ;
+
+        params.titleCatalog = matched.titleCatalog && matched.titleCatalog ;
+
+        params.addressCatalog = matched.addressCatalog && matched.addressCatalog ;
+        params.latitude = matched.latitude && parseFloat(matched.latitude) ;
+        params.longitude = matched.longitude && parseFloat(matched.longitude) ;
+      
+        params.activateCatalog = matched.activateCatalog && matched.activateCatalog ;
+
+        return params;
+
+    }
+
     formatEndFilter(params = {},matched){
 
         params.sortCatalog = matched.sortCatalog && matched.sortCatalog ;
@@ -152,6 +199,7 @@ class CatalogController {
 
         return params;
     }
+
 }
 
 

@@ -1,10 +1,10 @@
 <form class="formulaire" [formGroup]="registerForm" (submit)="onSubmit()">
+     <h1>S'inscrire</h1>
     <img class="rounded-circle" alt="100x100" src="https://media.istockphoto.com/vectors/default-avatar-profile-icon-vector-vector-id1337144146?b=1&k=20&m=1337144146&s=170667a&w=0&h=ys-RUZbXzQ-FQdLstHeWshI4ViJuEhyEa4AzQNQ0rFI="/>
-    <p id="sstitre">{{ "Bénéficiez d'une expérience personnalisée avec du contenu en lien avec votre activité et vos centres d'intérêt sur notre service" | translate }}</p>
-    <div class="champs">
+   <div class="champs">
     <!-- radio button -->
     <div>
-        <p>
+        <p id="qui">
             Je suis :
             <input type="radio" name="role" [value]="role1"
             formControlName="role"
@@ -15,7 +15,7 @@
             formControlName="role"
             ng-model="registerForm.controls[role]"
             />
-            {{ 'professionnal' | translate }}
+            {{ 'professionnel' | translate }}
             
         </p>
         <div *ngIf="submitted && f['role'].errors" class="invalid-feedback">

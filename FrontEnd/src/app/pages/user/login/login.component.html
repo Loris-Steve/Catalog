@@ -6,16 +6,18 @@
     <input type="text" id="email" name="email" placeholder="email" formControlName="email"
       [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" 
       />
+
+<!--       
     <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
       <div *ngIf="f['email'].errors['required']">Email is required</div>
-    </div>
+    </div> -->
 
     <input type="password" id="password" name="password" placeholder="mot de passe" 
     formControlName="password"
       class="form-control" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
-    <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+    <!-- <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
       <div *ngIf="f['password'].errors['required']">Password is required</div>
-    </div>
+    </div> -->
 
     <button id="connecter" [disabled]="loading" (submit)="onSubmit()">
       <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>

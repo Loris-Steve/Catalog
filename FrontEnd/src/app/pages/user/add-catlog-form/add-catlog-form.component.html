@@ -1,1 +1,90 @@
-<p>add-catlog-form works!</p>
+<form class="formulaire" (ngSubmit)="addCatalog()">
+    <h1>Création d'un catalogue</h1>
+    <div class="champs">
+    
+    <input type="file" class="file" name="file" id="file" class="inputfile" value="rien" onchange="alert(file.value.substring(12)); document.getElementById('myImg').src='../assets/images/'+file.value.substring(12);"/>
+    <label id="label" for="file"></label>
+    <img style="width:85px; height: 85px; z-index: -1; position: absolute; margin-top: -93px; margin-left:19.5%; border-radius: 100px;" id="myImg" src="#">
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Nom"
+        formControlName="name"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted}"
+      />
+      <div *ngIf="submitted " class="invalid-feedback">
+        <div>Name is required</div>
+      </div>
+    
+      <input
+        type="text"
+        id="address"
+        name="address"
+        placeholder="Adresse"
+        formControlName="address"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted }"
+      />
+      <div *ngIf="submitted" class="invalid-feedback">
+        <div>Address is required</div>
+      </div>
+
+      <input
+        type="text"
+        id="city"
+        name="city"
+        placeholder="Ville"
+        formControlName="city"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted }"
+      />
+      <div *ngIf="submitted" class="invalid-feedback">
+        <div>City is required</div>
+      </div>
+
+      <input
+      type="text"
+      id="phone"
+      name="phone"
+      placeholder="Téléphone"
+      formControlName="phone"
+      [ngClass]="{ 'is-invalid': submitted }"
+    />
+      <button id="ajouter" [disabled]="loading" (submit)="addCatalog()">
+        <span
+          *ngIf="loading"
+          class="spinner-border spinner-border-sm mr-1"
+        ></span>
+        Ajouter</button
+      ><br />
+    
+      <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{ error }}</div>
+    
+    </div>
+</form>
+
+
+  
+<!--input type="file" id="image-input" accept="image/jpeg, image/png, image/jpg">
+
+<div id="display-image"></div>
+<script>
+    $('document').ready(function(){
+  const image_input = document.querySelector("#image-input");
+
+image_input.addEventListener("change", function() {
+  const reader = new FileReader();
+  reader.addEventListener("load", () => {
+    const uploaded_image = reader.result;
+    document.querySelector("#display-image").style.backgroundImage = `url(${uploaded_image})`;
+  });
+  reader.readAsDataURL(this.files[0]);
+});
+    });
+
+</script-->
+
+
+   

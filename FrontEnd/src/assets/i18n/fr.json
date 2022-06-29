@@ -2,11 +2,19 @@
     "search" : "Recherche",
     "register" : "Inscription",
     "login" : "Connexion",
-    "account" : "Compte",
+    "update" : "Modifier le",
+    "account" : "compte",
     "Youdonthaveanyaccount": "Vous n’avez pas de compte ?",
     "firstName" : "Prénom",
     "lastName" : "Nom",
-    "email" : "email",
+    "email" : "Email",
     "password" : "Mot de Passe",
-    "confirm_password" : "Confirmet Mot de Passe"
+    "confirm_password" : "Confirmer le Mot de Passe",
+    "card" : "Carte",
+    "list" : "Liste",
+    "searching" : "Rechercher",
+    "add" : "Ajouter un",
+    "catalog" : "catalogue",
+    "Account" : "Compte",
+    "About" : "À propos"
 }

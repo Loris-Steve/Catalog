@@ -1,0 +1,51 @@
+@import url('../add-catlog-form/add-catlog-form.component.scss');
+
+.formulaire {
+    display: block;
+    margin-left:auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    width: 80vh;
+    padding-top: 20px;
+    border: 3px solid #333333;
+    font-size: 2.5rem;
+    border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%; 
+    background: #ffffff;
+    position: relative;
+    
+    &::before {
+        content: '';
+        border: 2px solid #353535;
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0) scale(1.015) rotate(0.5deg);
+        border-radius: 1% 1% 2% 4% / 2% 6% 5% 4%;
+    }
+}
+
+input[type=text], select {
+    position: relative;
+    z-index: 10;
+    background-color: transparent;
+    border-color: rgb(106, 98, 98);
+}
+
+h1 {
+    margin-top: 20px;
+}
+
+#ajouter {
+    position: relative;
+    z-index: 10;
+    background-color: #f45858;
+}
+
+#ajouter:hover {
+    cursor:pointer;
+    transition-duration: .3s;
+    background-color: #d53737;
+}

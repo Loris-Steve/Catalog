@@ -17,7 +17,7 @@
         <!-- <button *ngIf="showDetailCatalog" class="ml-auto btn btn-light mr-2" (click)="setShowDetailCatalog(false)">
             {{ "List Catalog" }}
         </button> -->
-        <a *ngIf="currentCatalogId" class="btn btn-secondary" [routerLink]="'/user/catalogs/'+currentCatalogId+'/add-article'">{{ 'add' |translate}} {{ 'article' |translate}} </a>  
+        <a *ngIf="currentCatalogId" id="addArticle" class="btn btn-outline-danger" [routerLink]="'/user/catalogs/'+currentCatalogId+'/add-article'">{{ 'add' |translate}} {{ 'article' |translate}} </a>  
 
         <a *ngIf="updateOption" class="btn btn-secondary" routerLink="/user/add-catalog"><img style="width:20px; vertical-align: text-bottom; margin-right: 5px;" src="../assets/images/ajouter.png" alt="">{{ 'add' |translate}} {{ 'catalog' |translate}}</a>  
      

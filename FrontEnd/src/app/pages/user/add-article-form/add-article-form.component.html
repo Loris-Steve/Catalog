@@ -1,1 +1,63 @@
-<p>add-article-form works!</p>
+<div class="ajoutArticle">
+    <form class="formulaire">
+        <h1>Nouvel article</h1>
+        <div class="champs">
+        
+        <input type="file" class="file" name="file" id="file" class="inputfile" value="rien" onchange="document.getElementById('myImg').src='../assets/images/'+file.value.substring(12);"/>
+        <label id="label" style="position: relative; z-index: 1;" for="file"></label>
+        <img id="myImg" src="#" alt="">
+        <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Nom"
+            formControlName="name"
+            class="form-control"
+        />
+        <div class="invalid-feedback">
+            <div>Name is required</div>
+        </div>
+        
+        <input
+            type="text"
+            id="address"
+            name="address"
+            placeholder="Adresse"
+            formControlName="address"
+            class="form-control"
+        />
+        <div class="invalid-feedback">
+            <div>Address is required</div>
+        </div>
+
+        <input
+            type="text"
+            id="city"
+            name="city"
+            placeholder="Ville"
+            formControlName="city"
+            class="form-control"
+        />
+        <div class="invalid-feedback">
+            <div>City is required</div>
+        </div>
+
+        <input
+        type="text"
+        id="phone"
+        name="phone"
+        placeholder="Téléphone"
+        formControlName="phone"
+        />
+        <button id="ajouter">
+            Ajouter</button
+          ><br />
+        
+        </div>
+    </form>
+</div>
+    
+    
+    
+        
+    

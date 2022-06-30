@@ -20,10 +20,10 @@
         
         <input
             type="text"
-            id="address"
-            name="address"
-            placeholder="Adresse"
-            formControlName="address"
+            id="price"
+            name="price"
+            placeholder="Prix"
+            formControlName="price"
             class="form-control"
         />
         <div class="invalid-feedback">
@@ -32,23 +32,28 @@
 
         <input
             type="text"
-            id="city"
-            name="city"
-            placeholder="Ville"
-            formControlName="city"
+            id="description"
+            name="description"
+            placeholder="Description"
+            formControlName="description"
             class="form-control"
         />
         <div class="invalid-feedback">
-            <div>City is required</div>
+            <div>Description is required</div>
         </div>
 
         <input
         type="text"
-        id="phone"
-        name="phone"
-        placeholder="Téléphone"
-        formControlName="phone"
+        id="category"
+        name="category"
+        placeholder="Catégorie"
+        formControlName="category"
+        class="form-control"
         />
+        <div class="invalid-feedback">
+            <div>Category is required</div>
+        </div>
+
         <button id="ajouter">
             Ajouter</button
           ><br />

@@ -44,8 +44,11 @@ class CatalogController {
         checkValidation(req);
 
         //const userId = req.currentUser.idUser;
-
-        const result = await CatalogModel.addArticle(matched);
+        console.log("article in catalog");
+        const result = await CatalogModel.addArticle({
+            id_Catalog: req.params.catalogId,
+            id_Article : req.params.articleId,
+            ...matched});
 
         if (!result) {
 
@@ -54,6 +57,29 @@ class CatalogController {
 
         res.status(201).send({ message : 'article add at Catalog'});
 
+    };
+
+    getAllCatgory = async (req, res, next) => {
+
+        let categorys = await CatalogModel.findCategorys();
+
+        if (!categorys) {
+            throw new HttpException(404, 'categorys not found');
+        }
+
+        res.send(categorys[0]);
+    };
+
+    getCatalogById = async (req, res, next) => {
+        const idCatalog = req.params.idCatalog;
+
+        let catalog = await CatalogModel.find({ idCatalog });
+
+        if (!catalog) {
+            throw new HttpException(404, 'Catalogs not found');
+        }
+
+        res.send(catalog[0]);
     };
 
     getCatalogsByIdUser = async (req, res, next) => {
@@ -78,13 +104,6 @@ class CatalogController {
             throw new HttpException(404, 'Catalogs not found');
         }
 
-        // const idUser = req.params.idUser;
-        // const user = await userModel.findOne({idUser});
-        // console.log('idUser :>> ', idUser);
-        // let data = {
-        //     user : user,
-        //     catalogs : CatalogList
-        // }
         res.send(CatalogList);
     };
 

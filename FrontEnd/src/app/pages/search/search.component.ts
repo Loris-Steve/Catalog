@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
   submitted = false;
   returnUrl: string = '/search';
   error = '';
-  test = "test"
+
   articleListStyle: ArticleSearchStyle = ArticleSearchStyle.CARD;
 
   types = Object(ArticleSearchStyle);
@@ -37,7 +37,7 @@ export class SearchComponent implements OnInit {
   ) {
 
     this.articleService.articles$.subscribe((articleList) => {
-      console.log('articleList :>> ', articleList);
+      //console.log('articleList :>> ', articleList);
       this.articles = articleList });
 
     

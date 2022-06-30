@@ -70,7 +70,7 @@ class UserModel {
         WHERE ${columnSet}`;
 
         const result = await query(sql, [...values]);
-        console.log("not find One : ",result)
+        //console.log("not find One : ",result)
         // return back the first row (user)
         return result[0];
     }

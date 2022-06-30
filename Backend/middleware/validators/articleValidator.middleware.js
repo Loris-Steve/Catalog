@@ -28,6 +28,10 @@ exports.findArticle = [
         .optional()
         .isInt()
         .withMessage('idArticle must be a integer'),
+    query('idCatgory')
+        .optional()
+        .isInt()
+        .withMessage('idCatgory must be a integer'),
     query('id_SubCategory')
         .optional()
         .isInt()
@@ -56,22 +60,39 @@ exports.findArticle = [
         .optional()
         .isIn(['ASC','DESC'])
         .withMessage('Invalid order value'),
-    query('activate')
+    query('activateCatalog')
         .optional()
         .isBoolean([0,1])
         .withMessage('Activate mus be 0 or 1'),    
-];
+    check('addressCatalog')
+        .optional()
+        .isLength({ min: 1 })
+        .withMessage('addressCatalog Must be at least 1 chars long'),
+    check('latitude')
+        .optional()
+        .isFloat()
+        .withMessage('latitude must be a float')
+        .custom((value, { req }) => req.body.longitude )
+        .withMessage('latitude is required if longitude exist'),
+    check('longitude')
+        .optional()
+        .isFloat()
+        .withMessage('longitude must be a float')
+        .custom((value, { req }) => req.body.latitude)
+        .withMessage('longitude is required if latitude exist'),
+    
+    ];
 
-exports.articleExist = [
-    check('id_Article')
-        .exists()
-        .withMessage('id_Article is required')
-        .custom((value, { req }) => {
-            return ArticleModel.findById(value).then(article => {
-                if(!article || !(article.length > 0)){
-                    console.log('article :>> ', article);
-                    throw new Error("Article with idArticle doen't exist");
-                }
-            });
-        })
-]
+// exports.articleExist = [
+//     check('id_Article')
+//         .exists()
+//         .withMessage('id_Article is required')
+//         .custom((value, { req }) => {
+//             return ArticleModel.findById(value).then(article => {
+//                 if(!article || !(article.length > 0)){
+//                     console.log('article :>> ', article);
+//                     throw new Error("Article with idArticle doen't exist");
+//                 }
+//             });
+//         })
+// ]

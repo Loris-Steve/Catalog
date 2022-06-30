@@ -61,6 +61,27 @@ export class ArticleService {
       }));
   }
 
+  getCategorys(){
+
+    this.http.get<any>(`${environment.hostURL}articles/categorys`)
+    .subscribe(
+      data => {
+        console.log("data", data);
+      },
+      error => {
+        switch (error.status) {
+          case 400:
+            this.error.next("badRequest");
+            break;
+          default:
+            this.error.next(error?.error?.message); // erreur serveur
+            break
+        }
+
+      }
+    );
+  }
+
   // get article details
   getArticleById(catalogId: number, articleId: number): Observable<any> {
 
@@ -75,6 +96,8 @@ export class ArticleService {
         data => {
           console.log("data", data);
           this.articles.next(data);
+
+          //this.error.next('');
         },
         error => {
 

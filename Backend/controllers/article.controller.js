@@ -18,9 +18,11 @@ module.exports = NUMBER_ARTICLE_PAGE = 10;
 class ArticleController {
 
     createArticle = async (req, res, next) => {
+        // Limiter le choix aux attributs connus
         const matched = matchedData(req, {
             includeOptionals: true,
         });
+
         checkValidation(req);
 
         const result = await ArticleModel.add(matched);
@@ -34,35 +36,66 @@ class ArticleController {
 
     };
     
-    formatArticleParams(params = {},matched){
+    // display if article already use in catalog
+    getAllCatgory = async (req, res, next) => {
+        console.log("enter");
+
+        let categorys = await ArticleModel.findCategory();
+        let subCategorys = await ArticleModel.findSubCategory();
         
-        params.idArticle = matched.idArticle && matched.idArticle ;
+        console.log('category :>> ', categorys);
+        console.log('subCategorys :>> ', subCategorys);
 
-        params.id_SubCategory = matched.id_SubCategory && matched.id_SubCategory ;
+        if (!categorys) {
+            throw new HttpException(404, 'categorys not found');
+        }
+        const categorysList = categorys.map(cat => {
+            return {
+                ...cat,
+                "subCategorys":subCategorys.filter(sub => sub.id_Category = cat.idCategory)
+            }
+        })
 
-        params.titleArticle = matched.titleArticle && matched.titleArticle ;
+        res.send(categorysList);
+    };
 
-        params.descriptionArticle = matched.descriptionArticle && matched.descriptionArticle ;
+    getArticlesWithAlredyUseByParams = async (req, res, next) => {
 
-        params.priceMin = matched.priceMin && matched.priceMin ;
-        params.priceMax = matched.priceMax && matched.priceMax ;
+        const matched = matchedData(req, {
+            includeOptionals: true,
+        });
 
-        return params;
-    }
-    
+        checkValidation(req);
 
+        let params = {} ;
+
+        params = this.formatArticleParams(params,matched);
+        params = CatalogController.formatCatalogParams(params,matched);
+        params = this.formatEndFilter(params,matched);
+
+        let ArticleList = await ArticleModel.findNotAlreadyAdd(
+            req.params.catalogId,params);
+
+        if (!ArticleList) {
+            throw new HttpException(404, 'Articles not found');
+        }
+
+        res.send(ArticleList);
+    };
 
     getArticlesByParams = async (req, res, next) => {
 
         const matched = matchedData(req, {
             includeOptionals: true,
         });
+
         checkValidation(req);
 
         let params = {} ;
 
         params = this.formatArticleParams(params,matched);
-        //params = this.formatArticleParams(params,matched);
+        params = CatalogController.formatCatalogParams(params,matched);
+        params = this.formatEndFilter(params,matched);
 
         let ArticleList = await ArticleModel.find(params);
 
@@ -73,8 +106,7 @@ class ArticleController {
         res.send(ArticleList);
     };
 
-
-    // return article & catalog information
+    // return article & their catalog informations
     getArticlesCatalogByParams = async (req, res, next) => {
 
         const matched = matchedData(req, {
@@ -89,7 +121,7 @@ class ArticleController {
         params = CatalogController.formatCatalogParams(params,matched);
 
         console.log(params);
-        let ArticleList = await ArticleModel.findByCatalog(params);
+        let ArticleList = await ArticleModel.findInCatalogs(params);
 
         if (!ArticleList) {
             throw new HttpException(404, 'Articles not found');
@@ -99,16 +131,25 @@ class ArticleController {
     };
 
     
-    getArticlesCatalog = async (req, res, next) => {
+    getArticlesOfCatalog = async (req, res, next) => {
 
-        // const matched = matchedData(req, {
-        //     includeOptionals: true,
-        // });
-        // checkValidation(req);
-        console.log('req.params.catalogId,req.params.articleId :>> ', req.params.catalogId,req.params.articleId);
+        const matched = matchedData(req, {
+            includeOptionals: true,
+        });
+        checkValidation(req);
+
+        let params = {} ;
+
+        params = this.formatArticleParams(params,matched);
+        params = CatalogController.formatCatalogParams(params,matched);
+        params = this.formatEndFilter(params,matched);
+
+        //params.order = "position";
+
+        console.log('diplay req.params.catalogId :>> ', req.params.catalogId,);
         let ArticleList = 
         await ArticleModel.findArticleByIdCatalog(
-            req.params.catalogId);
+            req.params.catalogId, params);
             
         if (!ArticleList) {
             throw new HttpException(404, 'Articles not found');
@@ -116,6 +157,8 @@ class ArticleController {
 
         res.send(ArticleList);
     };
+
+    // find user , catalog , category information of article
     getArticlesDetails = async (req, res, next) => {
 
         // const matched = matchedData(req, {
@@ -142,20 +185,6 @@ class ArticleController {
         res.send(data);
     };
 
-    constructorArticle = (newArticle) => {
-        //const test = "linkd,autre2,autre3";
-        //newArticle.imagesArticle = test;
-        const imgs = newArticle.imagesArticle ? newArticle.imagesArticle.split(',') : [];
-       // console.log(">>newArticle : " + JSON.stringify(newArticle));
-        
-        return {
-            idArticle: newArticle.idArticle,
-            titleArticle: newArticle.titleArticle,
-            priceArticle: newArticle.priceArticle,
-            descriptionArticle: newArticle.descriptionArticle,
-            imagesArticle : imgs
-        };
-    }
     
     // get article name by titleArticle to autocomplete
     getArticlesTitle = async (req, res, next) => {
@@ -170,6 +199,18 @@ class ArticleController {
 
         res.send(ArticleList);
     };
+
+    getArticleById = async (req, res, next) => {
+        const idArticle = req.params.idArticle;
+
+        let article = await ArticleModel.find({ idArticle });
+
+        if (!article) {
+            throw new HttpException(404, 'Articles not found');
+        }
+
+        res.send(article[0]);
+    };
 /* 
     updateArticle = async (req, res, next) => {
       
@@ -179,6 +220,40 @@ class ArticleController {
      
     };
  */
+
+    constructorArticle = (newArticle) => {
+        //const test = "linkd,autre2,autre3";
+        //newArticle.imagesArticle = test;
+        const imgs = newArticle.imagesArticle ? newArticle.imagesArticle.split(',') : [];
+       // console.log(">>newArticle : " + JSON.stringify(newArticle));
+        
+        return {
+            idArticle: newArticle.idArticle,
+            titleArticle: newArticle.titleArticle,
+            priceArticle: newArticle.priceArticle,
+            descriptionArticle: newArticle.descriptionArticle,
+            imagesArticle : imgs
+        };
+    }
+
+    /** Functions utils */
+
+    formatArticleParams(params = {},matched){
+        
+        params.idArticle = matched.idArticle && matched.idArticle ;
+
+        params.id_SubCategory = matched.id_SubCategory && matched.id_SubCategory ;
+
+        params.titleArticle = matched.titleArticle && matched.titleArticle ;
+
+        params.descriptionArticle = matched.descriptionArticle && matched.descriptionArticle ;
+
+        params.priceMin = matched.priceMin && matched.priceMin ;
+        params.priceMax = matched.priceMax && matched.priceMax ;
+
+        return params;
+    }
+
     formatEndFilter(params = {},matched){
         params.sort = matched.sort && matched.sort ;
 

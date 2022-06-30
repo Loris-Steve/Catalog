@@ -20,7 +20,6 @@ class CatalogModel {
   }
 
   addArticle = async (params) => {
-
     const { columnSet, values } = multipleColumnSet(params)
     console.log(" catalogs : " + JSON.stringify(params) + " values : " + JSON.stringify(values));
     const sql = `INSERT INTO ${this.catalogHasArticleTable} SET ${columnSet}`;
@@ -92,21 +91,18 @@ class CatalogModel {
   }
 
 
-  findOne = async (idCatalog) => {
+  findById = async (idCatalog) => {
     
     const sql = `SELECT * FROM ${this.catalogTable}
-    WHERE idCatalog = ?`;
+    WHERE idCatalog = ? `;
 
-    console.log('sql :>> ', sql);
     const result = await query(sql, [idCatalog]);
         
-    console.log(sql + " Catalog result",result)
-    //return await query(sql, [idCatalog]);
+    //console.log(sql+"Catalog result",result)
     
     return result[0];
   }
-  /* 
-  */
+
 
   /*
       update = async (params, idCatalog) => {

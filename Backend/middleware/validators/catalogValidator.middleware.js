@@ -71,23 +71,47 @@ exports.findCatalog = [
 ];
 
 exports.addArticleCatalogSchema = [
-    check('quantity')
+    check('quantityArticle')
         .optional()
         .isInt()
-        .withMessage('Quantity must be number')
+        .withMessage('quantityArticle must be number'),
+    check('availableArticle')
+        .optional()
+        .isBoolean([0,1])
+        .withMessage('availableArticle must be boolean (0 or 1)'),
+    check('rankArticle')
+        .optional()
+        .isInt()
+        .withMessage('rankArticle must be number'),
+    // check('catalogId')
+    //     .custom((value, { req }) => {
+    //         console.log('value :>> ', value);
+    //         return CatalogModel.findById(value).then(catalog => {
+    //             const userId = req.currentUser.idUser;
+
+    //             console.log('catalog :>> ',catalog , (catalog.id_User != userId) + " other " + catalog[0].id_User+" space  " + userId);
+    //             if(!catalog || !(catalog.length > 0) || 
+    //             catalog[0].id_User != userId){
+
+    //                 console.log("catalog : ",catalog);
+    //                 throw new Error(403, 'Not Owner');
+    //             }
+    //         });
+
+    //     })
 ]
 
-exports.catalogExist = [
-    check('id_Catalog')
-        .exists()
-        .withMessage('id_Catalog is required')
-        .custom((value, { req }) => {
-            return CatalogModel.findById(value).then(catalog => {
-                if(!catalog || !(catalog.length > 0)){
-                    console.log("catalog : ",catalog);
-                    throw new Error("Catalog with id_Catalog doen't exist");
-                }
-            });
+// exports.catalogExist = [
+//     check('id_Catalog')
+//         .exists()
+//         .withMessage('id_Catalog is required')
+//         .custom((value, { req }) => {
+//             return CatalogModel.findById(value).then(catalog => {
+//                 if(!catalog || !(catalog.length > 0)){
+//                     console.log("catalog : ",catalog);
+//                     throw new Error("Catalog with id_Catalog doen't exist");
+//                 }
+//             });
 
-        })
-]
+//         })
+// ]

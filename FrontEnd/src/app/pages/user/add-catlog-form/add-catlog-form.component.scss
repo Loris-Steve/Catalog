@@ -1,19 +1,27 @@
+.row {
+   display: block;
+   display: flex;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 30px;
+   margin-bottom: 30px;
+   width:80%;
+   height: 70% !important;
+   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+   border: 0.7px solid lightgrey;
+   border-radius: 5px;
+}
+
 .formulaire {
-    width: 50vw;
-    min-height: 60vh;
-    border: rgba(104, 30, 30, 0.2) 1px solid;
-    padding: 25px 40px 40px 40px;
-    border-radius: 15px;
-    box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.3);
-    
+    width: 38vw;
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
-   }
+}
     
-   h1, #sstitre {
-    text-align: center;
-   }
+h1 {
+   text-align: center;
+}
     
    h1 {
     font-size: 37px;
@@ -25,18 +33,28 @@
    }
     
    input[type=text], select {
-    width: 100%;
-    padding: 10px 18px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    box-sizing: border-box;
-    font-size: 16px;
+      width: 80%;
+      padding: 10px 18px;
+      margin-top: 20px;
+      display: inline-block;
+      font-size: 16px;
+      border-left-style: none;
+      border-right-style: none;
+      border-top-style: none;
+      border-color: rgb(91, 83, 83);
+      border-radius: 0px;
+      border-width: 2px;
    }
+
+   input[type=text] {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+   }
+
     
    .champs {
-    margin-top: 14%;
+    margin-top: 60px;
    }
     
    #ajouter {
@@ -44,7 +62,7 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 25px;
-    background-color: #EA3D3D;
+    background-color: #60bc71;
     border-radius: 30px;
     color: white;
     font-size: 16px;
@@ -55,9 +73,8 @@
    }
     
    #ajouter:hover {
-    padding-right: 14px;
     transition-duration: .3s;
-    background-color: rgb(204, 0, 0);
+    background-color: #3e7b49;
    }
     
    #inscr {
@@ -70,26 +87,27 @@
    }
     
    .inputfile + label {
-    text-align: center;
-    font-size: 3em;
-    font-weight: 700;
-    background-image:url("https://cdn-icons-png.flaticon.com/512/748/748137.png");
-    display: inline-block;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 50px;
-    border-radius: 100px;
-    height:85px;
-    width:85px;
-    border : 1px solid grey;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+      text-align: center;
+      font-size: 3em;
+      font-weight: 700;
+      background-image:url("https://cdn.pixabay.com/photo/2015/12/22/04/00/photo-1103595_960_720.png");
+      display: inline-block;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 50px;
+      height:145px;
+      width:270px;
+      border : 1px solid grey;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 35px;
+      border-radius: 10px;
    }
     
    .inputfile:focus + label,
    .inputfile + label:hover {
-    background-color: lightgrey;
+      background-color: rgba(211, 211, 211, 0.337);
    }
     
    .inputfile + label {
@@ -103,3 +121,18 @@
     background-position: center;
     background-size: cover;
   }
+
+  #myImg {
+   width:270px;
+   height: 145px; 
+   position: relative; 
+   margin-top: -180px; 
+   display:block;
+   margin-left:auto; 
+   margin-right: auto; 
+   border-radius: 10px;
+ }
+
+ #name {
+   margin-top: 25px;
+ }

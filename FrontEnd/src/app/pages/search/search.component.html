@@ -1,19 +1,28 @@
-<div class="p-4 border container-fluid">
+<div class="p-4 border container-fluid pageRecherche">
     <form [formGroup]="searchForm" class="formulaire " (ngSubmit)="onSubmit()">
     <div class="searchBar">
-        <input type="text" id="ProdService" name="ProdService" placeholder="Produit, Service, ..." required
+        <input type="text" id="ProdService" name="ProdService" class="barre" placeholder="Produit, Service, ..." required
         formControlName="titleArticle">
-        <select id="categorie" name="categorie">
+        <select id="categorie" name="categorie" class="barre">
             <option selected>Catégories</option>
             <option>Mode</option>
             <option>Alimentation</option>
             <option>Multimédia</option>
             <option>Sport</option>
         </select>
-        <input type="text" id="localisation" name="localisation" placeholder="Localisation" required>
+        <input type="text" id="localisation" name="localisation" class="barre" placeholder="Localisation" required>
 
         <button id="rechercher" (click)="onSubmit()">{{ 'searching' | translate }}</button>
 
+    </div>
+    <div class="filtres">
+        <label style="font-size: 17px; margin-top: 7px;">Filtrer :</label>
+        <input type="text" id="minPrice" name="minPrice" class="filtre" placeholder="Prix minimum" formControlName="">
+        <input type="text" id="maxPrice" name="maxPrice" class="filtre" placeholder="Prix maximum" formControlName="">
+        <select id="tri" name="tri" class="filtre">
+            <option selected>Croissant</option>
+            <option>Décroissant</option>
+        </select>
     </div>
 </form>
 
@@ -35,5 +44,7 @@
         <div   [ngClass]="{'article-list-style' : articleListStyle === types.LIST , 'article-card-style' : articleListStyle === types.CARD}" >
             <app-article class="carte" *ngFor="let article of articles" [article]="article" [typeList]="articleListStyle"></app-article>
         </div>
+        <button id="pagination">&laquo; Précédent</button>
+        <button id="pagination">Suivant &raquo;</button>
     </div>
 </div>

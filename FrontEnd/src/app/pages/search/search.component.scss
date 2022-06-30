@@ -1,4 +1,8 @@
-input[type=text], select{
+.pageRecherche {
+    min-height: 72vh;
+}
+
+.barre{
     padding: 10px 18px;
     margin: 8px 0;
     display: inline-block;
@@ -97,4 +101,41 @@ input[type=text], select{
 .boutons {
     margin-top: 70px;
     margin-bottom:40px;
+}
+
+#pagination {
+    background-color: white;
+    border: 1px grey solid;
+    border-radius: 5px;
+    margin-left: 5px;
+    color: rgb(97, 97, 97);
+    padding: 5px 10px;
+    width: 98px;
+}
+
+
+
+
+
+
+
+#pagination:hover {
+    background-color: rgb(161, 158, 158);
+    color: white;
+}
+
+.filtres {
+    display: flex;
+    justify-content: space-around;
+    background-color: rgba(245, 222, 179, 0.352);
+    margin-top: 30px;
+    padding: 17px; 
+}
+
+.filtre {
+    height: 35px;
+    font-size: 16px;
+    background-color: white;
+    border: none;
+    padding: 5px;
 }

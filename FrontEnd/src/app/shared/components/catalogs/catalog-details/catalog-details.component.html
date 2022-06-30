@@ -1,6 +1,4 @@
 <div class="container bg-light">
-
-    <h3>Nombre d'articles : {{ articles.length }}    ( Détails du catalogue )</h3>
     
     <div class="d-flex justify-content-end boutons">
         <button class="btn btn-light" (click)="changeStyle(types.CARD)">
@@ -10,17 +8,19 @@
             {{ 'list' | translate }}
         </button>
     </div>
+
+    <h3>Nombre d'articles : {{ articles.length }}    ( Détail du catalogue )</h3>
     
-    <div class="d-flex ">
+    <div class="d-flex cartes">
 
         <app-article class="carte" *ngFor="let article of articles" [article]="article" [typeList]="articleListStyle"></app-article>
 
-        <!-- <div class=" card p-4" *ngFor="let article of articles">
+        <!--div class=" card p-4" *ngFor="let article of articles">
         
             <p >
                 {{ article.titleArticle }}
             </p>
-        </div> -->
+        </div-->
 
     </div>
 </div>

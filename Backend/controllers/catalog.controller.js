@@ -46,7 +46,7 @@ class CatalogController {
         checkValidation(req);
 
         //const userId = req.currentUser.idUser;
-        console.log("article in catalog");
+        console.log("article in catalog "+req.params.catalogId + " [] " +req.params.articleId);
         const result = await CatalogModel.addArticle({
             id_Catalog: req.params.catalogId,
             id_Article : req.params.articleId,
@@ -106,6 +106,8 @@ class CatalogController {
             throw new HttpException(404, 'Catalogs not found');
         }
 
+        CatalogList.map(art => art.imagesCatalog = art.imagesCatalog ? art.imagesCatalog.split(',') : [])
+
         res.send(CatalogList);
     };
 
@@ -130,6 +132,8 @@ class CatalogController {
         if (!CatalogList) {
             throw new HttpException(404, 'Catalogs not found');
         }
+
+        CatalogList.map(art => art.imagesCatalog = art.imagesCatalog ? art.imagesCatalog.split(',') : [])
 
         res.send(CatalogList);
     };

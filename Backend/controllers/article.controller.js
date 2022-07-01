@@ -38,13 +38,13 @@ class ArticleController {
     
     // display if article already use in catalog
     getAllCatgory = async (req, res, next) => {
-        console.log("enter");
+        //console.log("enter");
 
         let categorys = await ArticleModel.findCategory();
         let subCategorys = await ArticleModel.findSubCategory();
         
-        console.log('category :>> ', categorys);
-        console.log('subCategorys :>> ', subCategorys);
+        // console.log('category :>> ', categorys);
+        // console.log('subCategorys :>> ', subCategorys);
 
         if (!categorys) {
             throw new HttpException(404, 'categorys not found');
@@ -79,6 +79,10 @@ class ArticleController {
         if (!ArticleList) {
             throw new HttpException(404, 'Articles not found');
         }
+       
+       // newArticle.imagesArticle ? newArticle.imagesArticle.split(';') : [];
+        ArticleList.map(art => art.imagesArticle = art.imagesArticle ? art.imagesArticle.split(';') : [])
+        ArticleList.map(art => art.imagesCatalog = art.imagesCatalog ? art.imagesArticle.split(';') : [])
 
         res.send(ArticleList);
     };
@@ -102,6 +106,8 @@ class ArticleController {
         if (!ArticleList) {
             throw new HttpException(404, 'Articles not found');
         }
+        ArticleList.map(art => art.imagesArticle = art.imagesArticle ? art.imagesArticle.split(';') : [])
+        ArticleList.map(art => art.imagesCatalog = art.imagesCatalog ? art.imagesArticle.split(';') : [])
 
         res.send(ArticleList);
     };
@@ -113,7 +119,7 @@ class ArticleController {
             includeOptionals: true,
         });
         checkValidation(req);
-
+        //console.log("catalog by params");
         let params = {} ;
 
         params = this.formatArticleParams(params,matched);
@@ -127,6 +133,9 @@ class ArticleController {
             throw new HttpException(404, 'Articles not found');
         }
 
+        ArticleList.map(art => art.imagesArticle = art.imagesArticle ? art.imagesArticle.split(';') : [])
+        ArticleList.map(art => art.imagesCatalog = art.imagesCatalog ? art.imagesCatalog.split(';') : [])
+        
         res.send(ArticleList);
     };
 
@@ -155,6 +164,9 @@ class ArticleController {
             throw new HttpException(404, 'Articles not found');
         }
 
+        ArticleList.map(art => art.imagesArticle = art.imagesArticle ? art.imagesArticle.split(';') : [])
+        ArticleList.map(art => art.imagesCatalog = art.imagesCatalog ? art.imagesCatalog.split(';') : [])
+
         res.send(ArticleList);
     };
 
@@ -170,12 +182,16 @@ class ArticleController {
         await ArticleModel.findArticleCatalogUserByIdCatalog(
             req.params.id_Catalog,
             req.params.id_Article);
+        
             
-            console.log("params ", req.params)
-        const result = ArticleList[0]; 
-        if (!result) {
-            throw new HttpException(404, 'Articles not found');
-        }
+            if (!ArticleList[0]) {
+                throw new HttpException(404, 'Articles not found');
+            }
+
+            const result = ArticleList[0]; 
+            result.imagesArticle = result.imagesArticle ? result.imagesArticle.split(';') : [];
+            result.imagesCatalog = result.imagesCatalog ? result.imagesCatalog.split(';') : [];
+            console.log("result ", result)
 
         const data = {
             user : userController.constructorUser(result),
@@ -209,7 +225,10 @@ class ArticleController {
             throw new HttpException(404, 'Articles not found');
         }
 
-        res.send(article[0]);
+        article[0].imagesArticle ? article[0].imagesArticle.split(';') : [];
+        const result = article[0]; 
+        
+        res.send(result);
     };
 /* 
     updateArticle = async (req, res, next) => {
@@ -224,7 +243,7 @@ class ArticleController {
     constructorArticle = (newArticle) => {
         //const test = "linkd,autre2,autre3";
         //newArticle.imagesArticle = test;
-        const imgs = newArticle.imagesArticle ? newArticle.imagesArticle.split(',') : [];
+        //const imgs = newArticle.imagesArticle ? newArticle.imagesArticle.split(';') : [];
        // console.log(">>newArticle : " + JSON.stringify(newArticle));
         
         return {
@@ -232,7 +251,7 @@ class ArticleController {
             titleArticle: newArticle.titleArticle,
             priceArticle: newArticle.priceArticle,
             descriptionArticle: newArticle.descriptionArticle,
-            imagesArticle : imgs
+            imagesArticle : newArticle.imagesArticle
         };
     }
 

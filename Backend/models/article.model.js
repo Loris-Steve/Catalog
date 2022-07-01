@@ -169,7 +169,7 @@ class ArticleModel {
   // find 
   findArticleCatalogUserByIdCatalog = async (id_Catalog, id_Article) => {
 
-    console.log("enter !")
+    //console.log("enter !")
 
     const sql = `SELECT * FROM ${this.userTable} u inner join ${this.catalogTable} cl inner join 
       ${this.catalogHasArticleTable} cha inner join ${this.articleTable} a inner join ${this.subCategoryTable} subCat 
@@ -185,7 +185,7 @@ class ArticleModel {
   findCategory = async () => {
 
     const sql = `SELECT * FROM ${this.categoryTable}`;
-    console.log("enter");
+    //console.log("enter");
 
     const result = await query(sql);
 

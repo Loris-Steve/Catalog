@@ -6,6 +6,10 @@ import { first } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Catalog } from 'src/app/shared/models/catalog.model';
 
+const DEFAULT_ARTICLE_IMAGE_LINK = "#";
+
+const DEFAULT_POFIL_IMAGE_LINK = "https://cdn.pixabay.com/photo/2017/06/09/23/22/avatar-2388584_960_720.png";
+
 @Component({
   selector: 'app-article-details',
   templateUrl: './article-details.component.html',
@@ -20,6 +24,11 @@ export class ArticleDetailsComponent implements OnInit {
   user: User = <User>{};
   catalog : Catalog = <Catalog>{};
 
+  imageArticle : string[]  = [];
+
+  imageProfil : string  = DEFAULT_POFIL_IMAGE_LINK;
+
+  
   constructor( 
     private route : ActivatedRoute,
     public articleService: ArticleService,
@@ -34,10 +43,26 @@ export class ArticleDetailsComponent implements OnInit {
         this.loadArticle(params['catalogId'],params['articleId'])
       }
     );
-    
-    this.user.idUser = 5; // to test
+
   }
 
+  changePicture(){
+
+    if(this.article.imagesArticle){
+      this.imageArticle = this.article.imagesArticle;
+    }
+    else{
+      this.imageArticle = [DEFAULT_ARTICLE_IMAGE_LINK];
+    }
+
+    console.log('enter this.user :>> ', this.user);
+    if(this.user.photo){
+      this.imageProfil = this.user.photo;
+    }
+    else{
+      this.imageProfil = DEFAULT_POFIL_IMAGE_LINK;
+    }
+  }
   loadArticle(catalogId: number, articleId: number) {
     this.loading = true;
     this.articleService.getArticleById(
@@ -49,6 +74,7 @@ export class ArticleDetailsComponent implements OnInit {
           this.article = data.article;
           this.catalog = data.catalog;
 
+          this.changePicture();
           console.log('article details',data);
           //this.router.navigate([this.returnUrl]);
         },

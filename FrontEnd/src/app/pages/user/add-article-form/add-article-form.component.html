@@ -51,6 +51,7 @@
         </div>
 
         <div>
+            {{ "category" | translate }}
             <select type="text" 
                 (change)="changeCategory($event)"
             >
@@ -76,19 +77,19 @@
             <div>Category is required</div>
         </div> -->
         </div>
-            <label id="label" style="position: relative; z-index: 1;" for="file">{{ "id_SubCategory" | translate }}</label>
-
+            <label id="label" style="position: relative; z-index: 1;" for="file">{{ "typeArticle" | translate }}</label>
+            
             <select type="text"  required
-            formControlName="typeArticle"
-            ng-model="articleForm.controls[typeArticle]"
+            formControlName="isProduct"
+            ng-model="articleForm.controls[isProduct]"
             >
-            <option [value]="typesArticle.Product">{{ 'product' | translate }}</option>
-            <option [value]="typesArticle.Service">{{ 'service' | translate }}</option>
+            <option [value]="1">{{ 'product' | translate }}</option>
+            <option [value]="0">{{ 'service' | translate }}</option>
             </select>
              <div
-                *ngIf="articleForm.controls['typeArticle'].hasError('required') && articleForm.controls['typeArticle'].touched"
+                *ngIf="articleForm.controls['isProduct'].hasError('required') && articleForm.controls['isProduct'].touched"
                 class="text text-danger mt-1">
-                {{ "typeArticle" | translate }} {{ "is required" | translate }}
+                {{ "isProduct" | translate }} {{ "is required" | translate }}
             </div>
           </div>
 

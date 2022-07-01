@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { OrderList } from '../../enums/order.enum';
-import { Article, ArticleCreator, ArticleQuery } from '../../models/article.model';
+import { AddArticleQuery, Article, ArticleCreator, ArticleQuery } from '../../models/article.model';
 
 const ARTICLES: Article[] = [
   {
@@ -11,8 +11,9 @@ const ARTICLES: Article[] = [
     titleArticle: 'title',
     priceArticle: 0,
     descriptionArticle: 'string',
-    images: [],
-    id_Catalog: 0
+    imagesArticle: [],
+    id_Catalog: 0,
+    isProduct : 1
 
   },
   {
@@ -20,8 +21,9 @@ const ARTICLES: Article[] = [
     titleArticle: 'title',
     priceArticle: 0,
     descriptionArticle: 'string',
-    images: [],
-    id_Catalog: 0
+    imagesArticle: [],
+    id_Catalog: 0,
+    isProduct : 1
 
   },
   {
@@ -29,8 +31,9 @@ const ARTICLES: Article[] = [
     titleArticle: 'title',
     priceArticle: 0,
     descriptionArticle: 'string',
-    images: [],
-    id_Catalog: 0
+    imagesArticle: [],
+    id_Catalog: 0,
+    isProduct : 1
 
   },
 ];
@@ -49,6 +52,17 @@ const CATEGORYS = [
             "nameSubCategory": "coiffure",
             "id_Category": 1
         }
+    ]
+},
+  {
+    "idCategory": 2,
+    "nameCategory": "test",
+    "subCategorys": [
+        {
+            "idSubCategory": 1,
+            "nameSubCategory": "test sub cat",
+            "id_Category": 2
+        },
     ]
 }
 ]
@@ -75,12 +89,19 @@ export class ArticleService {
   }
 
   create(article: ArticleCreator) {
-
+    console.log('article :>> ', article);
     return this.http.post<any>(`${environment.hostURL}Articles`, article)
+  }
+
+  addInCatalog(catalogId: number, articleId: number, addArticleQuery : AddArticleQuery)
+   {
+    console.log('catalogId : ' + catalogId + ' articleId :>> ', articleId);
+    return this.http.post<any>(`${environment.hostURL}article/${catalogId}/${articleId}`, {})
       .pipe(map((element: any) => {
         console.log("element", element);
       }));
   }
+
 
   public get categoryValue(): any[]{
     return this.categorys.value;

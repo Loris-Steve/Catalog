@@ -1,8 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { OrderList } from '../../enums/order.enum';
+import { AddArticleQuery } from '../../models/article.model';
 import { Catalog, CatalogCreator, CatalogQuery } from '../../models/catalog.model';
 import { User } from '../../models/user.model';
 import { AuthService } from '../auth.service';
@@ -57,7 +58,7 @@ export class CatalogService {
     
   }
 
-  create(catalog: CatalogCreator) {
+  create(catalog: CatalogCreator) : Observable<any> {
     let currentQuery: any = catalog;
     
     // on n'envoie pas latitude et longitude si on ne les a pas
@@ -66,20 +67,38 @@ export class CatalogService {
       currentQuery = rest;
     }
 
-    return this.http.post<any>(`${environment.hostURL}catalogs/user/${this.authService.userValue?.idUser}`, currentQuery)
-      .pipe(map(element => {
-        console.log("element", element);
-      }));
+    return this.http.post<any>(`${environment.hostURL}catalogs/user/${this.authService.userValue?.idUser}`, currentQuery);
   }
 
-  addArticleInCatalog(id_Catalog: number, id_Article: number, quantity: number) {
+  addArticleInCatalog(catalogId: number, articleId: number, addArticleQuery : AddArticleQuery)
+  {
+   console.log('catalogId : ' + catalogId + ' articleId :>> ', articleId);
+   return this.http.post<any>(`${environment.hostURL}catalogs/article/${catalogId}/${articleId}`, {})
+   .subscribe(
+    data => {
+      console.log("data addArticleInCatalog : ",data);
+      
+    },
+    error => {  
+      switch (error.status) {
+        case 400:
+          this.error.next(error?.error?.message); // erreur serveur
+          break;
+        case 401:
+          this.error.next(error?.error?.message); // erreur serveur
+          break;
+        case 403:
+          this.error.next(error?.error?.message); // erreur serveur
+          break;
+        default:
+          this.error.next("badRequest");
+          break
+      }
 
-    return this.http.post<any>(`${environment.hostURL}catalogs/article`,
-      { id_Catalog, id_Article, quantity })
-      .pipe(map(element => {
-        console.log("element", element);
-      }));
-  }
+    },
+    () => this.loading.next(false) // finally
+    );
+ }
 
   getCatalogById(catalogId: number){
     

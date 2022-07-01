@@ -7,7 +7,7 @@ export interface ArticleCreator {
     priceArticle: number,
     descriptionArticle: string,
     imagesArticle : string[],
-    typeArticle : ArticleType
+    isProduct : 1 | 0
 }
 
 export interface Article {
@@ -15,8 +15,9 @@ export interface Article {
     titleArticle: string,
     priceArticle: number,
     descriptionArticle: string,
-    images : string[],
-    id_Catalog : number
+    imagesArticle : string[],
+    id_Catalog : number,
+    isProduct : 1 | 0
 }
 
 export interface ArticleQuery {
@@ -30,4 +31,10 @@ export interface ArticleQuery {
     sort: string | '', 
     order: OrderList | '', 
     activateArticle: 0 | 1 | ''
+}
+
+export interface AddArticleQuery{
+    quantityArticle : number | '',
+    available : 1 | 0,
+    rank : number | undefined
 }

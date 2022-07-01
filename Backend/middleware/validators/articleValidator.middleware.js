@@ -11,13 +11,20 @@ exports.createArticleSchema = [
         .withMessage('titleArticle must have between 3 and 200 chars'),
     check('descriptionArticle')
         .optional()
-        
         .isLength({ min: 3, max: 250 })
         .withMessage('descriptionArticle must have between 3 and 250 chars'),
     check('priceArticle')
         .optional()
         .isFloat()
         .withMessage('latitude must be a float'),
+    check('imagesArticle')
+        .optional()
+        .isLength({ max: 3000 })
+        .withMessage('imagesArticle max length 3000'),
+    check('isProduct')
+        .exists()
+        .isBoolean([0,1])
+        .withMessage('isProduct = 1 or 0'),
     check('id_SubCategory')
         .exists()
         .withMessage('The titleArticle is required')

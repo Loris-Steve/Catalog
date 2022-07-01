@@ -20,6 +20,7 @@
             formControlName="titleCatalog"
             class="form-control"
             [ngClass]="{ 'is-invalid': submitted}"
+            [disabled]="!isProfessional"
           />
           <div *ngIf="submitted " class="invalid-feedback">
             <div>Name is required</div>
@@ -39,13 +40,13 @@
           </div>
 
           <div>
-            <label id="label" style="position: relative; z-index: 1;" for="file">{{ "activateCatalog" | translate }}</label>
+            <!--label id="label" style="position: relative; z-index: 1; font-size:16px; margin-top:3px;" for="file">{{ "activateCatalog" | translate }}</label-->
 
-            <select type="text" id="nom" name="nom"  required
+            <select type="text" id="nom" name="nom" class="selecteur" required
             formControlName="activateCatalog"
             ng-model="catalogForm.controls[activateCatalog]"
             >
-            <option value="1">{{ 'anable' | translate }}</option>
+            <option value="1">{{ 'enable' | translate }}</option>
             <option value="0">{{ 'disable' | translate }}</option>
             </select>
              <div
@@ -56,13 +57,13 @@
           </div>
 
           <div>
-            <label id="label" style="position: relative; z-index: 1;" for="file">{{ "homeBased" | translate }}</label>
+            <!--label id="label" style="position: relative; z-index: 1;" for="file">{{ "homeBased" | translate }}</label-->
 
-            <select type="text" id="nom" name="nom"  required
+            <select type="text" id="nom" name="nom" class="selecteur" required
             formControlName="homeBased"
             ng-model="catalogForm.controls[homeBased]"
             >
-            <option value="1">{{ 'anable' | translate }}</option>
+            <option value="1">{{ 'enable' | translate }}</option>
             <option value="0">{{ 'disable' | translate }}</option>
             </select>
              <div

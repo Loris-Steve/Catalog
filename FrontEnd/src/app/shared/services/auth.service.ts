@@ -53,8 +53,14 @@ export class AuthService {
 
     register(photo: string, firstName: string, lastName: string, email: string,
       password: string, role: UserRole, phoneUser:number) {
+
+        let customQuery: any = { photo, firstName, lastName, email, password, role };
+
+        if(phoneUser)
+          customQuery.phoneUser = phoneUser;
+
       return this.http.post<any>(`${environment.hostURL}users/register`, 
-      { photo, firstName, lastName, email, password, role, phoneUser })
+      customQuery)
           .pipe(map(currentUser => {
               // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
               //user.authdata = window.btoa(email + ':' + password);

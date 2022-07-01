@@ -10,7 +10,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddArticleFormComponent } from '../pages/user/add-article-form/add-article-form.component';
-import { AddArticleComponent } from './components/articles/add-article/add-article.component';
 import { ArticleListComponent } from './components/articles/article-list/article-list.component';
 import { CatalogDetailsComponent } from './components/catalogs/catalog-details/catalog-details.component';
 import { CatalogListComponent } from './components/catalogs/catalog-list/catalog-list.component';
@@ -27,7 +26,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     CustomSearchFilterComponent,
     CatalogDetailsComponent,
     AddArticleFormComponent,
-    AddArticleComponent,
     ArticleListComponent,
     CatalogListComponent,
     CatgoryDropdownFormComponent
@@ -49,7 +47,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     TranslateModule,
     CatalogDetailsComponent,
     AddArticleFormComponent,
-    AddArticleComponent,
     ArticleListComponent,
     CatalogListComponent,
     FormsModule,

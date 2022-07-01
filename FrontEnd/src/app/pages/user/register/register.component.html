@@ -1,7 +1,7 @@
 <form class="formulaire" [formGroup]="registerForm" (submit)="onSubmit()">
      <h1>S'inscrire</h1>
     <img class="rounded-circle" alt="100x100" [src]="photoLink"/>
-    <input type="text"  name="photo"  required
+    <input type="text"  name="photo"
         placeholder="{{ 'photo' | translate }} {{ 'link' | translate }} ..."
         formControlName="photo"
         ng-model="registerForm.controls[photo]"
@@ -69,6 +69,14 @@
     </div>
 
     <div>
+        <input type="tel" id="phoneUser" name="phoneUser" 
+        placeholder="{{ 'phoneNumber' | translate}} ..."
+        formControlName="phoneUser"
+        ng-model="registerForm.controls[phoneUser]"
+        >
+    </div>
+
+    <div>
         <input type="password" id="password" name="password" required
         placeholder="{{ 'password' | translate }}..."
         formControlName="password"
@@ -98,18 +106,12 @@
         {{ "confirm_password" | translate }} {{ "notSame" | translate }}
     </div>
 
-    <div>
-        <input type="tel" id="phoneUser" name="phoneUser" 
-        placeholder="{{ 'phoneNumber' | translate}} ..." required
-        formControlName="phoneUser"
-        ng-model="registerForm.controls[phoneUser]"
-        >
-    </div>
+
     </div>
 
     <button id="connecter" [disabled]="loading" (submit)="onSubmit()">
         <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-        S'inscrire
+        {{ 'register' | translate }}
       </button><br />
   
       <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>

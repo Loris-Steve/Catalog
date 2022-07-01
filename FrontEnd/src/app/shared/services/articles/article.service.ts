@@ -200,7 +200,8 @@ export class ArticleService {
   formatParams(articleQuery: ArticleQuery): HttpParams {
     // on extrait les valeurs de l'objet
     const { idArticle, id_User, titleArticle, addressArticle, latitude,
-      longitude, sort, order, activateArticle,priceMin,priceMax } = articleQuery;
+      longitude, sort, order, activateArticle,priceMin,priceMax,
+      id_SubCategory, page } = articleQuery;
     // On ajoute les valeurs aux paramètres de la requête (pour filtrer)
 
     let queryParams = new HttpParams()
@@ -213,6 +214,10 @@ export class ArticleService {
 
     if (addressArticle)
       queryParams = queryParams.append("addressArticle", addressArticle);
+      
+    
+    if (id_SubCategory)
+      queryParams = queryParams.append("id_SubCategory", id_SubCategory);
 
     if (priceMin)
       queryParams = queryParams.append("priceMin", priceMin);
@@ -234,6 +239,9 @@ export class ArticleService {
 
     if (activateArticle)
       queryParams = queryParams.append("activateArticle", activateArticle);
+    
+      if (page)
+      queryParams = queryParams.append("page", page);
 
     return queryParams;
   }

@@ -1,66 +1,126 @@
 <div class="pageAccount">
-    <form class="formulaire">
+    <form class="formulaire" [formGroup]="updateForm" (submit)="onSubmit()" >
         <br/><br/><h1>Mon Profil</h1>
-        <div class="champs">
-        
         <input type="file" class="file" name="file" id="file" class="inputfile" value="rien" onchange="document.getElementById('myImg').src='../assets/images/'+file.value.substring(12);"/>
         <label id="label" for="file" style="position: relative; z-index: 1;"></label>
-        <img id="myImg" src="#" alt="">
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Nom"
-            formControlName="name"
-            class="form-control"
-          />
-          <div class="invalid-feedback">
-            <div>Name is required</div>
-          </div>
+        <img id="myImg" [src]="photoLink" alt="">
         
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            placeholder="Prénom"
+        <input type="text"  name="photo"  required
+            class="form-control"
+            placeholder="{{ 'photo' | translate }} {{ 'link' | translate }} ..."
+            formControlName="photo"
+            ng-model="updateForm.controls[photo]"
+            (change)='changePhoto($event)'
+        >
+        
+        <!-- radio button -->
+            <p id="qui">
+                Je suis :
+                <input type="radio" name="role" [value]="role1"
+                formControlName="role"
+                ng-model="updateForm.controls[role]" 
+                />
+                {{ 'particulier' | translate }}
+                <input type="radio" name="role" [value]="role2" 
+                formControlName="role"
+                ng-model="updateForm.controls[role]"
+                />
+                {{ 'professionnel' | translate }}
+                
+            <div *ngIf="submitted && f['role'].errors" class="invalid-feedback">
+                <div *ngIf="f['role'].errors['required']">{{ "role" | translate }} {{ "is required" | translate }}</div>
+              </div>
+    
+    
+            <input type="text" id="nom" name="nom"  required
+            placeholder="{{ 'firstName' | translate }}..."
             formControlName="firstName"
+            ng-model="updateForm.controls[firstName]"
             class="form-control"
-          />
-          <div class="invalid-feedback">
-            <div>firstName is required</div>
-          </div>
+            >
+             <div
+                *ngIf="updateForm.controls['firstName'].hasError('required') && updateForm.controls['firstName'].touched"
+                class="text text-danger mt-1">
+                {{ "firstName" | translate }} {{ "is required" | translate }}
+            </div>
     
-          <input
-            type="text"
-            id="email"
-            name="email"
-            placeholder="Email"
+    
+        <div>
+            <input type="text" id="prenom" name="prenom" required
+            placeholder="{{ 'lastName' | translate }}..."
+            formControlName="lastName"
+            ng-model="updateForm.controls[lastName]"
+            class="form-control"
+            >
+             <div
+                *ngIf="updateForm.controls['lastName'].touched && updateForm.controls['lastName'].hasError('required')"
+                class="text text-danger mt-1">
+                {{ "lastName" | translate }} {{ "is required" | translate }}
+            </div>
+        </div>
+        <div>
+            <input type="text" id="email" name="email" required
+            placeholder="{{ 'email' | translate }}..."
             formControlName="email"
-            class="form-control"
-          />
-          <div class="invalid-feedback">
-            <div>Email is required</div>
-          </div>
+            ng-model="updateForm.controls[email]"
+            class="form-control" >
+             <div
+                *ngIf="updateForm.controls['email'].touched && updateForm.controls['email'].hasError('required')"
+                class="text text-danger mt-1">
+                {{ "email" | translate }} {{ "is required" | translate }}
+            </div>
+        </div>
     
-          <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Mot de passe"
-          formControlName="password"
-          class="form-control"
-        />
-        <div class="invalid-feedback">
-          <div>Password is required</div>
+        <div>
+            <input type="tel" id="phoneUser" name="phoneUser" 
+            placeholder="{{ 'phoneNumber' | translate}} ..." required
+            formControlName="phoneUser"
+            ng-model="updateForm.controls[phoneUser]"
+            class="form-control"
+            >
         </div>
-
-        <div class="infoProfil">
-            <h3>Profil :</h3><p>Type profil</p>
-        </div>
-
-        <button id="modifier">Modifier</button><br />
         
+        <div>
+            <input type="password" id="password" name="password" required
+            placeholder="{{ 'password' | translate }}..."
+            formControlName="password"
+            ng-model="updateForm.controls[password]"
+            class="form-control"
+            >
+             <div
+                *ngIf="updateForm.controls['password'].touched && updateForm.controls['password'].hasError('required')"
+                class="text text-danger mt-1">
+                {{ "password" | translate }} {{ "is required" | translate }}
+            </div>
         </div>
+        
+        <div>
+            <input type="password" id="confPassword" name="confPassword" required
+            placeholder="{{ 'confirm_password' | translate }}..."
+            formControlName="confirm_password"
+            ng-model="updateForm.controls[confirm_password]"
+            class="form-control"
+            >
+             <div
+                *ngIf="updateForm.controls['confirm_password'].touched && updateForm.controls['confirm_password'].hasError('required')"
+                class="text text-danger mt-1">
+                {{ "confirm_password" | translate }} {{ "is required" | translate }}
+            </div>
+            <div
+            *ngIf="updateForm.errors?.['notSame']"
+            class="text text-danger mt-1">
+            {{ "confirm_password" | translate }} {{ "notSame" | translate }}
+        </div>
+    
+        </div>
+    
+        <button id="modifier" [disabled]="loading" (submit)="onSubmit()">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            {{ 'update' | translate}}
+          </button><br />
+      
+          <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+        
     </form>
     
 </div>

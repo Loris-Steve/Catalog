@@ -34,7 +34,8 @@ export interface ArticleQuery {
     priceMax: number |'',
     sort: string | '', 
     order: OrderList | '', 
-    activateArticle: 0 | 1 | ''
+    activateArticle: 0 | 1 | '',
+    page : number
 }
 
 export interface AddArticleQuery{

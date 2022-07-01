@@ -1,7 +1,9 @@
 <div >
 
-    <H1>Page de details de l'article !</H1>
-    <p>retrouvez les informations concernant l'article et le professionnal qui le propose  </p>
+    <H2 style="text-align: center;margin-top: 20px; color:rgb(70, 68, 68);">Page de details de l'article 
+        retrouvez les informations concernant l'article et le professionnal qui le propose 
+
+    </H2>
     
     <div class="contain">
         <div class="row">
@@ -43,11 +45,11 @@
             </div>
             
         <div class="col-sm-6">
-            <h2>{{ 'firstName' | translate }} {{ user.firstName }}</h2>
-            <p> Nom :  {{ article.titleArticle }} </p>
-            <p> {{ 'price' | translate }} {{ article.priceArticle }} </p>
+            <h2> {{ article.titleArticle }} </h2>
+            <p> {{ 'price' | translate }} {{ article.priceArticle }} €</p>
             <p>Description : {{ article.descriptionArticle }}</p>
-            <p>Catégorie {{ article.nameSubCategory }}</p>
+            <p>Catégorie : {{ article.nameSubCategory }}</p>
+            <p *ngIf="catalog.addressCatalog">Adresse :  {{ catalog.addressCatalog }}</p>
             <div class="row">
                 <div class="col-sm-8">
                     <div class="btn">

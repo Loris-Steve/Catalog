@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs';
 import { ArticleSearchStyle } from 'src/app/shared/enums/article-search-style.enum';
 import { Article, ArticleQuery } from 'src/app/shared/models/article.model';
 import { Catalog } from 'src/app/shared/models/catalog.model';
 import { ArticleService } from 'src/app/shared/services/articles/article.service';
-import { AuthService } from 'src/app/shared/services/auth.service';
 import { CatalogService } from 'src/app/shared/services/catalogs/catalog.service';
 
 @Component({
@@ -28,7 +26,11 @@ export class SearchComponent implements OnInit {
   catalogs: Catalog[] = [];
   articles: Article[] = [];
 
-  categorys : any[] = [];
+  categorys: any[] = [];
+  subCategorys: any[] = [];
+  currentCatalogId: number | undefined
+
+  currentPage: number = 0;
 
   constructor(
     private catalogService: CatalogService,
@@ -40,14 +42,15 @@ export class SearchComponent implements OnInit {
 
     this.articleService.articles$.subscribe((articleList) => {
       //console.log('articleList :>> ', articleList);
-      this.articles = articleList });
+      this.articles = articleList
+    });
 
     this.catalogService.catalogs$.subscribe((catalogList) => this.catalogs = catalogList);
 
-    this.articleService.loading$.subscribe((loading) => this.loading = loading );
-    this.articleService.error$.subscribe((error) => this.error = error );
-    
-    this.articleService.categorys$.subscribe((categorys) => this.categorys = categorys );
+    this.articleService.loading$.subscribe((loading) => this.loading = loading);
+    this.articleService.error$.subscribe((error) => this.error = error);
+
+    this.articleService.categorys$.subscribe((categorys) => this.categorys = categorys);
 
     this.searchForm = this.formBuilder.group({
       titleArticle: [''],
@@ -58,8 +61,19 @@ export class SearchComponent implements OnInit {
       priceMin: [''],
       priceMax: [''],
       sort: [''],
-      order: [''],
+      order: ['DESC'],
       activateArticle: ['']
+    });
+
+    this.articleService.categorys$.subscribe((categorys) => {
+      this.categorys = categorys;
+      console.log("categorys");
+      if (this.categorys[0]) {
+        this.subCategorys = this.categorys[0].subCategorys;
+        //console.log('this.subCategorys vv :>> ', this.subCategorys[0].idSubCategory);
+        // if(this.subCategorys[0])
+        //   this.searchForm.patchValue({ id_SubCategory : this.subCategorys[0].idSubCategory }); 
+      }
     });
 
   }
@@ -82,17 +96,39 @@ export class SearchComponent implements OnInit {
     this.articleListStyle = style;
   }
 
+  changeCategory(event: any) {
+    const categoryId = event.target.value;
+    console.log('categoryId :>> ', categoryId);
+    if (categoryId) {
+      this.subCategorys = this.categorys.filter(cat => cat.idCategory == categoryId)[0].subCategorys;
+      this.searchForm.patchValue({ id_SubCategory : this.subCategorys[0].idSubCategory }); 
+    }
+  }
+
+  previousPage() {
+    if (this.currentPage > 0) {
+
+      this.currentPage -= 1
+      this.onSubmit();
+    }
+  }
+
+  nextPage() {
+    this.currentPage += 1;
+    this.onSubmit();
+
+  }
 
   onSubmit() {
     this.submitted = true;
 
     this.loading = true;
-    
-    const articleQuery : ArticleQuery = {
+
+    const articleQuery: ArticleQuery = {
       idArticle: '',
       id_User: '',
       titleArticle: this.searchForm.value['titleArticle'],
-      id_SubCategory: this.searchForm.value['id_SubCategory'],
+      id_SubCategory: this.searchForm.value['id_SubCategory'] == 'all' ? '' : this.searchForm.value['id_SubCategory'],
       addressArticle: this.searchForm.value['addressArticle'],
       latitude: this.searchForm.value['latitude'],
       longitude: this.searchForm.value['longitude'],
@@ -101,6 +137,7 @@ export class SearchComponent implements OnInit {
       sort: this.searchForm.value['sort'],
       order: this.searchForm.value['order'],
       activateArticle: this.searchForm.value['activateArticle'],
+      page: this.currentPage
     }
 
     this.articleService.getArticleByParams(articleQuery);

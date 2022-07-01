@@ -17,5 +17,6 @@
     "catalog" : "catalogue",
     "Account" : "Compte",
     "About" : "À propos",
-    "phoneNumber" : "Numéro de téléphone"
+    "phoneNumber" : "Numéro de téléphone",
+    "price" : "Prix"
 }

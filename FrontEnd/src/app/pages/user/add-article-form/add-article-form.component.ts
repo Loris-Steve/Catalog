@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { first } from 'rxjs';
 import { ArticleType } from 'src/app/shared/enums/article.enum';
 import { CatalogService } from 'src/app/shared/services/catalogs/catalog.service';
+import { UserRole } from 'src/app/shared/enums/userRoles.enum';
 
 const DEFAULT_PICTURE_LINK = "#";
 
@@ -28,6 +29,9 @@ export class AddArticleFormComponent implements OnInit {
   categorys : any[] = [];
   subCategorys : any[] = [];
   currentCatalogId : number | undefined
+
+  isProfessional: boolean = false;
+
   public articleForm: FormGroup;
 
   constructor(
@@ -73,6 +77,15 @@ export class AddArticleFormComponent implements OnInit {
       this.articleService.getCategorys();
     }
 
+    if(this.authService.userValue?.role == UserRole.Professional){
+      alert("test")
+      this.isProfessional = true;
+    }
+    else{
+      alert("test")
+
+      this.error = "Vous n'êtes pas inscrit en tant que Professionel";
+    }
    // console.log('this.categorys :>> ', this.categorys);
   }
 

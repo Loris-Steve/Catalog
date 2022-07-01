@@ -1,3 +1,4 @@
+import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y/input-modality/input-modality-detector';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -46,6 +47,8 @@ export class ProfilComponent implements OnInit {
   types = Object(ArticleSearchStyle);
   
   imageProfil : string  = DEFAULT_POFIL_IMAGE_LINK;
+
+  currentPage : number = 0;
 
   constructor(
     private fb: FormBuilder,
@@ -142,7 +145,8 @@ export class ProfilComponent implements OnInit {
       priceMax : '',
       sort: '',
       order: '',
-      activateArticle: ''
+      activateArticle: '',
+      page : this.currentPage
     }
 
     this.articleService.getArticlesByIdCatalog(catalogId, articleQuery);

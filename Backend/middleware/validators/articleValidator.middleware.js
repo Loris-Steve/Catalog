@@ -39,6 +39,10 @@ exports.findArticle = [
         .optional()
         .isInt()
         .withMessage('idCatgory must be a integer'),
+    query('page')
+        .optional()
+        .isInt()
+        .withMessage('page must be a integer'),
     query('id_SubCategory')
         .optional()
         .isInt()
@@ -71,10 +75,10 @@ exports.findArticle = [
         .optional()
         .isBoolean([0,1])
         .withMessage('Activate mus be 0 or 1'),    
-    check('addressCatalog')
+    check('addressArticle')
         .optional()
         .isLength({ min: 1 })
-        .withMessage('addressCatalog Must be at least 1 chars long'),
+        .withMessage('addressArticle Must be at least 1 chars long'),
     check('latitude')
         .optional()
         .isFloat()

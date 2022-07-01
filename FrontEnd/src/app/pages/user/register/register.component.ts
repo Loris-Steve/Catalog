@@ -78,14 +78,14 @@ export class RegisterComponent implements OnInit {
     const password = this.registerForm.value['password'];
     const role = this.registerForm.value['role'];
 
-    console.log('photo : ', photo);
-    console.log('phoneUser : ', phoneUser);
-    console.log('firstName : ', firstName);
-    console.log('lastName : ', lastName);
-    console.log('email : ', email);
-    console.log('password : ', password);
-    console.log('confirm_password : ', this.registerForm.value['confirm_password']);
-    console.log('role : ', role);
+    // console.log('photo : ', photo);
+    // console.log('phoneUser : ', phoneUser);
+    // console.log('firstName : ', firstName);
+    // console.log('lastName : ', lastName);
+    // console.log('email : ', email);
+    // console.log('password : ', password);
+    // console.log('confirm_password : ', this.registerForm.value['confirm_password']);
+    // console.log('role : ', role);
 
     this.submitted = true;
 

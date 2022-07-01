@@ -12,6 +12,7 @@
             placeholder="{{ 'picture' | translate }} {{ 'link' | translate }} ..."
             ng-model="registerForm.controls[picture]"
             (change)='changePicture($event)'
+            [disabled]="!isProfessional"
         >
 
         <input
@@ -51,16 +52,19 @@
         </div>
 
         <div>
-            {{ "category" | translate }}
+            <label style="font-size:17px;">{{ "Catégorie" | translate }}</label>
             <select type="text" 
                 (change)="changeCategory($event)"
+                style="display:block;margin-left:auto;margin-right:auto;"
             >
             <option *ngFor="let category of categorys" [value]="category.idCategory">{{ category.nameCategory | translate }}</option>
             </select>
 
+            <label style="font-size:17px;">{{ "Sous-catégorie" | translate }}</label>
             <select type="text"  required
             formControlName="id_SubCategory"
             ng-model="articleForm.controls[id_SubCategory]"
+            style="display:block;margin-left:auto;margin-right:auto;"
             >
             <option *ngFor="let subCategory of subCategorys" [value]="subCategory.idSubCategory">{{ subCategory.nameSubCategory | translate }}</option>
             </select>
@@ -77,11 +81,12 @@
             <div>Category is required</div>
         </div> -->
         </div>
-            <label id="label" style="position: relative; z-index: 1;" for="file">{{ "typeArticle" | translate }}</label>
+            <label id="label" style="position: relative; z-index: 1; font-size: 17px;" for="file">{{ "Type d'article" | translate }}</label>
             
             <select type="text"  required
             formControlName="isProduct"
             ng-model="articleForm.controls[isProduct]"
+            style="display:block;margin-left:auto;margin-right:auto;"
             >
             <option [value]="1">{{ 'product' | translate }}</option>
             <option [value]="0">{{ 'service' | translate }}</option>
@@ -93,8 +98,8 @@
             </div>
           </div>
 
-        <button id="ajouter">
-            Ajouter</button
+        <button id="ajouter" [disabled]="!isProfessional">
+            {{ 'add' | translate }} </button
           ><br />
         
         </div>

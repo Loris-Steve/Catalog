@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
+import { UserRole } from 'src/app/shared/enums/userRoles.enum';
 import { Catalog, CatalogCreator } from 'src/app/shared/models/catalog.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { CatalogService } from 'src/app/shared/services/catalogs/catalog.service';
@@ -22,6 +23,8 @@ export class AddCatlogFormComponent implements OnInit {
   error = '';
 
   pictureLink : string = DEFAULT_PICTURE_LINK;
+
+  isProfessional: boolean = false;
 
   public catalogForm: FormGroup;
 
@@ -46,6 +49,13 @@ export class AddCatlogFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.returnUrl = "/user/profil/"+this.authService.userValue?.idUser;
+
+    if(this.authService.userValue?.role == UserRole.Professional){
+      this.isProfessional = true;
+    }
+    else{
+      this.error = "Vous n'êtes pas inscrit en tant que Professionel";
+    }
   }
 
   get f() { return this.catalogForm.controls; }
@@ -72,13 +82,13 @@ export class AddCatlogFormComponent implements OnInit {
     const activateCatalog = this.catalogForm.value['activateCatalog'];
     const homeBased = this.catalogForm.value['homeBased'];
     
-    console.log('titleCatalog : ', titleCatalog);
-    console.log('addressCatalog : ', addressCatalog);
-    console.log('latitude : ', latitude);
-    console.log('longitude : ', longitude);
-    console.log('imagesCatalog',imagesCatalog);
-    console.log('activateCatalog',activateCatalog);
-    console.log('homeBased',homeBased);
+    // console.log('titleCatalog : ', titleCatalog);
+    // console.log('addressCatalog : ', addressCatalog);
+    // console.log('latitude : ', latitude);
+    // console.log('longitude : ', longitude);
+    // console.log('imagesCatalog',imagesCatalog);
+    // console.log('activateCatalog',activateCatalog);
+    // console.log('homeBased',homeBased);
 
     this.submitted = true;
 

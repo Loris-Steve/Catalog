@@ -92,7 +92,8 @@ export class ArticleService {
     .subscribe(
       data => {
         console.log("data", data);
-        //localStorage.setItem('categorys', JSON.stringify(data));
+        localStorage.setItem('categorys', JSON.stringify(data));
+        this.categorys.next(data);
       },
       error => {
         switch (error.status) {

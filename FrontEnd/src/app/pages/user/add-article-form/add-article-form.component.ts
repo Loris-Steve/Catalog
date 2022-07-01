@@ -25,6 +25,7 @@ export class AddArticleFormComponent implements OnInit {
 
   typesArticle = Object(ArticleType);
   categorys : any[] = [];
+  subCategorys : any[] = [];
 
   public articleForm: FormGroup;
 
@@ -35,7 +36,12 @@ export class AddArticleFormComponent implements OnInit {
     private authService : AuthService
   ) {
 
-    this.articleService.categorys$.subscribe((categorys) => this.categorys = categorys)
+    this.articleService.categorys$.subscribe((categorys) => {
+      this.categorys = categorys;
+      console.log("categorys");
+      this.subCategorys = this.categorys[0]?.subCategorys || [] 
+    }
+     )
 
     this.articleForm = this.fb.group({
       titleArticle: ['', [Validators.required]],
@@ -71,6 +77,15 @@ export class AddArticleFormComponent implements OnInit {
       this.pictureLink = DEFAULT_PICTURE_LINK;
   }
   
+  changeCategory(event:any){
+    const categoryId = event.target.value;
+    console.log('categoryId :>> ', categoryId);
+    if(categoryId){
+      this.subCategorys = this.categorys.filter(cat => cat.idCategory == categoryId)[0].subCategorys;
+      
+    }
+  }
+
   addArticle() {
 
     const titleArticle = this.articleForm.value['titleArticle'];

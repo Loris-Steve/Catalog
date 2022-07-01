@@ -52,17 +52,16 @@
 
         <div>
             <select type="text" 
-            
+                (change)="changeCategory($event)"
             >
-            <option [value]="typesArticle.Product">{{ 'product' | translate }}</option>
+            <option *ngFor="let category of categorys" [value]="category.idCategory">{{ category.nameCategory | translate }}</option>
             </select>
 
             <select type="text"  required
             formControlName="id_SubCategory"
             ng-model="articleForm.controls[id_SubCategory]"
             >
-            <option [value]="typesArticle.Product">{{ 'product' | translate }}</option>
-
+            <option *ngFor="let subCategory of subCategorys" [value]="subCategory.idSubCategory">{{ subCategory.nameSubCategory | translate }}</option>
             </select>
         <div>
 

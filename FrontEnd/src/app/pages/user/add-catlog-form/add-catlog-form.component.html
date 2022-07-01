@@ -1,18 +1,23 @@
 <div class="row g-0">
   <div class="col-sm-7">
-    <form class="formulaire" (ngSubmit)="addCatalog()">
+    <form class="formulaire" [formGroup]="catalogForm" (ngSubmit)="addCatalog()">
         <h1>Création d'un catalogue</h1>
         <div class="champs">
         
         <input type="file" class="file" name="file" id="file" class="inputfile" value="rien" onchange="document.getElementById('myImg').src='../assets/images/'+file.value.substring(12);"/>
         <label id="label" style="position: relative; z-index: 1;" for="file"></label>
-        <img id="myImg" src="#" alt="">
+        <img id="myImg" [src]="pictureLink" alt="">
+        <input type="text"  name="picture"  required
+            placeholder="{{ 'picture' | translate }} {{ 'link' | translate }} ..."
+            ng-model="registerForm.controls[picture]"
+            (change)='changePicture($event)'
+        >
           <input
             type="text"
             id="name"
             name="name"
             placeholder="Nom"
-            formControlName="name"
+            formControlName="titleCatalog"
             class="form-control"
             [ngClass]="{ 'is-invalid': submitted}"
           />
@@ -25,7 +30,7 @@
             id="address"
             name="address"
             placeholder="Adresse"
-            formControlName="address"
+            formControlName="addressCatalog"
             class="form-control"
             [ngClass]="{ 'is-invalid': submitted }"
           />
@@ -33,7 +38,41 @@
             <div>Address is required</div>
           </div>
 
-          <input
+          <div>
+            <label id="label" style="position: relative; z-index: 1;" for="file">{{ "activateCatalog" | translate }}</label>
+
+            <select type="text" id="nom" name="nom"  required
+            formControlName="activateCatalog"
+            ng-model="catalogForm.controls[activateCatalog]"
+            >
+            <option value="1">{{ 'anable' | translate }}</option>
+            <option value="0">{{ 'disable' | translate }}</option>
+            </select>
+             <div
+                *ngIf="catalogForm.controls['activateCatalog'].hasError('required') && catalogForm.controls['activateCatalog'].touched"
+                class="text text-danger mt-1">
+                {{ "activateCatalog" | translate }} {{ "is required" | translate }}
+            </div>
+          </div>
+
+          <div>
+            <label id="label" style="position: relative; z-index: 1;" for="file">{{ "homeBased" | translate }}</label>
+
+            <select type="text" id="nom" name="nom"  required
+            formControlName="homeBased"
+            ng-model="catalogForm.controls[homeBased]"
+            >
+            <option value="1">{{ 'anable' | translate }}</option>
+            <option value="0">{{ 'disable' | translate }}</option>
+            </select>
+             <div
+                *ngIf="catalogForm.controls['homeBased'].hasError('required') && catalogForm.controls['homeBased'].touched"
+                class="text text-danger mt-1">
+                {{ "homeBased" | translate }} {{ "is required" | translate }}
+            </div>
+          </div>
+
+          <!-- <input
             type="text"
             id="city"
             name="city"
@@ -53,7 +92,8 @@
           placeholder="Téléphone"
           formControlName="phone"
           [ngClass]="{ 'is-invalid': submitted }"
-        />
+        /> -->
+
           <button id="ajouter" [disabled]="loading" (submit)="addCatalog()">
             <span
               *ngIf="loading"

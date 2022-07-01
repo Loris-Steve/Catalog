@@ -14,6 +14,9 @@ import { AddArticleComponent } from './components/articles/add-article/add-artic
 import { ArticleListComponent } from './components/articles/article-list/article-list.component';
 import { CatalogDetailsComponent } from './components/catalogs/catalog-details/catalog-details.component';
 import { CatalogListComponent } from './components/catalogs/catalog-list/catalog-list.component';
+import { CatgoryDropdownFormComponent } from './components/search/catgory-dropdown-form/catgory-dropdown-form.component';
+import { AuthInterceptor } from './services/JwtInterceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import { CatalogListComponent } from './components/catalogs/catalog-list/catalog
     AddArticleFormComponent,
     AddArticleComponent,
     ArticleListComponent,
-    CatalogListComponent
+    CatalogListComponent,
+    CatgoryDropdownFormComponent
 
   ],
   imports: [
@@ -51,7 +55,7 @@ import { CatalogListComponent } from './components/catalogs/catalog-list/catalog
     ReactiveFormsModule
   ],
   providers: [
-
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

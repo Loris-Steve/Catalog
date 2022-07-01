@@ -2,7 +2,7 @@
 <div class="row catalogues">
     <div class="">
         <!-- boucle sur la liste des catalogs -->
-        <div class="boutique" *ngFor="let catalog of catalogs" (click)="showDetails(catalog.idCatalog)">
+        <div class="boutique" *ngFor="let catalog of catalogs" (click)="showDetails(catalog.id_User,catalog.idCatalog)">
             <div class="catalogue">
                 <div class="row">
                     <div class="col-sm-6">

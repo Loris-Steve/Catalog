@@ -6,21 +6,22 @@ const Role = require('../utils/userRoles');
 class UserModel {
     tableName = 'users';
 
-    create = async ({ firstName, lastName, email, password, photo = "", role = Role.User }) => {
-        
-        const sql = `INSERT INTO ${this.tableName}
-        (firstName, lastName, email, password, photo , role) VALUES (?,?,?,?,?,?)`;
+    create = async (user) => {
+        const { columnSet, values } = multipleColumnSet(user)
+
+        const sql = `INSERT INTO ${this.tableName} SET ${columnSet}`;
+
+        // const sql = `INSERT INTO ${this.tableName}
+        // (firstName, lastName, email, password, photo , role) VALUES (?,?,?,?,?,?)`;
         
         try {
             
-            //console.log(photo + ">model result : "+JSON.stringify(result));
-             const result = await query(sql, [firstName, lastName, email, password, photo, 'user'])
-             
-             const affectedRows = result ? result.affectedRows : 0;
-             
-             return { affectedRows, idUser: result.insertId };
-             
-            } catch (error) {
+            const result = await query(sql, [...values]);
+            const affectedRows = result ? result.affectedRows : 0;
+
+            return { affectedRows, idUser: result.insertId };
+
+        } catch (error) {
              console.log("erreur : ",error);
              // handle errors here
              return { error };

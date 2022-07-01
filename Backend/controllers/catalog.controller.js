@@ -22,9 +22,11 @@ class CatalogController {
 
         checkValidation(req);
 
-        const userId = req.currentUser.idUser;
-
-        const result = await CatalogModel.add({id_User : userId,...matched});
+        // on enleve la variable userId de matched
+        const { userId : id_User,...rest} = matched;
+        
+        console.log('matched :>> ', matched);
+        const result = await CatalogModel.add({id_User,...rest});
 
         if (!result) {
 

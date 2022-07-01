@@ -24,7 +24,19 @@ exports.createCatalogSchema = [
         .isFloat()
         .withMessage('longitude must be a float')
         .custom((value, { req }) => req.body.latitude)
-        .withMessage('longitude is required if latitude exist')
+        .withMessage('longitude is required if latitude exist'),
+    check('imagesCatalog')
+        .optional()
+        .isLength({ max: 3000 })
+        .withMessage('images max length 3000'),
+    check('activateCatalog')
+        .optional()
+        .isBoolean([0,1])
+        .withMessage('activateCatalog must be a boolean'),
+    check('homeBased')
+        .optional()
+        .isBoolean([0,1])
+        .withMessage('homeBased must be a boolean')
 ];
 
 exports.findCatalog = [

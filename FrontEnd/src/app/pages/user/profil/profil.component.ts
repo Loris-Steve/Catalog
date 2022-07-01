@@ -69,15 +69,16 @@ export class ProfilComponent implements OnInit {
   ngOnInit(): void {
     this.route.params
       .subscribe(params => {
-        console.log(params);
+        console.log(params,this.authService.userValue?.idUser);
         if(params['userId'] == this.authService.userValue?.idUser)
           this.updateOption = true;
 
         this.userService.getUserById(params['userId']);
-        this.loadCatalog(params['userId']);
+        this.loadCatalogs(params['userId']);
         if (params['catalogId']) {
-          this.showDetailCatalog = true;
           this.loadArticles(params['catalogId']);
+          this.loadArticles(params['catalogId']);
+          this.showDetailCatalog = true;
           this.currentCatalogId = params['catalogId'];
         }
       });
@@ -101,6 +102,11 @@ export class ProfilComponent implements OnInit {
       );
   }
 
+  // get catalog of articles
+  loadArticleCatalog(){
+
+  }
+  
   loadArticles(catalogId: number) {
 
     const articleQuery: ArticleQuery = {
@@ -120,7 +126,7 @@ export class ProfilComponent implements OnInit {
 
   }
 
-  loadCatalog(userId: number) {
+  loadCatalogs(userId: number) {
 
       const idCatalog = '';
       const titleCatalog = '';

@@ -5,7 +5,6 @@ import { AccountComponent } from './account/account.component';
 import { AddArticleFormComponent } from './add-article-form/add-article-form.component';
 import { AddCatlogFormComponent } from './add-catlog-form/add-catlog-form.component';
 import { LoginComponent } from './login/login.component';
-import { MyProfileComponent } from './my-profile/my-profile.component';
 import { ProfilComponent } from './profil/profil.component';
 import { RegisterComponent } from './register/register.component';
 

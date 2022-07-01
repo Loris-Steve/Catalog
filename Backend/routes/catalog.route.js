@@ -10,7 +10,7 @@ const { userOwner } = require('../middleware/validators/userValidator.middleware
 const { articleExist } = require('../middleware/validators/articleValidator.middleware');
 
 // on créer un catalog pour un utilisateur
-router.post('/', authUser(Role.Admin,Role.Professional), createCatalogSchema, userOwner, awaitHandlerFactory(CatalogController.createCatalog)); 
+router.post('/user/:userId', authUser(Role.Admin,Role.Professional), createCatalogSchema, userOwner, awaitHandlerFactory(CatalogController.createCatalog)); 
 //router.post('/article', authUser(Role.Admin,Role.Professional), catalogExist, articleExist, addArticleCatalogSchema, awaitHandlerFactory(CatalogController.addArticleInCatalog)); 
 router.post('/article/:catalogId/:articleId', authUser(Role.Admin,Role.Professional), isCatalogOwner(),addArticleCatalogSchema, awaitHandlerFactory(CatalogController.addArticleInCatalog)); 
 

@@ -1,18 +1,25 @@
 <div class="ajoutArticle">
     <br/><br/>
-    <form class="formulaire">
+    <form class="formulaire" [formGroup]="articleForm" (ngSubmit)="addArticle()">
         <h1>Nouvel article</h1>
         <div class="champs">
         
         <input type="file" class="file" name="file" id="file" class="inputfile" value="rien" onchange="document.getElementById('myImg').src='../assets/images/'+file.value.substring(12);"/>
         <label id="label" style="position: relative; z-index: 1;" for="file"></label>
-        <img id="myImg" src="#" alt="">
+        <img id="myImg" [src]="pictureLink" alt="">
+
+        <input type="text"  name="picture"  required
+            placeholder="{{ 'picture' | translate }} {{ 'link' | translate }} ..."
+            ng-model="registerForm.controls[picture]"
+            (change)='changePicture($event)'
+        >
+
         <input
             type="text"
             id="name"
             name="name"
             placeholder="Nom"
-            formControlName="name"
+            formControlName="titleArticle"
             class="form-control"
         />
         <div class="invalid-feedback">
@@ -24,7 +31,7 @@
             id="price"
             name="price"
             placeholder="Prix"
-            formControlName="price"
+            formControlName="priceArticle"
             class="form-control"
         />
         <div class="invalid-feedback">
@@ -36,24 +43,55 @@
             id="description"
             name="description"
             placeholder="Description"
-            formControlName="description"
+            formControlName="descriptionArticle"
             class="form-control"
         />
         <div class="invalid-feedback">
             <div>Description is required</div>
         </div>
 
-        <input
+        <div>
+            <select type="text" 
+            
+            >
+            <option [value]="typesArticle.Product">{{ 'product' | translate }}</option>
+            </select>
+
+            <select type="text"  required
+            formControlName="id_SubCategory"
+            ng-model="articleForm.controls[id_SubCategory]"
+            >
+            <option [value]="typesArticle.Product">{{ 'product' | translate }}</option>
+
+            </select>
+        <div>
+
+        <!-- <input
         type="text"
         id="category"
         name="category"
         placeholder="Catégorie"
-        formControlName="category"
         class="form-control"
         />
         <div class="invalid-feedback">
             <div>Category is required</div>
+        </div> -->
         </div>
+            <label id="label" style="position: relative; z-index: 1;" for="file">{{ "id_SubCategory" | translate }}</label>
+
+            <select type="text"  required
+            formControlName="typeArticle"
+            ng-model="articleForm.controls[typeArticle]"
+            >
+            <option [value]="typesArticle.Product">{{ 'product' | translate }}</option>
+            <option [value]="typesArticle.Service">{{ 'service' | translate }}</option>
+            </select>
+             <div
+                *ngIf="articleForm.controls['typeArticle'].hasError('required') && articleForm.controls['typeArticle'].touched"
+                class="text text-danger mt-1">
+                {{ "typeArticle" | translate }} {{ "is required" | translate }}
+            </div>
+          </div>
 
         <button id="ajouter">
             Ajouter</button

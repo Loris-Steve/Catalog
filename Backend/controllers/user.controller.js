@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const jwtUtils = require('../utils/jwt.utils');
 const {checkValidation} = require('../middleware/checkValidation')
+const { matchedData } = require('express-validator');
 
 /******************************************************************************
  *                              User Controller
@@ -12,25 +13,23 @@ const {checkValidation} = require('../middleware/checkValidation')
 class UserController {
 
     createUser = async (req, res, next) => {
-        // const result = await UserModel.create(req.body);
-        // if (result.error) {
-        //      res.status(500).send({ message: 'Une erreur est survenue' });
-        //  }
-        //  else{
-        //      res.send(result);
-        //  }
+        const matched = matchedData(req, {
+            includeOptionals: true,
+        });
 
          checkValidation(req);
         
-         const user = await UserModel.findOne({ email : req.body.email });
+         console.log('matched :>> ', matched);
+         const user = await UserModel.findOne({ email : matched.email });
          
          if (user) {
              throw new HttpException(400, 'email already exist');
          }
  
-         await this.hashPassword(req);
+         await this.hashPassword(matched);
  
-         const result = await UserModel.create(req.body);
+         const result = await UserModel.create({
+            password : matched.password,...this.constructorUser(matched)});
          
          if (result.error) {
             // throw new HttpException(500, "Une erreur est survenue : "+result.error);
@@ -38,7 +37,7 @@ class UserController {
          }
          else{
              
-             const user =  req.body ;
+             const user =  matched ;
              user.idUser = result.idUser;
              
              const token = jwtUtils.getToken(user);
@@ -53,6 +52,7 @@ class UserController {
 
     userDetails = async (req, res, next) => {
         const idUser = req.params.userId;
+
         const user = await UserModel.findOne({idUser});
 
         res.send(user);
@@ -98,20 +98,24 @@ class UserController {
     // };
 
     // hash password if it exists
-    hashPassword = async (req) => {
-        if (req.body.password) {
-            req.body.password = await bcrypt.hash(req.body.password, 8);
+    hashPassword = async (data) => {
+        if (data.password) {
+            data.password = await bcrypt.hash(data.password, 8);
         }
+        // if (req.body.password) {
+        //     req.body.password = await bcrypt.hash(req.body.password, 8);
+        // }
     }
 
     constructorUser = (newUser) => {
         return {
             idUser: newUser.idUser,
-            photo: newUser.photo,
+            photo: newUser.photo || '',
             firstName: newUser.firstName,
             lastName: newUser.lastName,
             email: newUser.email,
-            role : newUser.role
+            role : newUser.role,
+            phoneUser : newUser.phoneUser || ''
         };
     }
 

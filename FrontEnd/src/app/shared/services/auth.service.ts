@@ -52,9 +52,9 @@ export class AuthService {
     }
 
     register(photo: string, firstName: string, lastName: string, email: string,
-      password: string, role: UserRole) {
+      password: string, role: UserRole, phoneUser:number) {
       return this.http.post<any>(`${environment.hostURL}users/register`, 
-      { photo, firstName, lastName, email, password, role })
+      { photo, firstName, lastName, email, password, role, phoneUser })
           .pipe(map(currentUser => {
               // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
               //user.authdata = window.btoa(email + ':' + password);
@@ -76,6 +76,7 @@ export class AuthService {
       generateDefaultUser(){
         const currentUser: User =  {
           "idUser": 2,
+          "phoneUser" : 0,
           "firstName": "professional",
           "lastName": "professional",
           "email": "professional@professional.com",

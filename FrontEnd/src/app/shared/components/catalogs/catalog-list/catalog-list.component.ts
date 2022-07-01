@@ -11,7 +11,7 @@ export class CatalogListComponent implements OnInit {
 
   @Input() catalogs : Catalog[] = [];
   @Input() updateOption : boolean = false;
-  
+
   // showDetailCatalog : boolean = false;
   // currentCatalogId: number | undefined ;
   // currentCatalog: Catalog = <Catalog>{};
@@ -23,9 +23,7 @@ export class CatalogListComponent implements OnInit {
   }
 
 
-  showDetails= (catalogId : number) => {
-    
-    this.route.navigate(['/user/profil/2/'+catalogId]);
+  showDetails= (userId : number,catalogId : number) => {
+      this.route.navigate([`/user/profil/${userId}/${catalogId}`]);
   }
-
 }

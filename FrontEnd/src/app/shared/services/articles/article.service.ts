@@ -34,17 +34,38 @@ const ARTICLES: Article[] = [
 
   },
 ];
+const CATEGORYS = [
+  {
+    "idCategory": 1,
+    "nameCategory": "Mode",
+    "subCategorys": [
+        {
+            "idSubCategory": 1,
+            "nameSubCategory": "chaussure",
+            "id_Category": 1
+        },
+        {
+            "idSubCategory": 2,
+            "nameSubCategory": "coiffure",
+            "id_Category": 1
+        }
+    ]
+}
+]
 @Injectable({
   providedIn: 'root'
 })
 export class ArticleService {
 
+  private categorys = new BehaviorSubject<any[]>(CATEGORYS);
+  categorys$ = this.categorys.asObservable();
+
+  private articles = new BehaviorSubject<Article[]>([]);
+  articles$ = this.articles.asObservable();
+
   private loading = new BehaviorSubject<boolean>(false);
   loading$ = this.loading.asObservable();
 
-  //private articles = new BehaviorSubject<Article[]>(ARTICLES);
-  private articles = new BehaviorSubject<Article[]>([]);
-  articles$ = this.articles.asObservable();
 
   private error = new BehaviorSubject<string>('');
   error$ = this.error.asObservable();
@@ -61,12 +82,17 @@ export class ArticleService {
       }));
   }
 
+  public get categoryValue(): any[]{
+    return this.categorys.value;
+  }
+
   getCategorys(){
 
     this.http.get<any>(`${environment.hostURL}articles/categorys`)
     .subscribe(
       data => {
         console.log("data", data);
+        //localStorage.setItem('categorys', JSON.stringify(data));
       },
       error => {
         switch (error.status) {

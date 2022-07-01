@@ -13,5 +13,6 @@
     "card" : "Card",
     "list" : "List",
     "searching": "Search",
-    "add" : "Add a"
+    "add" : "Add",
+    "phoneNumber" : "Phone Number"
 }

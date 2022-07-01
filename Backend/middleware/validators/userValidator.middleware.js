@@ -18,8 +18,12 @@ exports.createUserSchema = [
         .withMessage('Email is required')
         .isEmail()
         .withMessage('Must be a valid email'),
-    check('role')
+    check('photo')
         .optional()
+        .isLength({ max: 200 })
+        .withMessage('photo max length 200'),
+    check('role')
+        .exists()
         .isIn([Role.User, Role.Professional])
         .withMessage('Invalid Role type'),
     check('password')
@@ -27,7 +31,11 @@ exports.createUserSchema = [
         .withMessage('Password is required')
         .notEmpty()
         .isLength({ min: 6 })
-        .withMessage('Password must contain at least 6 characters')
+        .withMessage('Password must contain at least 6 characters'),
+    check('phoneUser')
+        .optional()
+        .isInt()
+        .withMessage('phoneUser is Integer')
 ];
 
 exports.validateLogin = [
@@ -45,13 +53,16 @@ exports.validateLogin = [
 ];
 
 exports.userOwner = [
-    check('id_User')
+    check('userId')
         .exists()
-        .withMessage('id_User is required')
+        .withMessage('userId is required')
+        .isInt()
+        .withMessage('userId must be integer')
         .custom((value, { req }) => {
-            if(req.currentUser.role != Role.Admin){
-                return value === req.currentUser.idUser;
+            if(req.currentUser.role != Role.Admin && req.currentUser.idUser != value){
+                throw new Error("Unauthorized");
             }
+            return true;
         })
-        .withMessage('idUser field must have the same value as the idUser  field ')
+        .withMessage('Unauthorized')
 ]

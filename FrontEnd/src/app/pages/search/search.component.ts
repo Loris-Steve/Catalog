@@ -28,6 +28,8 @@ export class SearchComponent implements OnInit {
   catalogs: Catalog[] = [];
   articles: Article[] = [];
 
+  categorys : any[] = [];
+
   constructor(
     private catalogService: CatalogService,
     public articleService: ArticleService,
@@ -40,12 +42,12 @@ export class SearchComponent implements OnInit {
       //console.log('articleList :>> ', articleList);
       this.articles = articleList });
 
-    
-
     this.catalogService.catalogs$.subscribe((catalogList) => this.catalogs = catalogList);
 
     this.articleService.loading$.subscribe((loading) => this.loading = loading );
     this.articleService.error$.subscribe((error) => this.error = error );
+    
+    this.articleService.categorys$.subscribe((categorys) => this.categorys = categorys );
 
     this.searchForm = this.formBuilder.group({
       titleArticle: [''],
@@ -65,7 +67,8 @@ export class SearchComponent implements OnInit {
     //console.log('this.articles :>> ', this.articles);
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    
+    this.articleService.getCategorys();
+
   }
 
   // convenience getter for easy access to form fields

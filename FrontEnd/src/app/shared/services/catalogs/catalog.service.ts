@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment.prod';
 import { OrderList } from '../../enums/order.enum';
 import { Catalog, CatalogCreator, CatalogQuery } from '../../models/catalog.model';
 import { User } from '../../models/user.model';
+import { AuthService } from '../auth.service';
 
 const CATALOGS: Catalog[]  = [ 
 {
@@ -43,19 +44,29 @@ export class CatalogService {
   private catalogs = new BehaviorSubject<Catalog[]>(CATALOGS);
   catalogs$ = this.catalogs.asObservable();
 
+  private currentCatalog = new BehaviorSubject<Catalog>(<Catalog>{});
+  currentCatalog$ = this.currentCatalog.asObservable();
+
   private loading = new BehaviorSubject<boolean>(false);
   loading$ = this.loading.asObservable();
 
   private error = new BehaviorSubject<string>('');
   error$ = this.error.asObservable();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private authService:AuthService) {
     
   }
 
   create(catalog: CatalogCreator) {
+    let currentQuery: any = catalog;
+    
+    // on n'envoie pas latitude et longitude si on ne les a pas
+    if(!catalog.latitude || !catalog.longitude){
+      const {latitude,longitude, ...rest} = catalog;
+      currentQuery = rest;
+    }
 
-    return this.http.post<any>(`${environment.hostURL}catalogs`, catalog)
+    return this.http.post<any>(`${environment.hostURL}catalogs/user/${this.authService.userValue?.idUser}`, currentQuery)
       .pipe(map(element => {
         console.log("element", element);
       }));
@@ -70,6 +81,29 @@ export class CatalogService {
       }));
   }
 
+  getCatalogById(catalogId: number){
+    
+     return this.http.get<any>(`${environment.hostURL}catalogs/${catalogId}`)
+     .subscribe(
+       data => {
+         console.log("data currentCatalog : ",data);
+         this.currentCatalog.next(data);
+       },
+       error => {  
+                  
+         switch (error.status) {
+           case 400:
+             this.error.next("badRequest");
+             break;
+           default:
+             this.error.next(error?.error?.message); // erreur serveur
+             break
+         }
+ 
+       },
+       () => this.loading.next(false) // finally
+       );
+  }
 
   getCatalogByIdUser(userId: number, catalogQuery : CatalogQuery){
     const queryParams = this.formatParams(catalogQuery);

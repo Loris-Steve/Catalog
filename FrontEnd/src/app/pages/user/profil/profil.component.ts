@@ -13,6 +13,8 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { CatalogService } from 'src/app/shared/services/catalogs/catalog.service';
 import { UserService } from 'src/app/shared/services/users/user.service';
 
+const DEFAULT_POFIL_IMAGE_LINK = "https://media.istockphoto.com/vectors/default-avatar-profile-icon-vector-vector-id1337144146?b=1&k=20&m=1337144146&s=170667a&w=0&h=ys-RUZbXzQ-FQdLstHeWshI4ViJuEhyEa4AzQNQ0rFI=";
+
 @Component({
   selector: 'app-profil',
   templateUrl: './profil.component.html',
@@ -33,7 +35,6 @@ export class ProfilComponent implements OnInit {
   catalogs: Catalog[] = [];
   articles: Article[] = [];
 
-
   updateOption: boolean = false;
 
   showDetailCatalog: boolean = false;
@@ -44,6 +45,8 @@ export class ProfilComponent implements OnInit {
 
   types = Object(ArticleSearchStyle);
   
+  imageProfil : string  = DEFAULT_POFIL_IMAGE_LINK;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -56,7 +59,15 @@ export class ProfilComponent implements OnInit {
 
   ) {
 
-    this.userService.user$.subscribe((user) => this.user = user || this.user);
+    this.userService.user$.subscribe((user) => {
+      this.user = user || this.user
+      if(this.user.photo){
+        this.imageProfil = this.user.photo;
+      }
+      else{
+        this.imageProfil = DEFAULT_POFIL_IMAGE_LINK;
+      }
+    });
     this.userService.loading$.subscribe((loading) => this.loadingUser = loading);
     this.userService.error$.subscribe((error) => this.errorUser = error);
 
@@ -67,7 +78,6 @@ export class ProfilComponent implements OnInit {
     this.articleService.articles$.subscribe((articleList) => this.articles = articleList)
     this.articleService.loading$.subscribe((loading) => this.loadingArticle = loading);
     this.articleService.error$.subscribe((error) => this.errorArticle = error);
-
 
   }
 

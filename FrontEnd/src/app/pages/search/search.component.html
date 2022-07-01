@@ -29,7 +29,7 @@
 
     <div class="">
 
-        <div class="d-flex justify-content-end boutons">
+        <div class="d-flex justify-content-end boutons pr-4 gap-2">
             <button class="btn btn-light" (click)="changeStyle(types.CARD)">
                 {{ 'card' | translate }}
             </button>
@@ -49,6 +49,8 @@
         <button id="pagination">&laquo; Précédent</button>
         <button id="pagination">Suivant &raquo;</button>
 
-        <app-article-list [articleListStyle]="articleListStyle" [articles]="articles"></app-article-list>
+        <div class="col-12">
+            <app-article-list [articleListStyle]="articleListStyle" [articles]="articles"></app-article-list>
+        </div>
     </div>
 </div>

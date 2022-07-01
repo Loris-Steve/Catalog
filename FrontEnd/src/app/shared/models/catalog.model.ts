@@ -17,6 +17,7 @@ export interface Catalog {
     addressCatalog: string,
     latitude: number | null,
     longitude: number | null,
+    imagesCatalog : string[],
     activateCatalog: 1 | 0,
 }
 

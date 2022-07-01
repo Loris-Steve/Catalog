@@ -11,7 +11,7 @@ exports.createArticleSchema = [
         .withMessage('titleArticle must have between 3 and 200 chars'),
     check('descriptionArticle')
         .optional()
-        .isLength({ min: 3, max: 250 })
+        .isLength({ max: 250 })
         .withMessage('descriptionArticle must have between 3 and 250 chars'),
     check('priceArticle')
         .optional()

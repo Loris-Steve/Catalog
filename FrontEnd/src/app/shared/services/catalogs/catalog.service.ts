@@ -16,7 +16,8 @@ const CATALOGS: Catalog[]  = [
   addressCatalog: '',
   latitude: 1,
   longitude : 2 ,
-  activateCatalog : 0
+  activateCatalog : 0,
+  imagesCatalog : []
 },
 {
   idCatalog: 1,
@@ -25,7 +26,8 @@ const CATALOGS: Catalog[]  = [
   addressCatalog: 'Paris',
   latitude: 5,
   longitude : 3 ,
-  activateCatalog : 1 
+  activateCatalog : 1 ,
+  imagesCatalog : []
 },
 {
   idCatalog: 1,
@@ -34,7 +36,8 @@ const CATALOGS: Catalog[]  = [
   addressCatalog: 'Marseille ',
   latitude: null,
   longitude : null,
-  activateCatalog : 1 
+  activateCatalog : 1 ,
+  imagesCatalog : []
 }]
 
 @Injectable({

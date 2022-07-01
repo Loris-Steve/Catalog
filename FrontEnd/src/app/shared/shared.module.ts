@@ -17,6 +17,7 @@ import { CatalogListComponent } from './components/catalogs/catalog-list/catalog
 import { CatgoryDropdownFormComponent } from './components/search/catgory-dropdown-form/catgory-dropdown-form.component';
 import { AuthInterceptor } from './services/JwtInterceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+//import { CatalogComponent } from './components/catalogs/catalog/catalog.component';
 
 @NgModule({
   declarations: [

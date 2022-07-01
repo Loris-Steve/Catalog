@@ -1,26 +1,16 @@
-<div class="container bg-light">
-    
-    <div class="d-flex justify-content-end boutons">
-        <button class="btn btn-light" (click)="changeStyle(types.CARD)">
-            {{ 'card' | translate }}
-        </button>
-        <button class="btn btn-light" (click)="changeStyle(types.LIST)">
-            {{ 'list' | translate }}
-        </button>
-    </div>
+<div class="catalogue">
+    <div class="row">
+        <div class="col-sm-6">
+            <img class="card-img-top"
+                src="https://images.pexels.com/photos/929245/pexels-photo-929245.jpeg?cs=srgb&dl=pexels-artem-beliaikin-929245.jpg&fm=jpg"
+                alt="Card image cap">
+        </div>  
+        <div class="col-sm-6">
+            <h2>{{ catalog.titleCatalog }}</h2>
+            <p>{{ catalog.addressCatalog }}</p>
+            <p>Adresses</p>
+            <p>Tel</p>
 
-    <h3>Nombre d'articles : {{ articles.length }}    ( Détail du catalogue )</h3>
-    
-    <div class="d-flex cartes">
-
-        <app-article class="carte" *ngFor="let article of articles" [article]="article" [typeList]="articleListStyle"></app-article>
-
-        <!--div class=" card p-4" *ngFor="let article of articles">
-        
-            <p >
-                {{ article.titleArticle }}
-            </p>
-        </div-->
-
+        </div>
     </div>
 </div>

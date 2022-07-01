@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { first } from 'rxjs';
+import { ArticleSearchStyle } from 'src/app/shared/enums/article-search-style.enum';
 import { OrderList } from 'src/app/shared/enums/order.enum';
 import { Article, ArticleQuery } from 'src/app/shared/models/article.model';
 import { Catalog, CatalogQuery } from 'src/app/shared/models/catalog.model';
@@ -39,6 +40,10 @@ export class ProfilComponent implements OnInit {
   currentCatalogId: number | undefined;
   currentCatalog: Catalog = <Catalog>{};
 
+  articleListStyle: ArticleSearchStyle = ArticleSearchStyle.CARD;
+
+  types = Object(ArticleSearchStyle);
+  
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -101,6 +106,12 @@ export class ProfilComponent implements OnInit {
       }
       );
   }
+
+  
+    // chnage le style de la liste (card , list)
+    changeStyle(style: ArticleSearchStyle): void {
+      this.articleListStyle = style;
+    }
 
   // get catalog of articles
   loadArticleCatalog(){

@@ -2,6 +2,9 @@ import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Catalog } from 'src/app/shared/models/catalog.model';
 
+const DEFAULT_CATALOG_IMAGE_LINK = "https://www.ecommercemag.fr/Assets/Img/BREVE/2016/4/303588/est-chef-produit-VPC--F.jpg";
+
+
 @Component({
   selector: 'app-catalog-list',
   templateUrl: './catalog-list.component.html',

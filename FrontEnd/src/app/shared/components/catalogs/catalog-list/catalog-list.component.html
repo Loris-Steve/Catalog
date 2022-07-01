@@ -3,22 +3,10 @@
     <div class="">
         <!-- boucle sur la liste des catalogs -->
         <div class="boutique" *ngFor="let catalog of catalogs" (click)="showDetails(catalog.id_User,catalog.idCatalog)">
-            <div class="catalogue">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <img class="card-img-top"
-                            src="https://images.pexels.com/photos/929245/pexels-photo-929245.jpeg?cs=srgb&dl=pexels-artem-beliaikin-929245.jpg&fm=jpg"
-                            alt="Card image cap">
-                    </div>  
-                    <div class="col-sm-6">
-                        <h2>{{ catalog.titleCatalog }}</h2>
-                        <p>{{ catalog.addressCatalog }}</p>
-                        <p>Adresses</p>
-                        <p>Tel</p>
+            
+            <app-catalog-details [catalog]="catalog"></app-catalog-details>
 
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 

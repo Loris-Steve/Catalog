@@ -43,20 +43,18 @@ class ArticleController {
         let categorys = await ArticleModel.findCategory();
         let subCategorys = await ArticleModel.findSubCategory();
         
-        // console.log('category :>> ', categorys);
-        // console.log('subCategorys :>> ', subCategorys);
+        console.log('category :>> ', categorys);
+        console.log('subCategorys :>> ', subCategorys);
 
         if (!categorys) {
             throw new HttpException(404, 'categorys not found');
         }
-        const categorysList = categorys.map(cat => {
-            return {
-                ...cat,
-                "subCategorys":subCategorys.filter(sub => sub.id_Category = cat.idCategory)
-            }
-        })
-
-        res.send(categorysList);
+        
+        categorys.map(cat => 
+            cat.subCategorys = subCategorys.filter(sub => sub.id_Category == cat.idCategory)    
+        )
+        
+        res.send(categorys);
     };
 
     getArticlesWithAlredyUseByParams = async (req, res, next) => {

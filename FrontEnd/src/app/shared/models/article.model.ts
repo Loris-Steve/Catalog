@@ -17,7 +17,9 @@ export interface Article {
     descriptionArticle: string,
     imagesArticle : string[],
     id_Catalog : number,
-    isProduct : 1 | 0
+    isProduct : 1 | 0,
+    id_Category: number,
+    nameSubCategory: string
 }
 
 export interface ArticleQuery {
@@ -28,6 +30,8 @@ export interface ArticleQuery {
     addressArticle: string | '', 
     latitude: number | '', 
     longitude: number |'',
+    priceMin: number |'',
+    priceMax: number |'',
     sort: string | '', 
     order: OrderList | '', 
     activateArticle: 0 | 1 | ''

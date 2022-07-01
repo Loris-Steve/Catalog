@@ -7,10 +7,11 @@
                 <h2 class="card-title">{{ article.titleArticle }}</h2>
                 <p class="card-text" style="font-size: 15px;">{{ article.priceArticle }} €</p>
                 <p class="card-text" style="font-size: 15px;">{{ article.descriptionArticle }} €</p>
+                <p class="card-text" style="font-size: 15px;">{{ article.addressArticle }}</p>
 
             </div>
             <img class="rounded-circle" alt="100x100" [src]="imageProfil"/>
-            <p id="description" class="article-card-description w-25">{{ article.descriptionArticle }}</p>
+            <p id="description" class="article-card-description w-25">{{ article.firstName }}</p>
         </div>
     </some-element>
     <some-element *ngSwitchCase="types.LIST">
@@ -21,6 +22,8 @@
                     <div class="card-body corps2">
                         <h2 class="article-list-title">{{ article.titleArticle }}</h2>
                         <p class="article-list-price">{{ article.priceArticle }} €</p>
+                        <p class="article-list-price">{{ article.addressArticle }} €</p>
+                        <p class="article-list-price">{{ article.hasebase ? 'oui' : 'non' }} €</p>
                         <div class="profil-vendeur">
                             <img class="rounded-circle" alt="100x100" [src]="imageProfil"/>
                             <p class="article-list-description">{{ article.descriptionArticle }}</p>

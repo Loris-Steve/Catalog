@@ -249,7 +249,8 @@ class ArticleController {
             titleArticle: newArticle.titleArticle,
             priceArticle: newArticle.priceArticle,
             descriptionArticle: newArticle.descriptionArticle,
-            imagesArticle : newArticle.imagesArticle
+            imagesArticle : newArticle.imagesArticle,
+            nameSubCategory : newArticle.nameSubCategory
         };
     }
 

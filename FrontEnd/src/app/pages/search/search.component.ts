@@ -55,6 +55,8 @@ export class SearchComponent implements OnInit {
       addressArticle: [''],
       latitude: [''],
       longitude: [''],
+      priceMin: [''],
+      priceMax: [''],
       sort: [''],
       order: [''],
       activateArticle: ['']
@@ -94,6 +96,8 @@ export class SearchComponent implements OnInit {
       addressArticle: this.searchForm.value['addressArticle'],
       latitude: this.searchForm.value['latitude'],
       longitude: this.searchForm.value['longitude'],
+      priceMin: this.searchForm.value['priceMin'],
+      priceMax: this.searchForm.value['priceMax'],
       sort: this.searchForm.value['sort'],
       order: this.searchForm.value['order'],
       activateArticle: this.searchForm.value['activateArticle'],

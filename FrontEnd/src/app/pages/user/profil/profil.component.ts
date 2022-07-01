@@ -138,6 +138,8 @@ export class ProfilComponent implements OnInit {
       addressArticle: '',
       latitude: '',
       longitude: '',
+      priceMin : '',
+      priceMax : '',
       sort: '',
       order: '',
       activateArticle: ''

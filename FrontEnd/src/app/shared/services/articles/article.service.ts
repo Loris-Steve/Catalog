@@ -13,7 +13,9 @@ const ARTICLES: Article[] = [
     descriptionArticle: 'string',
     imagesArticle: [],
     id_Catalog: 0,
-    isProduct : 1
+    isProduct : 1,
+    id_Category: 2,
+    nameSubCategory: "string"
 
   },
   {
@@ -23,7 +25,9 @@ const ARTICLES: Article[] = [
     descriptionArticle: 'string',
     imagesArticle: [],
     id_Catalog: 0,
-    isProduct : 1
+    isProduct : 1,
+    id_Category: 2,
+    nameSubCategory: "string"
 
   },
   {
@@ -33,7 +37,9 @@ const ARTICLES: Article[] = [
     descriptionArticle: 'string',
     imagesArticle: [],
     id_Catalog: 0,
-    isProduct : 1
+    isProduct : 1,
+    id_Category: 2,
+    nameSubCategory: "string"
 
   },
 ];
@@ -194,7 +200,7 @@ export class ArticleService {
   formatParams(articleQuery: ArticleQuery): HttpParams {
     // on extrait les valeurs de l'objet
     const { idArticle, id_User, titleArticle, addressArticle, latitude,
-      longitude, sort, order, activateArticle } = articleQuery;
+      longitude, sort, order, activateArticle,priceMin,priceMax } = articleQuery;
     // On ajoute les valeurs aux paramètres de la requête (pour filtrer)
 
     let queryParams = new HttpParams()
@@ -207,6 +213,12 @@ export class ArticleService {
 
     if (addressArticle)
       queryParams = queryParams.append("addressArticle", addressArticle);
+
+    if (priceMin)
+      queryParams = queryParams.append("priceMin", priceMin);
+
+    if (priceMax)
+      queryParams = queryParams.append("priceMax", priceMax);
 
     if (latitude)
       queryParams = queryParams.append("latitude", latitude);

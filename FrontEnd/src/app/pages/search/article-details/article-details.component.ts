@@ -33,8 +33,6 @@ export class ArticleDetailsComponent implements OnInit {
     private route : ActivatedRoute,
     public articleService: ArticleService,
     ) { }
-  
-  
 
   ngOnInit(): void {
     this.route.params

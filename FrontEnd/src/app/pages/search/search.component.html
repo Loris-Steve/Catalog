@@ -10,7 +10,7 @@
                 <option>Multimédia</option>
                 <option>Sport</option>
             </select>
-            <input type="text" id="localisation" name="localisation" class="barre" placeholder="Localisation" required>
+            <input type="text" id="localisation" name="localisation" class="barre" placeholder="Localisation" required formControlName="addressArticle">
 
 
             
@@ -18,8 +18,8 @@
         </div>
         <div class="filtres">
             <label style="font-size: 17px; margin-top: 7px;">Filtrer :</label>
-            <input type="text" id="minPrice" name="minPrice" class="filtre" placeholder="Prix minimum" formControlName="">
-            <input type="text" id="maxPrice" name="maxPrice" class="filtre" placeholder="Prix maximum" formControlName="">
+            <input type="text" id="minPrice" name="minPrice" class="filtre" placeholder="Prix minimum" formControlName="priceMin">
+            <input type="text" id="maxPrice" name="maxPrice" class="filtre" placeholder="Prix maximum" formControlName="priceMax">
             <select id="tri" name="tri" class="filtre">
                 <option selected>Croissant</option>
                 <option>Décroissant</option>
